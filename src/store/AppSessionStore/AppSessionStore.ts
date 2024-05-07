@@ -180,6 +180,7 @@ export class AppSessionStore {
       inited,
       loading,
       ready,
+      logged,
       finished,
       showDemo,
       appDataStore,
@@ -190,6 +191,8 @@ export class AppSessionStore {
       return 'demo';
     } else if (finished) {
       return 'finished';
+    } else if (!logged) {
+      return 'login';
     } else if (appDataStore && !appDataStore.ready) {
       return 'loadData';
     } else if (ready) {

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import reportWebVitals from 'src/reportWebVitals';
-import { AppPage } from 'src/pages/AppPage';
+import { AppRoot } from 'src/pages/AppRoot';
 
 import 'src/core/global/global-includes';
 import 'src/core/global/global-styles.scss';
@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(rootNode);
 
 const __debugUseStrictMode = false;
 
-let RootNode = <AppPage />;
+let RootNode = <AppRoot />;
 
 if (__debugUseStrictMode) {
   RootNode = (

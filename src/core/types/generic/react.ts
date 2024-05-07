@@ -3,7 +3,8 @@ import React from 'react';
 export interface TPropsWithClassName {
   className?: string;
 }
-export type TPropsWithChildrenAndClassName = React.PropsWithChildren & TPropsWithClassName;
+export type TPropsWithChildren = React.PropsWithChildren;
+export type TPropsWithChildrenAndClassName = TPropsWithChildren & TPropsWithClassName;
 
 export function isClassComponent(component: unknown) {
   return typeof component === 'function' && !!component.prototype.isReactComponent;
