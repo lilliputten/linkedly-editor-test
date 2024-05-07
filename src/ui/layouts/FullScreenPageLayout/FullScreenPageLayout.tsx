@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { Box } from '@mui/material';
 import classNames from 'classnames';
 
-import { ThemeWrapper } from 'src/ui/wrappers/ThemeWrapper';
+import { ThemeWrapper } from 'src/core/wrappers/ThemeWrapper';
 import { AppHeader } from 'src/components/App/AppHeader';
 import { AppFooter } from 'src/components/App/AppFooter';
 import { useAppSessionStore } from 'src/store';

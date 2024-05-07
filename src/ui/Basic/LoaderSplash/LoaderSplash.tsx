@@ -1,7 +1,7 @@
 import { CircularProgress } from '@mui/material';
 import classNames from 'classnames';
 
-import { ThemeWrapper } from 'src/ui/wrappers/ThemeWrapper';
+import { ThemeWrapper } from 'src/core/wrappers/ThemeWrapper';
 import { TMuiThemeMode } from 'src/core/types';
 
 import styles from './LoaderSplash.module.scss';

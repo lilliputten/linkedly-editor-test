@@ -1,4 +1,4 @@
-import { CoreUiWrapper } from 'src/ui/wrappers/CoreUiWrapper';
+import { CoreUiWrapper } from 'src/core/wrappers/CoreUiWrapper';
 import { AppSessionStoreProvider } from 'src/store/AppSessionStore';
 import { AppDataStoreProvider } from 'src/store/AppDataStore';
 import { TPropsWithChildrenAndClassName } from 'src/core/types';
