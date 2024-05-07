@@ -1,5 +1,5 @@
 /** @desc Update build date/time tag file with current timestamp
- *  @changed 2024.02.21, 17:18
+ *  @changed 2024.05.07, 19:54
  */
 /* eslint-disable no-console */
 
@@ -19,9 +19,8 @@ const buildInfoJsonFilename = 'app-info.json';
 
 const scriptsPath = path.resolve(__dirname);
 const rootPath = path.resolve(path.dirname(scriptsPath));
-// const prjPath = path.resolve(path.dirname(scriptsPath));
 const prjPath = process.cwd();
-// const srcPath = path.resolve(prjPath, 'src');
+const srcPath = path.resolve(prjPath, 'src');
 const staticPath = path.resolve(prjPath, 'static');
 
 // TODO: Add local config
@@ -61,6 +60,7 @@ const buildTzTime = formatDate(now, timeZone, timeTzFormat);
 const timestampFileName = path.resolve(rootPath, 'build-timestamp.txt');
 const timetagFileName = path.resolve(rootPath, 'build-timetag.txt');
 // const versionFileName = path.resolve(rootPath, 'build-version.txt');
+const buildInfoJsonFileName = path.resolve(srcPath, 'build-info.json');
 
 console.log('Updated build tag/time:', buildTag, '/', buildTzTime);
 
@@ -68,12 +68,17 @@ console.log('Updated build tag/time:', buildTag, '/', buildTzTime);
 fs.writeFileSync(timetagFileName, buildTag, 'utf8');
 fs.writeFileSync(timestampFileName, buildTzTime, 'utf8');
 
+const buildInfo = getBuildInfo();
+
 // Write build info data to use in the source code (if the folder already exists)...
 if (fs.existsSync(staticPath)) {
   const buildInfoJsonFileName = path.resolve(staticPath, buildInfoJsonFilename);
   console.log('Creating', buildInfoJsonFilename, 'file...');
-  fs.writeFileSync(buildInfoJsonFileName, JSON.stringify(getBuildInfo(), undefined, 2) + '\n', 'utf8');
+  fs.writeFileSync(buildInfoJsonFileName, JSON.stringify(buildInfo, undefined, 2) + '\n', 'utf8');
 }
+
+// Write build info data to use in the source code...
+fs.writeFileSync(buildInfoJsonFileName, JSON.stringify(buildInfo, undefined, 2) + '\n', 'utf8');
 
 function formatDate(date, timeZone, fmt) {
   let dayjsDate = dayjs(date);
