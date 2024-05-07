@@ -112,7 +112,7 @@ const RenderCurrentComponent: React.FC<TCurrentComponentProps> = (props) => {
 /** Choose & render suitable application part */
 const RenderContent: React.FC<TAppRouterWrapperProps> = observer((props) => {
   useAppSessionInit();
-  const appSessionStore = useAppSessionStore();
+  const appSessionStore: AppSessionStore = useAppSessionStore();
   const { rootState: sessionRootState } = appSessionStore;
   // TODO: Wrap with error & loader splash renderer?
   return (

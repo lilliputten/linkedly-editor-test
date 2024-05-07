@@ -121,6 +121,7 @@ export class AppSessionStore {
   @observable finished: boolean = false;
   @observable showHelp: boolean = false;
   @observable showDemo: boolean = false;
+  @observable logged: boolean = false;
   @observable ready: boolean = false;
   @observable loading: boolean = false;
   @observable status: TAppSessionStoreStatus;
@@ -145,16 +146,6 @@ export class AppSessionStore {
    * @observable verticalLayout: boolean = false;
    * [>* Chart nodes color mode (could be overriden individually later) <]
    * @observable nodesColorMode: TNodesColorMode = defaultNodesColorMode;
-   * [>* Base nodes color <]
-   * @observable baseNodesColor: TColor = defaultBaseColor;
-   * [>* Second nodes color <]
-   * @observable secondNodesColor: TColor = defaultSecondColor;
-   * [>* Auto hide nodes (see `THideNodesParams` and `updateHiddenGraphNodes` in `AppDataStore`) <]
-   * @observable autoHideNodes: boolean = defaultAutoHideNodes;
-   * [>* Auto hide nodes threshold value (percents, include children with values more than this treshold) <]
-   * @observable autoHideNodesThreshold: number = defaultAutoHideNodesThreshold;
-   * [>* Show the number of descendants no more than this value <]
-   * @observable autoHideNodesMaxOutputs: number = defaultAutoHideNodesMaxOutputs;
    */
 
   // Default auto load values...

@@ -28,9 +28,6 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# Local files
-utils/config-local.sh
-
 # Temporariy, swap, log & ignored files
 tsconfig.tsbuildinfo
 *UNUSED
