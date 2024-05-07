@@ -23,7 +23,7 @@ import styles from './LoadDataPage.module.scss';
 
 /* // DEBUG: Unimplemented component stubs!
  * const PlaceholderComponent = (id: string) => () => (
- *   <Box className={classNames('AppRouterWrapperPlaceholder', id)}>
+ *   <Box className={classNames('AppRouterNavigatorPlaceholder', id)}>
  *     Placeholder component: <strong>{id}</strong>
  *   </Box>
  * );

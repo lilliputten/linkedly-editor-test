@@ -1,4 +1,4 @@
-import { CoreWrapper } from 'src/ui/wrappers/CoreWrapper';
+import { CoreUiWrapper } from 'src/ui/wrappers/CoreUiWrapper';
 import { AppSessionStoreProvider } from 'src/store/AppSessionStore';
 import { AppDataStoreProvider } from 'src/store/AppDataStore';
 import { TPropsWithChildrenAndClassName } from 'src/core/types';
@@ -8,7 +8,7 @@ type TAppWrapperProps = TPropsWithChildrenAndClassName;
 export function AppWrapper(props: TAppWrapperProps): JSX.Element {
   const { children, className } = props;
   return (
-    <CoreWrapper className={className}>
+    <CoreUiWrapper className={className}>
       <AppSessionStoreProvider>
         {/* NOTE: AppDataStoreProvider can be situated on the lower level */}
         <AppDataStoreProvider>
@@ -16,6 +16,6 @@ export function AppWrapper(props: TAppWrapperProps): JSX.Element {
           {children}
         </AppDataStoreProvider>
       </AppSessionStoreProvider>
-    </CoreWrapper>
+    </CoreUiWrapper>
   );
 }

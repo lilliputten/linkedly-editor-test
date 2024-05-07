@@ -14,24 +14,24 @@ import { HelpModal } from 'src/components/Help/HelpModal';
 import { Demo } from 'src/components/Demo';
 import { LoadDataPage } from 'src/components/LoadData/LoadDataPage';
 
-import { AppRouterWrapperWaiter } from './AppRouterWrapperWaiter';
+import { AppRouterNavigatorWaiter } from './AppRouterNavigatorWaiter';
 
-import styles from './AppRouterWrapper.module.scss';
+import styles from './AppRouterNavigator.module.scss';
 
 /** DEBUG: Don't wait for user action */
 const __debugEmulateDataReady = false && isDevBrowser;
 
 // DEBUG: Unimplemented component stubs!
 const PlaceholderComponent = (id: string) => () => (
-  <Box className={classNames('AppRouterWrapperPlaceholder', id)}>
+  <Box className={classNames('AppRouterNavigatorPlaceholder', id)}>
     Placeholder component: <strong>{id}</strong>
   </Box>
 );
-const AppRouterWrapperFinished = PlaceholderComponent('AppRouterWrapperFinished');
+const AppRouterNavigatorFinished = PlaceholderComponent('AppRouterNavigatorFinished');
 
-type TAppRouterWrapperProps = TPropsWithChildrenAndClassName;
+type TAppRouterNavigatorProps = TPropsWithChildrenAndClassName;
 
-interface TCurrentComponentProps extends TAppRouterWrapperProps {
+interface TCurrentComponentProps extends TAppRouterNavigatorProps {
   sessionRootState: typeof AppSessionStore.prototype.rootState;
 }
 
@@ -80,7 +80,7 @@ function useAppSessionInit() {
   }, [appDataStore, appSessionStore]);
   // Set load new data callback into the session store...
   const loadNewData = React.useCallback(() => {
-    // console.log('[AppRouterWrapper:loadNewData]');
+    // console.log('[AppRouterNavigator:loadNewData]');
     appDataStore.setReady(false);
   }, [appDataStore]);
   React.useEffect(() => {
@@ -97,11 +97,11 @@ const RenderCurrentComponent: React.FC<TCurrentComponentProps> = (props) => {
   const { sessionRootState, children } = props;
   switch (sessionRootState) {
     case 'waiting':
-      return <AppRouterWrapperWaiter />;
+      return <AppRouterNavigatorWaiter />;
     case 'demo':
       return <Demo />;
     case 'finished':
-      return <AppRouterWrapperFinished />;
+      return <AppRouterNavigatorFinished />;
     case 'loadData':
       return <LoadDataPage />;
     case 'ready':
@@ -110,7 +110,7 @@ const RenderCurrentComponent: React.FC<TCurrentComponentProps> = (props) => {
 };
 
 /** Choose & render suitable application part */
-const RenderContent: React.FC<TAppRouterWrapperProps> = observer((props) => {
+const RenderContent: React.FC<TAppRouterNavigatorProps> = observer((props) => {
   useAppSessionInit();
   const appSessionStore: AppSessionStore = useAppSessionStore();
   const { rootState: sessionRootState } = appSessionStore;
@@ -127,7 +127,7 @@ const RenderContent: React.FC<TAppRouterWrapperProps> = observer((props) => {
   );
 });
 
-export const AppRouterWrapper: React.FC<TAppRouterWrapperProps> = (props) => {
+export const AppRouterNavigator: React.FC<TAppRouterNavigatorProps> = (props) => {
   const { className } = props;
   return (
     <Box className={classNames(className, styles.root)}>
