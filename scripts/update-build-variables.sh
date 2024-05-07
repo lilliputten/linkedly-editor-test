@@ -13,7 +13,7 @@ test -f "$prjPath/config.sh" && . "$prjPath/config.sh"
 test -f "$prjPath/config-local.sh" && . "$prjPath/config-local.sh"
 
 # # Check basic required variables...
-# test -f "$rootPath/config-check.sh" && . "$rootPath/config-check.sh" --omit-publish-folder-check
+# test -f "$scriptsPath/config-check.sh" && . "$scriptsPath/config-check.sh" --omit-publish-folder-check
 
 # Run js updater (make changes in `build-*` files; see list below)...
 # TODO: To check exit status?

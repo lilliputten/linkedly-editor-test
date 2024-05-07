@@ -13,7 +13,7 @@ test -f "$prjPath/config.sh" && . "$prjPath/config.sh"
 test -f "$prjPath/config-local.sh" && . "$prjPath/config-local.sh"
 
 # Check basic required variables...
-test -f "$rootPath/config-check.sh" && . "$rootPath/config-check.sh"
+test -f "$scriptsPath/config-check.sh" && . "$scriptsPath/config-check.sh"
 
 # Make build if absent
 sh "$scriptsPath/publish-update.sh" || exit 1

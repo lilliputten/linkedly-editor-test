@@ -13,7 +13,7 @@ test -f "$prjPath/config.sh" && . "$prjPath/config.sh"
 test -f "$prjPath/config-local.sh" && . "$prjPath/config-local.sh"
 
 # # Check basic required variables...
-test -f "$rootPath/config-check.sh" && . "$rootPath/config-check.sh" --omit-publish-folder-check
+test -f "$scriptsPath/config-check.sh" && . "$scriptsPath/config-check.sh" --omit-publish-folder-check
 
 # Publish folder should be absent...
 # NOTE: For uninstall/reinitialize publish submodule, use:
@@ -22,7 +22,7 @@ if [ -d "$PUBLISH_FOLDER" ]; then
   echo "Remove it first for re-initializing using command:"
   echo "'rm -Rf "$PUBLISH_FOLDER" ".gitmodules" ".git/modules/$PUBLISH_FOLDER"'"
   echo "or"
-  echo "'sh utils/publish-uninit.sh'."
+  echo "'sh utils/scripts/publish-uninit.sh'."
   exit # Successfull exit
   # # Alterative behaviors...
   # exit 1 # Exit with error code
