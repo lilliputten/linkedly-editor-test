@@ -1,0 +1,29 @@
+" Press ? for help
+
+Tab #1
+|-package.json
+|-craco.config.js
+|-gulpfile.js
+|-README.md
+`-tsconfig.json
+
+Tab #2
+`-index.tsx
+
+Tab #3*
+
+Tab #4
+`-AppRouterNavigator.tsx
+
+Tab #5
+`-AppRouterWrapper.tsx
+
+Tab #6
+`-react.ts
+
+Tab #7
+|-config-check.sh
+`-publish.sh
+
+Tab #8
+`-variables.scss
