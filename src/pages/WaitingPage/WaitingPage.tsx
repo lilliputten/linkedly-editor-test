@@ -31,6 +31,14 @@ function useAppNavigation() {
     // });
     stateMemo.sessionRootState = sessionRootState;
     switch (sessionRootState) {
+      // case 'help': {
+      //   navigate('/help');
+      //   break;
+      // }
+      // case 'demo': {
+      //   navigate('/demo');
+      //   break;
+      // }
       case 'login': {
         navigate('/login');
         break;

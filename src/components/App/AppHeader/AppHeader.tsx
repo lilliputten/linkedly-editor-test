@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import {
   AppBar,
@@ -19,11 +20,11 @@ import {
 import {
   Menu,
   HelpOutline,
-  DriveFolderUpload,
+  // DriveFolderUpload,
   DarkMode,
   LightMode,
   BugReport,
-  BarChart,
+  // BarChart,
   SvgIconComponent,
 } from '@mui/icons-material';
 import classNames from 'classnames';
@@ -32,7 +33,7 @@ import { isDev } from 'src/core/constants/config';
 import { TPropsWithClassName } from 'src/core/types';
 import { appTitle } from 'src/core/constants/config/app';
 import { useAppSessionStore } from 'src/store/AppSessionStore';
-import { useAppDataStore } from 'src/store/AppDataStore';
+// import { useAppDataStore } from 'src/store/AppDataStore';
 
 import styles from './AppHeader.module.scss';
 
@@ -44,28 +45,31 @@ interface TNavItem {
   id: string;
   text: string;
   title?: string;
-  disabled?: boolean;
+  selected?: boolean;
 }
 
 export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
   const { className } = props;
   const container = document.body;
-  const appDataStore = useAppDataStore();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { pathname } = location;
+  // const appDataStore = useAppDataStore();
   const appSessionStore = useAppSessionStore();
   const {
     // prettier-ignore
-    loadNewDataCb,
+    // loadNewDataCb,
     themeMode,
-    showDemo,
+    // showDemo,
     showHelp,
     useDemo,
-    rootState,
+    // rootState,
   } = appSessionStore;
-  const {
-    // prettier-ignore
-    hasAllData,
-  } = appDataStore;
-  const hasData = false; // appDataStore?.ready && loadNewDataCb;
+  // const {
+  //   // prettier-ignore
+  //   hasAllData,
+  // } = appDataStore;
+  // const hasData = false; // appDataStore?.ready && loadNewDataCb;
   const isDark = themeMode === 'dark';
   const allowDemo = isDev || useDemo;
   // TODO: Check current page
@@ -73,17 +77,17 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
     // prettier-ignore
     return [
       // { id: 'home', text: 'Home', icon: Home }, // UNUSED!
-      hasAllData && { id: 'visualize', text: 'Visualize', icon: BarChart, title:'Show data', disabled: rootState === 'ready' },
-      hasData && { id: 'loadData', text: 'Load new data', icon: DriveFolderUpload, title:'Reload data', disabled: rootState === 'loadData' },
-      !hasData && { id: 'loadData', text: 'Load data', icon: DriveFolderUpload, title:'Load data', disabled: rootState === 'loadData' },
+      // hasAllData && { id: 'visualize', text: 'Visualize', icon: BarChart, title:'Show data', selected: rootState === 'ready' },
+      // hasData && { id: 'loadData', text: 'Load new data', icon: DriveFolderUpload, title:'Reload data', selected: rootState === 'loadData' },
+      // !hasData && { id: 'loadData', text: 'Load data', icon: DriveFolderUpload, title:'Load data', selected: rootState === 'loadData' },
       !isDark && { id: 'setDarkTheme', text: 'Dark theme', icon: DarkMode, title:'Set dark theme' },
       isDark && { id: 'setLightTheme', text: 'Light theme', icon: LightMode, title:'Set light theme' },
-      { id: 'showHelp', text: 'Help', icon: HelpOutline, title:'Show application help', disabled: showHelp },
-      allowDemo && { id: 'showDemo', text: 'Demo', icon: BugReport, title: 'Show demo', disabled: showDemo },
+      { id: 'showHelp', text: 'Help', icon: HelpOutline, title:'Show application help', selected: showHelp },
+      allowDemo && { id: 'showDemo', text: 'Demo', icon: BugReport, title: 'Show demo', selected: pathname.startsWith('/demo') },
       // allowDemo && !showDemo && { id: 'showDemo', text: 'Demo', icon: BugReport, title: 'Show demo' },
       // allowDemo && showDemo && { id: 'closeDemo', text: 'Close demo', icon: BugReport, title: 'Hide demo' },
     ].filter(Boolean) as TNavItem[];
-  }, [hasData, isDark, allowDemo, showDemo, rootState, showHelp, hasAllData]);
+  }, [isDark, showHelp, allowDemo, pathname]);
   /** Mobile drawer state */
   const [mobileOpen, setMobileOpen] = React.useState(false);
   /** Toggle mobile drawer... */
@@ -98,21 +102,23 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
       const { currentTarget } = ev;
       const { id } = currentTarget;
       switch (id) {
-        case 'visualize': {
-          appSessionStore.setShowDemo(false);
-          appSessionStore.setShowHelp(false);
-          appDataStore.setReady(true);
-          break;
-        }
-        case 'loadData': {
-          appSessionStore.setShowDemo(false);
-          appSessionStore.setShowHelp(false);
-          appSessionStore.setReady(true);
-          if (loadNewDataCb) {
-            loadNewDataCb();
-          }
-          break;
-        }
+        // case 'visualize': {
+        //   // TODO: Navigate to main app screen...
+        //   appSessionStore.setShowDemo(false);
+        //   appSessionStore.setShowHelp(false);
+        //   appDataStore.setReady(true);
+        //   break;
+        // }
+        // case 'loadData': {
+        //   // appSessionStore.setShowDemo(false);
+        //   // appSessionStore.setShowHelp(false);
+        //   // appSessionStore.setReady(true);
+        //   // if (loadNewDataCb) {
+        //   //   loadNewDataCb();
+        //   // }
+        //   navigate('/login');
+        //   break;
+        // }
         case 'setLightTheme': {
           appSessionStore.setThemeMode('light');
           break;
@@ -123,6 +129,7 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
         }
         case 'showHelp': {
           appSessionStore.setShowHelp(true);
+          // navigate('/help');
           break;
         }
         case 'hideHelp': {
@@ -130,16 +137,13 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
           break;
         }
         case 'showDemo': {
-          appSessionStore.setShowDemo(true);
-          break;
-        }
-        case 'closeDemo': {
-          appSessionStore.setShowDemo(false);
+          navigate('/demo');
+          // appSessionStore.setShowDemo(true);
           break;
         }
       }
     },
-    [appSessionStore, appDataStore, loadNewDataCb],
+    [appSessionStore, navigate],
   );
 
   // Adaptive breakpoints...
@@ -159,7 +163,7 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
       <List>
         {navItems.map((item) => (
           <ListItem key={item.id} disablePadding title={item.title ? item.title : undefined}>
-            <ListItemButton id={item.id} onClick={handleNavItemClick} disabled={item.disabled}>
+            <ListItemButton id={item.id} onClick={handleNavItemClick} selected={item.selected}>
               {item.icon && (
                 <ListItemIcon className={styles.ListItemIcon}>
                   <item.icon />
@@ -211,7 +215,8 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
                 onClick={handleNavItemClick}
                 startIcon={item.icon && <item.icon />}
                 title={item.title ? item.title : undefined}
-                disabled={item.disabled}
+                variant={item.selected ? 'outlined' : 'text'}
+                color="secondary"
               >
                 {item.text}
               </Button>

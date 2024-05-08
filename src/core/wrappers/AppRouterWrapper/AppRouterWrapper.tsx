@@ -12,6 +12,8 @@ import { LoginPage } from 'src/pages/LoginPage';
 import { StartPage } from 'src/pages/StartPage';
 import { TestPage } from 'src/pages/TestPage';
 import { WaitingPage } from 'src/pages/WaitingPage';
+import { DemoPage } from 'src/pages/DemoPage';
+import { HelpPage } from 'src/pages/HelpPage';
 
 /** DEBUG: Don't wait for user action */
 const __debugEmulateDataReady = false && isDevBrowser;
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
   {
     path: '/start',
     element: <StartPage />,
+  },
+  {
+    path: '/demo',
+    element: <DemoPage />,
+  },
+  {
+    path: '/help',
+    element: <HelpPage />,
   },
   // TODO:
   // - demo

@@ -7,6 +7,7 @@ import { ThemeWrapper } from 'src/core/wrappers/ThemeWrapper';
 import { AppHeader } from 'src/components/App/AppHeader';
 import { AppFooter } from 'src/components/App/AppFooter';
 import { useAppSessionStore } from 'src/store';
+import { HelpModal } from 'src/components/Help/HelpModal';
 
 import styles from './FullScreenPageLayout.module.scss';
 
@@ -26,6 +27,7 @@ export const FullScreenPageLayout: React.FC<TFullScreenPageLayoutProps> = observ
         <AppHeader className={styles.header} />
         <Box className={styles.content}>{children}</Box>
         <AppFooter className={styles.footer} />
+        <HelpModal />
       </ThemeWrapper>
     );
   },
