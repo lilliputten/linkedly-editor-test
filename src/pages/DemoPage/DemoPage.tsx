@@ -1,9 +1,5 @@
-import { FullScreenPageLayout } from 'src/ui/layouts/FullScreenPageLayout';
+import { Demo } from 'src/components/Demo';
 
 export function DemoPage() {
-  return (
-    <FullScreenPageLayout>
-      <p>DemoPage</p>
-    </FullScreenPageLayout>
-  );
+  return <Demo />;
 }

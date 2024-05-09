@@ -194,7 +194,7 @@ export class AppSessionStore {
     } else if (!logged) {
       return 'login';
     } else if (appDataStore && !appDataStore.ready) {
-      return 'loadData';
+      return 'main';
     } else if (ready) {
       return 'ready';
     } else {
@@ -273,6 +273,10 @@ export class AppSessionStore {
 
   @action setReady(ready: typeof AppSessionStore.prototype.ready) {
     this.ready = ready;
+  }
+
+  @action setLogged(logged: typeof AppSessionStore.prototype.logged) {
+    this.logged = logged;
   }
 
   @action setLoading(loading: typeof AppSessionStore.prototype.loading) {
@@ -427,3 +431,5 @@ export class AppSessionStore {
     this.staticDisposers = undefined;
   }
 }
+
+export type TSessionRootState = typeof AppSessionStore.prototype.rootState;

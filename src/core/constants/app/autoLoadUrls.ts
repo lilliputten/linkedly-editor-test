@@ -1,4 +1,4 @@
-import { mainPageUrl } from './urls';
+import { mainUrl } from 'src/routes/urls';
 
 /** Default file names for specific data types */
 export const defaultDataFiles = {
@@ -9,7 +9,7 @@ export const defaultDataFiles = {
   // nodes: 'nodes.json',
 };
 
-export const dataUrlPrefix = mainPageUrl;
+export const dataUrlPrefix = mainUrl;
 const defaultDataPath = 'fake-data/';
 // const nodesNodesPath = '';
 

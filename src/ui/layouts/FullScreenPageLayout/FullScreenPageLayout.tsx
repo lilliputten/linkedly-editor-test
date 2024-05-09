@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
+// import { useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import classNames from 'classnames';
 
@@ -22,6 +23,15 @@ export const FullScreenPageLayout: React.FC<TFullScreenPageLayoutProps> = observ
     const { className, children } = props;
     const appSessionStore = useAppSessionStore();
     const { themeMode } = appSessionStore;
+    /* // DEBUG: router location
+     * const location = useLocation();
+     * const { pathname } = location;
+     * React.useEffect(() => {
+     *   console.log('[FullScreenPageLayout:Effect:pathname]', pathname, {
+     *     location,
+     *   });
+     * }, [pathname, location]);
+     */
     return (
       <ThemeWrapper className={classNames(className, styles.root)} themeMode={themeMode} fullSize>
         <AppHeader className={styles.header} />

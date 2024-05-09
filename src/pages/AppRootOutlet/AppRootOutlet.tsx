@@ -1,9 +1,11 @@
+import { Outlet } from 'react-router-dom';
+
 import { FullScreenPageLayout } from 'src/ui/layouts/FullScreenPageLayout';
 
-export function HelpPage() {
+export function AppRootOutlet() {
   return (
     <FullScreenPageLayout>
-      <p>HelpPage</p>
+      <Outlet />
     </FullScreenPageLayout>
   );
 }

@@ -1,4 +1,6 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
+import { useNavigate } from 'react-router-dom';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -12,116 +14,132 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-// import { FormControl } from '@mui/material';
 import { Check } from '@mui/icons-material';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { FullScreenPageLayout } from 'src/ui/layouts/FullScreenPageLayout';
-import FormControl from '@mui/material/FormControl';
-import { appTitle } from 'src/core/constants/config';
+// import { appTitle } from 'src/core/constants/config';
+// import { mainUrl } from 'src/routes/urls';
+import { useAppSessionStore } from 'src/store';
+import { useCommonAppNavigation } from 'src/core/hooks/routes/useCommonAppNavigation';
 
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="/">
-        {appTitle}
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+/* // UNUSED: Copyright (?)
+ * function Copyright(props: any) {
+ *   return (
+ *     <Typography variant="body2" color="text.secondary" align="center" {...props}>
+ *       {'Copyright © '}
+ *       <Link color="inherit" href="/">
+ *         {appTitle}
+ *       </Link>{' '}
+ *       {new Date().getFullYear()}
+ *       {'.'}
+ *     </Typography>
+ *   );
+ * }
+ */
+
+export const LoginPage: React.FC = observer(() => {
+  const appSessionStore = useAppSessionStore();
+  useCommonAppNavigation();
+  /* // UNUSED: Manually navigate to main page...
+   * const navigate = useNavigate();
+   * const { logged } = appSessionStore;
+   * React.useEffect(() => {
+   *   if (logged) {
+   *     navigate(mainUrl);
+   *   }
+   * }, [logged, navigate]);
+   */
+  const handleSubmit = React.useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      console.log('[LoginPage:LoginPage] handleSubmit', {
+        login: data.get('login'),
+        password: data.get('password'),
+      });
+      // TODO: Check login data
+      // navigate(mainUrl);
+      appSessionStore.setLogged(true);
+    },
+    [appSessionStore],
   );
-}
-
-export function LoginPage() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log('[LoginPage:LoginPage] handleSubmit', {
-      login: data.get('login'),
-      password: data.get('password'),
-    });
-  };
 
   const avatarSize = 64;
 
   return (
-    <FullScreenPageLayout>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'primary.main', width: avatarSize, height: avatarSize  }}>
-            <LockOutlinedIcon
-              // fontSize="large"
-            />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="login"
-              label="Login"
-              name="login"
-              autoComplete="login"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Box
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 2, bgcolor: 'primary.main', width: avatarSize, height: avatarSize }}>
+          <LockOutlinedIcon
+          // fontSize="large"
+          />
+        </Avatar>
+        <Typography component="h1" variant="h3" fontSize="1.5rem" color="primary">
+          Sign in
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="login"
+            label="Login"
+            name="login"
+            autoComplete="login"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Box
+            // prettier-ignore
+            sx={{ mt: 3, mb: 2 }}
+          >
+            <Button
               // prettier-ignore
-              sx={{ mt: 3, mb: 2 }}
+              type="submit"
+              fullWidth
+              variant="contained"
+              startIcon={<Check />}
             >
-              <Button
-                // prettier-ignore
-                type="submit"
-                fullWidth
-                variant="contained"
-                startIcon={<Check />}
-              >
-                Sign In
-              </Button>
-            </Box>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+              Sign In
+            </Button>
           </Box>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2">
+                Don't have an account? Sign Up
+              </Link>
+            </Grid>
+          </Grid>
         </Box>
-        {/*
-         * <Copyright sx={{ mt: 8, mb: 4 }} />
-         */}
-      </Container>
-    </FullScreenPageLayout>
+      </Box>
+      {/*
+       * <Copyright sx={{ mt: 8, mb: 4 }} />
+       */}
+    </Container>
   );
-}
+});

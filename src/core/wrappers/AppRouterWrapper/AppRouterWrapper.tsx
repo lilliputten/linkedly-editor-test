@@ -1,5 +1,4 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
 import { isDevBrowser } from 'src/core/constants/config';
@@ -7,77 +6,10 @@ import { showError } from 'src/ui/Basic';
 import { getErrorText } from 'src/core/helpers/basic';
 import { useAppSessionStore } from 'src/store/AppSessionStore';
 import { useAppDataStore } from 'src/store/AppDataStore';
-
-import {
-  demoUrl,
-  helpUrl,
-  loginUrl,
-  rootUrl,
-  startUrl,
-  testUrl,
-} from 'src/core/constants/app/urls';
-
-import { LoginPage } from 'src/pages/LoginPage';
-import { StartPage } from 'src/pages/StartPage';
-import { TestPage } from 'src/pages/TestPage';
-import { WaitingPage } from 'src/pages/WaitingPage';
-import { DemoPage } from 'src/pages/DemoPage';
-import { HelpPage } from 'src/pages/HelpPage';
+import { RouterWrapper } from 'src/routes/RouterWrapper';
 
 /** DEBUG: Don't wait for user action */
 const __debugEmulateDataReady = false && isDevBrowser;
-
-/** Choose & render suitable application part * /
-const RenderContent: React.FC<TAppRouterWrapperProps> = observer((props) => {
-  useAppSessionInit();
-  const appSessionStore: AppSessionStore = useAppSessionStore();
-  const { rootState: sessionRootState } = appSessionStore;
-  // TODO: Wrap with error & loader splash renderer?
-  return (
-    <>
-      <RenderCurrentComponent
-        // prettier-ignore
-        sessionRootState={sessionRootState}
-        {...props}
-      />
-      <HelpModal />
-    </>
-  );
-});
-*/
-
-const router = createBrowserRouter([
-  {
-    path: rootUrl,
-    element: <WaitingPage />,
-  },
-  {
-    path: loginUrl,
-    element: <LoginPage />,
-  },
-  {
-    path: testUrl,
-    element: <TestPage />,
-  },
-  {
-    path: startUrl,
-    element: <StartPage />,
-  },
-  {
-    path: demoUrl,
-    element: <DemoPage />,
-  },
-  {
-    path: helpUrl,
-    element: <HelpPage />,
-  },
-  // TODO:
-  // - demo
-  // - finished
-  // - ready
-  // - loadData?
-  // - help?
-]);
 
 function useAppSessionInit() {
   const appSessionStore = useAppSessionStore();
@@ -136,11 +68,7 @@ function useAppSessionInit() {
   }, [appDataStore, appSessionStore, loadNewData]);
 }
 
-const RenderRouter: React.FC = observer(() => {
+export const AppRouterWrapper: React.FC = observer(() => {
   useAppSessionInit();
-  return <RouterProvider router={router} />;
+  return <RouterWrapper />;
 });
-
-export const AppRouterWrapper: React.FC = () => {
-  return <RenderRouter />;
-};

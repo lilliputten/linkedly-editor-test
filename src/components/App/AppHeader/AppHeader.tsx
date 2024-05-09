@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link as RouterLink } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import Link from '@mui/material/Link';
 import {
@@ -38,7 +38,7 @@ import { useAppSessionStore } from 'src/store/AppSessionStore';
 // import { useAppDataStore } from 'src/store/AppDataStore';
 
 import styles from './AppHeader.module.scss';
-import { demoUrl } from 'src/core/constants/app/urls';
+import { demoUrl } from 'src/routes/urls';
 
 /** The width of mobile menu drawer */
 const drawerWidth = 280;
@@ -167,7 +167,7 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
     return (
       <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
         <Typography className={styles.drawTitle} variant="h6" sx={{ my: 2, height: toolbarHeight }}>
-          <Link color="inherit" href="/">
+          <Link component={RouterLink} to="/" color="inherit" sx={{ textDecoration: 'none' }}>
             {appTitle}
           </Link>
         </Typography>
@@ -217,7 +217,7 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
             }}
           >
             {/* TODO: Show logo */}
-            <Link color="inherit" href="/">
+            <Link component={RouterLink} to="/" color="inherit" sx={{ textDecoration: 'none' }}>
               {appTitle}
             </Link>
           </Typography>
