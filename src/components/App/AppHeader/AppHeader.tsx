@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
+import Link from '@mui/material/Link';
 import {
   AppBar,
   Box,
@@ -37,6 +38,7 @@ import { useAppSessionStore } from 'src/store/AppSessionStore';
 // import { useAppDataStore } from 'src/store/AppDataStore';
 
 import styles from './AppHeader.module.scss';
+import { demoUrl } from 'src/core/constants/app/urls';
 
 /** The width of mobile menu drawer */
 const drawerWidth = 280;
@@ -86,7 +88,7 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
       !isDark && { id: 'setDarkTheme', text: 'Dark theme', icon: DarkMode, title:'Set dark theme' },
       isDark && { id: 'setLightTheme', text: 'Light theme', icon: LightMode, title:'Set light theme' },
       { id: 'showHelp', text: 'Help', icon: HelpOutline, title:'Show application help', selected: showHelp },
-      allowDemo && { id: 'showDemo', text: 'Demo', icon: BugReport, title: 'Show demo', selected: pathname.startsWith('/demo') },
+      allowDemo && { id: 'showDemo', text: 'Demo', icon: BugReport, title: 'Show demo', selected: pathname.startsWith(demoUrl) },
       // allowDemo && !showDemo && { id: 'showDemo', text: 'Demo', icon: BugReport, title: 'Show demo' },
       // allowDemo && showDemo && { id: 'closeDemo', text: 'Close demo', icon: BugReport, title: 'Hide demo' },
     ].filter(Boolean) as TNavItem[];
@@ -119,7 +121,7 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
         //   // if (loadNewDataCb) {
         //   //   loadNewDataCb();
         //   // }
-        //   navigate('/login');
+        //   navigate(loginUrl);
         //   break;
         // }
         case 'home': {
@@ -136,7 +138,7 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
         }
         case 'showHelp': {
           appSessionStore.setShowHelp(true);
-          // navigate('/help');
+          // navigate(helpUrl);
           break;
         }
         case 'hideHelp': {
@@ -144,7 +146,7 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
           break;
         }
         case 'showDemo': {
-          navigate('/demo');
+          navigate(demoUrl);
           // appSessionStore.setShowDemo(true);
           break;
         }
@@ -165,7 +167,9 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
     return (
       <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
         <Typography className={styles.drawTitle} variant="h6" sx={{ my: 2, height: toolbarHeight }}>
-          {appTitle}
+          <Link color="inherit" href="/">
+            {appTitle}
+          </Link>
         </Typography>
         <Divider />
         <List>
@@ -213,7 +217,9 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
             }}
           >
             {/* TODO: Show logo */}
-            {appTitle}
+            <Link color="inherit" href="/">
+              {appTitle}
+            </Link>
           </Typography>
           <Box sx={{ display: { xs: 'none', [treshold]: 'flex' } }} className={styles.navButtons}>
             {navItems.map((item) => (

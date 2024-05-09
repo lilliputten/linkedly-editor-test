@@ -18,13 +18,14 @@ import { Check } from '@mui/icons-material';
 
 import { FullScreenPageLayout } from 'src/ui/layouts/FullScreenPageLayout';
 import FormControl from '@mui/material/FormControl';
+import { appTitle } from 'src/core/constants/config';
 
 function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="/">
+        {appTitle}
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -37,10 +38,12 @@ export function LoginPage() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log('[LoginPage:LoginPage] handleSubmit', {
-      email: data.get('email'),
+      login: data.get('login'),
       password: data.get('password'),
     });
   };
+
+  const avatarSize = 64;
 
   return (
     <FullScreenPageLayout>
@@ -54,8 +57,10 @@ export function LoginPage() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main', width: avatarSize, height: avatarSize  }}>
+            <LockOutlinedIcon
+              // fontSize="large"
+            />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in

@@ -9,6 +9,7 @@ import { FullScreenPageLayout } from 'src/ui/layouts/FullScreenPageLayout';
 // import { getErrorText } from 'src/core/helpers/basic';
 // import { TPropsWithChildrenAndClassName } from 'src/core/types';
 import { AppSessionStore, useAppSessionStore } from 'src/store/AppSessionStore';
+import { loginUrl } from 'src/core/constants/app/urls';
 
 type TSessionRootState = typeof AppSessionStore.prototype.rootState;
 
@@ -32,15 +33,15 @@ function useAppNavigation() {
     stateMemo.sessionRootState = sessionRootState;
     switch (sessionRootState) {
       // case 'help': {
-      //   navigate('/help');
+      //   navigate(helpUrl);
       //   break;
       // }
       // case 'demo': {
-      //   navigate('/demo');
+      //   navigate(demoUrl);
       //   break;
       // }
       case 'login': {
-        navigate('/login');
+        navigate(loginUrl);
         break;
       }
     }

@@ -8,6 +8,15 @@ import { getErrorText } from 'src/core/helpers/basic';
 import { useAppSessionStore } from 'src/store/AppSessionStore';
 import { useAppDataStore } from 'src/store/AppDataStore';
 
+import {
+  demoUrl,
+  helpUrl,
+  loginUrl,
+  rootUrl,
+  startUrl,
+  testUrl,
+} from 'src/core/constants/app/urls';
+
 import { LoginPage } from 'src/pages/LoginPage';
 import { StartPage } from 'src/pages/StartPage';
 import { TestPage } from 'src/pages/TestPage';
@@ -39,27 +48,27 @@ const RenderContent: React.FC<TAppRouterWrapperProps> = observer((props) => {
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: rootUrl,
     element: <WaitingPage />,
   },
   {
-    path: '/login',
+    path: loginUrl,
     element: <LoginPage />,
   },
   {
-    path: '/test',
+    path: testUrl,
     element: <TestPage />,
   },
   {
-    path: '/start',
+    path: startUrl,
     element: <StartPage />,
   },
   {
-    path: '/demo',
+    path: demoUrl,
     element: <DemoPage />,
   },
   {
-    path: '/help',
+    path: helpUrl,
     element: <HelpPage />,
   },
   // TODO:
