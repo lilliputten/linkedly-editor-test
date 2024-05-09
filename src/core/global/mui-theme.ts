@@ -96,8 +96,10 @@ function getMuiThemeOptions(params?: TMuiThemeParams) {
     },
     button: {
       textTransform: 'none',
-      fontWeight: 'normal',
-      lineHeight: 'normal', // Fix vertical alignment bug
+      // fontWeight: 'normal',
+      // Fix vertical alignment bug (???)
+      // lineHeight: 'normal',
+      lineHeight: 2,
     },
   };
   const options: ThemeOptions = {

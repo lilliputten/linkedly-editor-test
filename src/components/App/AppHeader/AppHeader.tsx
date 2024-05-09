@@ -26,6 +26,7 @@ import {
   BugReport,
   // BarChart,
   SvgIconComponent,
+  Home,
 } from '@mui/icons-material';
 import classNames from 'classnames';
 
@@ -65,6 +66,7 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
     useDemo,
     // rootState,
   } = appSessionStore;
+  // const { rootState: sessionRootState } = appSessionStore;
   // const {
   //   // prettier-ignore
   //   hasAllData,
@@ -76,7 +78,8 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
   const navItems = React.useMemo<TNavItem[]>(() => {
     // prettier-ignore
     return [
-      // { id: 'home', text: 'Home', icon: Home }, // UNUSED!
+      // TODO: Determine actual current app page (distinguish app and non-app pages)?
+      { id: 'home', text: 'Home', icon: Home },
       // hasAllData && { id: 'visualize', text: 'Visualize', icon: BarChart, title:'Show data', selected: rootState === 'ready' },
       // hasData && { id: 'loadData', text: 'Load new data', icon: DriveFolderUpload, title:'Reload data', selected: rootState === 'loadData' },
       // !hasData && { id: 'loadData', text: 'Load data', icon: DriveFolderUpload, title:'Load data', selected: rootState === 'loadData' },
@@ -119,6 +122,10 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
         //   navigate('/login');
         //   break;
         // }
+        case 'home': {
+          navigate('/');
+          break;
+        }
         case 'setLightTheme': {
           appSessionStore.setThemeMode('light');
           break;
@@ -154,28 +161,30 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
   const toolbarHeight = 48;
 
   // TODO: Show other menu items for mobile mode...
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography className={styles.drawTitle} variant="h6" sx={{ my: 2, height: toolbarHeight }}>
-        {appTitle}
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item.id} disablePadding title={item.title ? item.title : undefined}>
-            <ListItemButton id={item.id} onClick={handleNavItemClick} selected={item.selected}>
-              {item.icon && (
-                <ListItemIcon className={styles.ListItemIcon}>
-                  <item.icon />
-                </ListItemIcon>
-              )}
-              <ListItemText primary={item.text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+  const drawer = React.useMemo(() => {
+    return (
+      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+        <Typography className={styles.drawTitle} variant="h6" sx={{ my: 2, height: toolbarHeight }}>
+          {appTitle}
+        </Typography>
+        <Divider />
+        <List>
+          {navItems.map((item) => (
+            <ListItem key={item.id} disablePadding title={item.title ? item.title : undefined}>
+              <ListItemButton id={item.id} onClick={handleNavItemClick} selected={item.selected}>
+                {item.icon && (
+                  <ListItemIcon className={styles.ListItemIcon}>
+                    <item.icon />
+                  </ListItemIcon>
+                )}
+                <ListItemText primary={item.text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+    );
+  }, [handleDrawerToggle, handleNavItemClick, navItems]);
 
   return (
     <>
