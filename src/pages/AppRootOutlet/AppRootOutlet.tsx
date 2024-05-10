@@ -4,7 +4,7 @@ import { FullScreenPageLayout } from 'src/ui/layouts/FullScreenPageLayout';
 
 export function AppRootOutlet() {
   return (
-    <FullScreenPageLayout>
+    <FullScreenPageLayout scrollable>
       <Outlet />
     </FullScreenPageLayout>
   );

@@ -91,6 +91,7 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
       allowDemo && { id: 'showDemo', text: 'Demo', icon: BugReport, title: 'Show demo', selected: pathname.startsWith(demoUrl) },
       // allowDemo && !showDemo && { id: 'showDemo', text: 'Demo', icon: BugReport, title: 'Show demo' },
       // allowDemo && showDemo && { id: 'closeDemo', text: 'Close demo', icon: BugReport, title: 'Hide demo' },
+      // TODO: Add logout item
     ].filter(Boolean) as TNavItem[];
   }, [isDark, showHelp, allowDemo, pathname]);
   /** Mobile drawer state */

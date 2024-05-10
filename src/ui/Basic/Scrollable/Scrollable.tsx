@@ -24,7 +24,7 @@ export function Scrollable(props: TScrollableProps): JSX.Element {
       )}
       flex={1}
     >
-      <Stack className={classNames(containerClassName, styles.container)} flex={1}>
+      <Stack className={classNames(containerClassName, styles.container)}>
         {children}
       </Stack>
     </Stack>
