@@ -96,7 +96,7 @@ function getMuiThemeOptions(params?: TMuiThemeParams) {
     },
     button: {
       textTransform: 'none',
-      // fontWeight: 'normal',
+      fontWeight: 'normal',
       // Fix vertical alignment bug (???)
       // lineHeight: 'normal',
       lineHeight: 2,

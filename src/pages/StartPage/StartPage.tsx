@@ -1,5 +1,3 @@
 export function StartPage() {
-  return (
-    <p>StartPage</p>
-  );
+  return <p>StartPage</p>;
 }

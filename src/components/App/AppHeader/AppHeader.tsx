@@ -28,6 +28,8 @@ import {
   // BarChart,
   SvgIconComponent,
   Home,
+  Login,
+  Logout,
 } from '@mui/icons-material';
 import classNames from 'classnames';
 
@@ -38,7 +40,7 @@ import { useAppSessionStore } from 'src/store/AppSessionStore';
 // import { useAppDataStore } from 'src/store/AppDataStore';
 
 import styles from './AppHeader.module.scss';
-import { demoUrl } from 'src/routes/urls';
+import { demoUrl, loginUrl } from 'src/routes/urls';
 
 /** The width of mobile menu drawer */
 const drawerWidth = 280;
@@ -60,8 +62,7 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
   // const appDataStore = useAppDataStore();
   const appSessionStore = useAppSessionStore();
   const {
-    // prettier-ignore
-    // loadNewDataCb,
+    logged,
     themeMode,
     // showDemo,
     showHelp,
@@ -92,8 +93,10 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
       // allowDemo && !showDemo && { id: 'showDemo', text: 'Demo', icon: BugReport, title: 'Show demo' },
       // allowDemo && showDemo && { id: 'closeDemo', text: 'Close demo', icon: BugReport, title: 'Hide demo' },
       // TODO: Add logout item
+      logged && { id: 'logOut', text: 'Log out', icon: Logout },
+      !logged && { id: 'logIn', text: 'Log in', icon: Login },
     ].filter(Boolean) as TNavItem[];
-  }, [isDark, showHelp, allowDemo, pathname]);
+  }, [isDark, showHelp, allowDemo, pathname, logged]);
   /** Mobile drawer state */
   const [mobileOpen, setMobileOpen] = React.useState(false);
   /** Toggle mobile drawer... */
@@ -149,6 +152,15 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
         case 'showDemo': {
           navigate(demoUrl);
           // appSessionStore.setShowDemo(true);
+          break;
+        }
+        case 'logIn': {
+          navigate(loginUrl);
+          break;
+        }
+        case 'logOut': {
+          appSessionStore.setLogged(false);
+          navigate(loginUrl);
           break;
         }
       }
