@@ -5,8 +5,9 @@ import { StartPage } from 'src/pages/StartPage';
 import { TestPage } from 'src/pages/TestPage';
 import { WaitingPage } from 'src/pages/WaitingPage';
 import { DemoPage } from 'src/pages/DemoPage';
-import { AppRootOutlet } from 'src/pages/AppRootOutlet';
-import { MainPage } from 'src/pages/MainPage';
+import { AppRootLayout } from 'src/pages/AppRootLayout';
+import { MainPage } from 'src/pages/main/MainPage';
+import { MainLayout } from 'src/pages/main/MainLayout';
 
 /** Routes
  * @see src/routes/urls.ts
@@ -15,12 +16,20 @@ import { MainPage } from 'src/pages/MainPage';
 export const routes: RouteObject[] = [
   {
     path: '/',
-    element: <AppRootOutlet />,
+    element: <AppRootLayout />,
     // loader
     children: [
       { index: true, element: <WaitingPage /> },
       { path: 'login', element: <LoginPage /> },
-      { path: 'main', element: <MainPage /> },
+      {
+        path: 'main',
+        element: <MainLayout />,
+        children: [
+          // prettier-ignore
+          { index: true, element: <MainPage /> },
+          { path: 'start', element: <TestPage /> },
+        ],
+      },
       { path: 'demo', element: <DemoPage /> },
       { path: 'test', element: <TestPage /> },
       { path: 'start', element: <StartPage /> },

@@ -1,14 +1,14 @@
 import { useCommonAppNavigation } from 'src/core/hooks/routes/useCommonAppNavigation';
+import { Scrollable } from 'src/ui/Basic';
 
 export function MainPage() {
   useCommonAppNavigation();
-  const itemsCount = 2;
+  const itemsCount = 20;
   const items = Array.from(Array(itemsCount)).map((_, n) => <p key={n}>Item {n}</p>);
-  console.log('XXX', items);
   return (
-    <>
+    <Scrollable>
       <p>MainPage</p>
       {items}
-    </>
+    </Scrollable>
   );
 }

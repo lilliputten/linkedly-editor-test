@@ -41,6 +41,11 @@ import { useAppSessionStore } from 'src/store/AppSessionStore';
 
 import styles from './AppHeader.module.scss';
 import { demoUrl, loginUrl } from 'src/routes/urls';
+import {
+  layoutToolbarHeight,
+  mediumLayoutTreshold,
+  mobileLayoutTreshold,
+} from 'src/core/constants/app';
 
 /** The width of mobile menu drawer */
 const drawerWidth = 280;
@@ -168,18 +173,22 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
     [appSessionStore, navigate],
   );
 
-  // Adaptive breakpoints...
-  const treshold: Breakpoint = 'md';
-  const midTreshold: Breakpoint = 'sm';
-
-  // Toolbar height...
-  const toolbarHeight = 48;
+  // // Adaptive breakpoints...
+  // const mediumLayoutTreshold: Breakpoint = 'md';
+  // const mobileLayoutTreshold: Breakpoint = 'sm';
+  //
+  // // Toolbar height...
+  // const layoutToolbarHeight = 48;
 
   // TODO: Show other menu items for mobile mode...
   const drawer = React.useMemo(() => {
     return (
       <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-        <Typography className={styles.drawTitle} variant="h6" sx={{ my: 2, height: toolbarHeight }}>
+        <Typography
+          className={styles.drawTitle}
+          variant="h6"
+          sx={{ my: 2, height: layoutToolbarHeight }}
+        >
           <Link component={RouterLink} to="/" color="inherit" sx={{ textDecoration: 'none' }}>
             {appTitle}
           </Link>
@@ -206,13 +215,17 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
   return (
     <>
       <AppBar className={classNames(className, styles.root)} component="nav">
-        <Toolbar sx={{ minHeight: { xs: toolbarHeight, [treshold]: toolbarHeight } }}>
+        <Toolbar
+          sx={{
+            minHeight: { xs: layoutToolbarHeight, [mediumLayoutTreshold]: layoutToolbarHeight },
+          }}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { [treshold]: 'none' } }}
+            sx={{ mr: 2, display: { [mediumLayoutTreshold]: 'none' } }}
           >
             <Menu />
           </IconButton>
@@ -224,8 +237,8 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
               flexGrow: 1,
               display: {
                 xs: 'none',
-                [midTreshold]: mobileOpen ? 'none' : 'block',
-                [treshold]: 'block',
+                [mobileLayoutTreshold]: mobileOpen ? 'none' : 'block',
+                [mediumLayoutTreshold]: 'block',
               },
             }}
           >
@@ -234,7 +247,10 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
               {appTitle}
             </Link>
           </Typography>
-          <Box sx={{ display: { xs: 'none', [treshold]: 'flex' } }} className={styles.navButtons}>
+          <Box
+            sx={{ display: { xs: 'none', [mediumLayoutTreshold]: 'flex' } }}
+            className={styles.navButtons}
+          >
             {navItems.map((item) => (
               <Button
                 key={item.id}
@@ -262,7 +278,7 @@ export const AppHeader: React.FC<TPropsWithClassName> = observer((props) => {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', [treshold]: 'none' },
+            display: { xs: 'block', [mediumLayoutTreshold]: 'none' },
             // TODO: Move to style's module
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}

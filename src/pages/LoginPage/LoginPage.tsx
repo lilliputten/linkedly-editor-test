@@ -20,6 +20,7 @@ import { Check } from '@mui/icons-material';
 // import { mainUrl } from 'src/routes/urls';
 import { useAppSessionStore } from 'src/store';
 import { useCommonAppNavigation } from 'src/core/hooks/routes/useCommonAppNavigation';
+import { Scrollable } from 'src/ui/Basic';
 
 /* // UNUSED: Copyright (?)
  * function Copyright(props: any) {
@@ -66,80 +67,82 @@ export const LoginPage: React.FC = observer(() => {
   const avatarSize = 64;
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <Box
-        sx={{
-          // marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Avatar sx={{ m: 2, bgcolor: 'primary.main', width: avatarSize, height: avatarSize }}>
-          <LockOutlinedIcon
-          // fontSize="large"
-          />
-        </Avatar>
-        <Typography component="h1" variant="h3" fontSize="1.5rem" color="primary">
-          Sign in
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="login"
-            label="Login"
-            name="login"
-            autoComplete="login"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Box
-            // prettier-ignore
-            sx={{ mt: 3, mb: 2 }}
-          >
-            <Button
-              // prettier-ignore
-              type="submit"
+    <Scrollable>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            // marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 2, bgcolor: 'primary.main', width: avatarSize, height: avatarSize }}>
+            <LockOutlinedIcon
+            // fontSize="large"
+            />
+          </Avatar>
+          <Typography component="h1" variant="h3" fontSize="1.5rem" color="primary">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
               fullWidth
-              variant="contained"
-              startIcon={<Check />}
+              id="login"
+              label="Login"
+              name="login"
+              autoComplete="login"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Box
+              // prettier-ignore
+              sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
-            </Button>
+              <Button
+                // prettier-ignore
+                type="submit"
+                fullWidth
+                variant="contained"
+                startIcon={<Check />}
+              >
+                Sign In
+              </Button>
+            </Box>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  Don't have an account? Sign Up
+                </Link>
+              </Grid>
+            </Grid>
           </Box>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                Don't have an account? Sign Up
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
-      </Box>
-      {/*
-       * <Copyright sx={{ mt: 8, mb: 4 }} />
-       */}
-    </Container>
+        {/*
+         * <Copyright sx={{ mt: 8, mb: 4 }} />
+         */}
+      </Container>
+    </Scrollable>
   );
 });

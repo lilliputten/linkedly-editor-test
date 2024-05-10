@@ -9,9 +9,9 @@ import { AppHeader } from 'src/components/App/AppHeader';
 import { AppFooter } from 'src/components/App/AppFooter';
 import { useAppSessionStore } from 'src/store';
 import { HelpModal } from 'src/components/Help/HelpModal';
+import { Scrollable } from 'src/ui/Basic';
 
 import styles from './FullScreenPageLayout.module.scss';
-import { Scrollable } from 'src/ui/Basic';
 
 export interface TFullScreenPageLayoutProps {
   className?: string;
