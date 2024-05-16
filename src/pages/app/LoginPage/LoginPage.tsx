@@ -1,6 +1,5 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { useNavigate } from 'react-router-dom';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -52,11 +51,11 @@ export const LoginPage: React.FC = observer(() => {
   const handleSubmit = React.useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      const data = new FormData(event.currentTarget);
-      console.log('[LoginPage:LoginPage] handleSubmit', {
-        login: data.get('login'),
-        password: data.get('password'),
-      });
+      // const data = new FormData(event.currentTarget);
+      // console.log('[LoginPage:LoginPage] handleSubmit', {
+      //   login: data.get('login'),
+      //   password: data.get('password'),
+      // });
       // TODO: Check login data
       // navigate(mainUrl);
       appSessionStore.setLogged(true);

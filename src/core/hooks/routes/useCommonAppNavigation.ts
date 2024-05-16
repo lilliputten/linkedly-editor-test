@@ -21,11 +21,11 @@ export function useCommonAppNavigation() {
   const stateMemo = React.useMemo<TStateMemo>(() => ({ sessionRootState: undefined }), []);
   // Navigate...
   React.useEffect(() => {
-    const oldSessionRootState = stateMemo.sessionRootState;
-    console.log('[WaitingPage:useAppNavigation:sessionRootState]', {
-      oldSessionRootState,
-      sessionRootState,
-    });
+    // const oldSessionRootState = stateMemo.sessionRootState;
+    // console.log('[WaitingPage:useAppNavigation:sessionRootState]', {
+    //   oldSessionRootState,
+    //   sessionRootState,
+    // });
     stateMemo.sessionRootState = sessionRootState;
     switch (sessionRootState) {
       // case 'help': {

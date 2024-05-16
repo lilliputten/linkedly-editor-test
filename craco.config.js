@@ -2,6 +2,7 @@
 
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const CracoEnvPlugin = require('craco-plugin-env');
 
 const startAnalyzer = !!process.env.START_ANALYZER;
 
@@ -18,6 +19,16 @@ const cracoConfig = {
       },
     },
   },
+  plugins: [
+    {
+      plugin: CracoEnvPlugin,
+      options: {
+        variables: {
+          USE_MIRAGE_SERVER: process.env.USE_MIRAGE_SERVER,
+        },
+      },
+    },
+  ],
   webpack: {
     plugins: {
       add: [
