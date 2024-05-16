@@ -1,4 +1,4 @@
-export type TUser = {
+export interface TUser {
   id: string;
   firstName: string;
   lastName: string;
@@ -10,11 +10,11 @@ export type TUser = {
   password: string;
   email: string;
   avatar: string;
-};
+}
 
-type TUsersResponse = {
+interface TUsersResponse {
   users: TUser[];
-};
+}
 
 export const fetchUsers = (url: string) => {
   return fetch(url).then<TUsersResponse>((r) => r.json());

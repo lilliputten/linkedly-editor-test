@@ -8,6 +8,7 @@ export function MainSurveysList() {
   useCommonAppNavigation();
   const [ready, setReady] = React.useState(false);
   const [users, setUsers] = React.useState<TUser[]>([]);
+  // DEMO: Check mirage api: request sample data
   React.useEffect(() => {
     fetch('/api/users')
       .then((response) => response.json())
@@ -19,8 +20,10 @@ export function MainSurveysList() {
         setReady(true);
       });
   }, []);
-  const itemsCount = 1;
-  const items = Array.from(Array(itemsCount)).map((_, n) => <p key={n}>Item {n}</p>);
+  /* // DEMO: Dummy list
+   * const itemsCount = 1;
+   * const items = Array.from(Array(itemsCount)).map((_, n) => <p key={n}>Item {n}</p>);
+   */
   return (
     <>
       <Scrollable>
