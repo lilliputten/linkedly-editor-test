@@ -42,3 +42,7 @@
     flex: 1;
   }
 }
+.spinner {
+  pointer-events: none;
+  user-select: none;
+}

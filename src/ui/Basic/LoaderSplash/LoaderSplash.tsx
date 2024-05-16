@@ -1,6 +1,9 @@
+import React from 'react';
+import { observer } from 'mobx-react-lite';
 import { CircularProgress } from '@mui/material';
 import classNames from 'classnames';
 
+import { useAppSessionStore } from 'src/store';
 import { ThemeWrapper } from 'src/core/wrappers/ThemeWrapper';
 import { TMuiThemeMode } from 'src/core/types';
 
@@ -28,7 +31,13 @@ export function LoaderSplash(props: TLoaderSplashProps): JSX.Element {
   // @see https://mui.com/material-ui/react-progress/
   return (
     <ThemeWrapper themeMode={themeMode} className={resultedClassName}>
-      <CircularProgress />
+      <CircularProgress className={styles.spinner} />
     </ThemeWrapper>
   );
 }
+
+export const ThemedLoaderSplash: React.FC<TLoaderSplashProps> = observer((props) => {
+  const appSessionStore = useAppSessionStore();
+  const themeMode = props.themeMode || appSessionStore.themeMode;
+  return <LoaderSplash {...props} themeMode={themeMode} />;
+});
