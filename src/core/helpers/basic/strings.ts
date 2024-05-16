@@ -1,7 +1,7 @@
 /** @module strings
  *  @description Strings utilities
  *  @since 2023.01.26, 20:43
- *  @changed 2023.02.15, 22:55
+ *  @changed 2024.05.16, 22:31
  */
 
 // import { AxiosError } from 'axios';
@@ -12,21 +12,21 @@ import { defaultQuote } from 'src/core/constants/config';
  * @param {string} val
  * @return {number}
  */
-export const toNumber = (val: string): number => {
+export const toNumber = (val?: string): number => {
   return (val && typeof val !== 'number' && Number(val)) || 0;
 };
 /**
  * @param {string} val
  * @return {String}
  */
-export const toString = (val: string): string => {
-  return val; // String(val);
+export const toString = (val?: string): string => {
+  return val || '';
 };
 /**
  * @param {string} val
  * @return {boolean}
  */
-export const toBoolean = (val: string): boolean => {
+export const toBoolean = (val?: string): boolean => {
   return !!(val && val !== 'false' && val !== '0');
 };
 

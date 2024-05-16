@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import { isDev } from 'src/core/constants/config';
+import { makeServer } from 'src/mirage-server/makeServer';
+
 import reportWebVitals from 'src/reportWebVitals';
 import { AppRoot } from 'src/pages/app/AppRoot';
 
 import 'src/core/global/global-includes';
 import 'src/core/global/global-styles.scss';
+import { toBoolean } from './core/helpers/basic';
 
 const rootNode = document.getElementById('root') as HTMLElement;
 const root = ReactDOM.createRoot(rootNode);
@@ -21,6 +25,12 @@ if (__debugUseStrictMode) {
       {RootNode}
     </React.StrictMode>
   );
+}
+
+if (isDev && toBoolean(process.env.USE_MIRAGE_SERVER)) {
+  // eslint-disable-next-line no-console
+  console.warn('** USE_MIRAGE_SERVER: Running with mirage api server **');
+  makeServer({ environment: 'development' });
 }
 
 root.render(RootNode);
