@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import reportWebVitals from 'src/reportWebVitals';
-import { AppRoot } from 'src/pages/AppRoot';
+import { AppRoot } from 'src/pages/app/AppRoot';
 
 import 'src/core/global/global-includes';
 import 'src/core/global/global-styles.scss';

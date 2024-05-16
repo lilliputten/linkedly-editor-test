@@ -1,11 +1,11 @@
 import { RouteObject } from 'react-router-dom';
 
-import { LoginPage } from 'src/pages/LoginPage';
-import { StartPage } from 'src/pages/StartPage';
-import { TestPage } from 'src/pages/TestPage';
-import { WaitingPage } from 'src/pages/WaitingPage';
-import { DemoPage } from 'src/pages/DemoPage';
-import { AppRootLayout } from 'src/pages/AppRootLayout';
+import { LoginPage } from 'src/pages/app/LoginPage';
+import { StartPage } from 'src/pages/app/StartPage';
+import { TestPage } from 'src/pages/app/TestPage';
+import { WaitingPage } from 'src/pages/app/WaitingPage';
+import { DemoPage } from 'src/pages/app/DemoPage';
+import { AppRootLayout } from 'src/pages/app/AppRootLayout';
 import { MainPage } from 'src/pages/main/MainPage';
 import { MainLayout } from 'src/pages/main/MainLayout';
 
