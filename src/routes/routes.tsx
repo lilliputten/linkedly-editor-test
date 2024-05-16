@@ -6,8 +6,9 @@ import { TestPage } from 'src/pages/app/TestPage';
 import { WaitingPage } from 'src/pages/app/WaitingPage';
 import { DemoPage } from 'src/pages/app/DemoPage';
 import { AppRootLayout } from 'src/pages/app/AppRootLayout';
-import { MainPage } from 'src/pages/main/MainPage';
+// import { MainPage } from 'src/pages/main/MainPage';
 import { MainLayout } from 'src/pages/main/MainLayout';
+import { MainSurveysList } from 'src/pages/main/MainSurveysList';
 
 /** Routes
  * @see src/routes/urls.ts
@@ -26,7 +27,7 @@ export const routes: RouteObject[] = [
         element: <MainLayout />,
         children: [
           // prettier-ignore
-          { index: true, element: <MainPage /> },
+          { index: true, element: <MainSurveysList /> },
           { path: 'start', element: <TestPage /> },
         ],
       },
