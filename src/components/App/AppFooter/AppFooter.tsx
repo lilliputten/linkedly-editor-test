@@ -7,8 +7,6 @@ import {
   version,
   timestamp,
   // isDev,
-  // demoPageUrl,
-  // mainPageUrl,
   // // TODO: Show state depending on the current page
 } from 'src/core/constants/config';
 import { getAppDataInfo, useAppDataStore } from 'src/store/AppDataStore';

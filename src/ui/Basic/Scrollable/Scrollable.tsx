@@ -10,10 +10,18 @@ interface TScrollableProps {
   containerClassName?: string;
   children?: React.ReactNode;
   scrollable?: boolean;
+  fullCenter?: boolean;
 }
 
 export function Scrollable(props: TScrollableProps): JSX.Element {
-  const { className, containerClassName, children, scrollable = true } = props;
+  const {
+    // prettier-ignore
+    className,
+    containerClassName,
+    children,
+    scrollable = true,
+    fullCenter = true,
+  } = props;
   // prettier-ignore
   return (
     <Stack
@@ -21,10 +29,11 @@ export function Scrollable(props: TScrollableProps): JSX.Element {
         className,
         styles.root,
         scrollable ? styles.scrollable : styles.clippable,
+        fullCenter && styles.fullCenter,
       )}
       flex={1}
     >
-      <Stack className={classNames(containerClassName, styles.container)} flex={1}>
+      <Stack className={classNames(containerClassName, styles.container)}>
         {children}
       </Stack>
     </Stack>

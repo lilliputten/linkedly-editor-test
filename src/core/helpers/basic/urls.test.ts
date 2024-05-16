@@ -6,13 +6,13 @@ describe('urls', () => {
       const type = typeof parseUrlPath;
       expect(type).toBe('function');
     });
-    it('should fetch route from only-route url', () => {
+    it('should parse route from only-route url', () => {
       const result = parseUrlPath('/sample?x=1');
       const { basePath, route } = result;
       expect(basePath).toBeUndefined();
       expect(route).toEqual('/sample');
     });
-    it('should fetch basePath', () => {
+    it('should parse basePath', () => {
       const result = parseUrlPath('/build/test/sample?x=1');
       const { basePath, route } = result;
       expect(basePath).toEqual('/build/test');

@@ -1,3 +1,5 @@
+import { mainUrl } from 'src/routes/urls';
+
 /** Default file names for specific data types */
 export const defaultDataFiles = {
   test: 'fake-data-1.json',
@@ -7,7 +9,7 @@ export const defaultDataFiles = {
   // nodes: 'nodes.json',
 };
 
-export const dataUrlPrefix = '/data/';
+export const dataUrlPrefix = mainUrl;
 const defaultDataPath = 'fake-data/';
 // const nodesNodesPath = '';
 
