@@ -2,12 +2,15 @@ import { Registry } from 'miragejs';
 import Schema from 'miragejs/orm/schema';
 
 import { UserModel, userFactory } from './user';
+import { SurveyModel, surveyFactory } from './survey';
 
 type AppModels = {
   user: typeof UserModel;
+  survey: typeof SurveyModel;
 };
 type AppFactories = {
   user: typeof userFactory;
+  survey: typeof surveyFactory;
 };
 
 type AppRegistry = Registry<AppModels, AppFactories>;

@@ -1,0 +1,99 @@
+{
+  "id": 417,
+  "pages": [
+    {
+      "pageId": 7463886,
+      "orderNumber": 1,
+      "sections": [
+        {
+          "sectionId": 18709239,
+          "orderNumber": 1,
+          "displayNumber": "1.",
+          "sectionName": "Contact Information",
+          "sectionRemark": "Note: all information provided throughout this survey should describe the situation as of the date of completion. Future policy initiatives should be listed under Section 9 - Future plans.",
+          "questions": [
+            {
+              "questionId": 1022417819,
+              "typeId": 1,
+              "orderNumber": 1,
+              "displayNumber": "1.1.",
+              "questionText": "Please provide the name and contact details of the person(s) who is the point of contact for this survey."
+            },
+            {
+              "questionId": 1022425208,
+              "typeId": 1,
+              "orderNumber": 3,
+              "displayNumber": "1.3.",
+              "questionText": "Please provide the name and contact details of the primary Regulatory Authority for the telecommunication/ICT sector in your country."
+            },
+            {
+              "questionId": 1022425209,
+              "typeId": 1,
+              "orderNumber": 4,
+              "displayNumber": "1.4.",
+              "questionText": "If there is more than one Regulatory Authority, please provide the name and contact details of the secondary Regulator Authority."
+            },
+            {
+              "questionId": 1022425210,
+              "typeId": 1,
+              "orderNumber": 7,
+              "displayNumber": "1.7.",
+              "questionText": "Please provide the name and contact details of the main Policy-Maker in charge of telecommunications/ICTs"
+            },
+            {
+              "questionId": 1022425409,
+              "typeId": 1,
+              "orderNumber": 8,
+              "displayNumber": "1.8.",
+              "questionText": "Please indicate name and address of the sector Ministry (if different from the Policy-Maker)"
+            },
+            {
+              "questionId": 1087410757,
+              "typeId": 1,
+              "orderNumber": 5,
+              "displayNumber": "1.5.",
+              "questionText": "Please list below other separate regulatory agencies active in the telecommunications/ICT sector:"
+            },
+            {
+              "questionId": 1087410758,
+              "typeId": 1,
+              "orderNumber": 6,
+              "displayNumber": "1.6.",
+              "questionText": "Who is the Policy-Maker in charge of telecommunications/ICTs?"
+            },
+            {
+              "questionId": 1411696980,
+              "typeId": 1,
+              "orderNumber": 2,
+              "displayNumber": "1.2.",
+              "questionText": "Please provide the name and contact details of the person(s) who is the point of contact for this survey"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pageId": 7462824,
+      "orderNumber": 1,
+      "sections": [
+        {
+          "sectionId": 18708587,
+          "orderNumber": 2,
+          "displayNumber": "2.",
+          "sectionName": "Legislative Framework",
+          "sectionRemark": "Please note that all legislation provided with a URL will be added to the BDT regulatory library on the TREG website.",
+          "questions": [
+            {
+              "questionId": 1022410432,
+              "typeId": 3,
+              "orderNumber": 1,
+              "displayNumber": "2.1.",
+              "questionText": "What laws, decrees, legal instruments, or regulations govern the telecommunication, information, communication and media and  broadcasting sectors in your country?",
+              "remark": "By \"adding\" new fields, you will automatically import references entered in previous years. If field is empty, please complete it with relevant reference."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

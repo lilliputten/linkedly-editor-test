@@ -1,0 +1,28 @@
+{
+  "id": 111,
+  "name": "Minimal survey sample",
+  "pages": [
+    {
+      "pageId": 7463886,
+      "orderNumber": 1,
+      "sections": [
+        {
+          "sectionId": 18709239,
+          "orderNumber": 1,
+          "displayNumber": "1.",
+          "sectionName": "Contact Information",
+          "sectionRemark": "Note: all information provided throughout this survey should describe the situation as of the date of completion. Future policy initiatives should be listed under Section 9 - Future plans.",
+          "questions": [
+            {
+              "questionId": 1022417819,
+              "typeId": 3,
+              "orderNumber": 1,
+              "displayNumber": "1.1.",
+              "questionText": "Please provide the name and contact details of the person(s) who is the point of contact for this survey."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

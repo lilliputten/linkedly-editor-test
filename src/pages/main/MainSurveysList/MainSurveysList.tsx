@@ -10,7 +10,7 @@ export function MainSurveysList() {
   const [users, setUsers] = React.useState<TUser[]>([]);
   // DEMO: Check mirage api: request sample data
   React.useEffect(() => {
-    fetch('/api/users')
+    fetch('/api/surveys')
       .then((response) => response.json())
       .then((json) => {
         setUsers(json);

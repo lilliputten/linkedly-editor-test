@@ -1,6 +1,8 @@
 import { createServer, Server } from 'miragejs';
 
 import { UserModel, getAllUsers, userFactory, userSeeds } from './user';
+import { SurveyModel, getAllSurveys, surveyFactory, surveySeeds } from './survey';
+import { IntegerSerializer } from './IntegerSerializer';
 
 export function makeServer({ environment = 'test' } = {}) {
   const server = createServer({
@@ -8,21 +10,30 @@ export function makeServer({ environment = 'test' } = {}) {
 
     environment,
 
+    serializers: {
+      application: IntegerSerializer,
+    },
+
     factories: {
       user: userFactory,
+      // survey: surveyFactory,
     },
 
     models: {
-      user: UserModel, // Model.extend<Partial<TUser>>({}),
+      // Model.extend<Partial<TUser>>({}),
+      user: UserModel,
+      survey: SurveyModel,
     },
 
     seeds(server: Server) {
       userSeeds(server);
+      surveySeeds(server);
     },
 
     routes() {
       this.namespace = 'api';
       this.get('users', getAllUsers);
+      this.get('surveys', getAllSurveys);
     },
   });
 
