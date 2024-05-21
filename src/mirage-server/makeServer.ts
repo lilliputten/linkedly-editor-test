@@ -1,8 +1,9 @@
 import { createServer, Server } from 'miragejs';
 
-import { UserModel, getAllUsers, userFactory, userSeeds } from './user';
-import { SurveyModel, getAllSurveys, surveyFactory, surveySeeds } from './survey';
 import { IntegerSerializer } from './IntegerSerializer';
+
+import { UserModel, getAllUsers, userFactory, userSeeds } from './user';
+import { SurveyModel, getAllSurveys, surveySeeds } from './survey';
 
 export function makeServer({ environment = 'test' } = {}) {
   const server = createServer({
@@ -16,7 +17,7 @@ export function makeServer({ environment = 'test' } = {}) {
 
     factories: {
       user: userFactory,
-      // survey: surveyFactory,
+      // survey: surveyFactory, // UNUSED: Data is creating from static json files (see `src/mirage-server/survey/seeds.ts`)
     },
 
     models: {
