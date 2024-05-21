@@ -1,5 +1,9 @@
 # Project patches
 
+## miragejs
+
+A small patch to allow usage of numeric collection' ids.
+
 ## Patching CRA modules:
 
 - Disable console log cleanings (`react-dev-utils`, `react-scripts`).
