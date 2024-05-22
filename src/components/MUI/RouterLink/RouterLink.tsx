@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Link as RouterLinkComponent } from 'react-router-dom';
+import { Link as RouterLinkComponent, To } from 'react-router-dom';
 import Link, { LinkOwnProps } from '@mui/material/Link';
 
 export interface TRouterLinkProps extends LinkOwnProps {
-  to: string;
+  to: To;
+  // sx?: LinkOwnProps['sx'];
 }
 
 export const RouterLink: React.FC<TRouterLinkProps> = (props) => {

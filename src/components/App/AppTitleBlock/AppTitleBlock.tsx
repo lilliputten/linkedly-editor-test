@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import Link from '@mui/material/Link';
+
 import { IconButton, Typography } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 
 import { appTitle } from 'src/core/constants/config/app';
 import { mediumLayoutTreshold, mobileLayoutTreshold } from 'src/core/constants/app';
+import { RouterLink } from 'src/components/MUI';
 
 import styles from './AppTitleBlock.module.scss';
-import { RouterLink } from 'src/components/MUI';
 
 interface TAppTitleBlockProps {
   handleDrawerToggle: () => void;
