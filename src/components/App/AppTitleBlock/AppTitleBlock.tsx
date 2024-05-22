@@ -8,6 +8,7 @@ import { appTitle } from 'src/core/constants/config/app';
 import { mediumLayoutTreshold, mobileLayoutTreshold } from 'src/core/constants/app';
 
 import styles from './AppTitleBlock.module.scss';
+import { RouterLink } from 'src/components/MUI';
 
 interface TAppTitleBlockProps {
   handleDrawerToggle: () => void;
@@ -41,9 +42,9 @@ export const AppTitleBlock: React.FC<TAppTitleBlockProps> = (props) => {
         }}
       >
         {/* TODO: Show logo */}
-        <Link component={RouterLink} to="/" color="inherit" sx={{ textDecoration: 'none' }}>
+        <RouterLink to="/" color="inherit" sx={{ textDecoration: 'none' }}>
           {appTitle}
-        </Link>
+        </RouterLink>
       </Typography>
     </>
   );
