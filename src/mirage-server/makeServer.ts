@@ -3,7 +3,7 @@ import { createServer, Server } from 'miragejs';
 import { IntegerSerializer } from './IntegerSerializer';
 
 import { UserModel, getAllUsers, userFactory, userSeeds } from './user';
-import { SurveyModel, getAllSurveys, surveySeeds } from './survey';
+import { SurveyModel, getAllSurveys, getSurveysList, surveySeeds } from './survey';
 
 export function makeServer({ environment = 'test' } = {}) {
   const server = createServer({
@@ -34,7 +34,8 @@ export function makeServer({ environment = 'test' } = {}) {
     routes() {
       this.namespace = 'api';
       this.get('users', getAllUsers);
-      this.get('surveys', getAllSurveys);
+      this.get('surveys/all', getAllSurveys);
+      this.get('surveys/list', getSurveysList);
     },
   });
 

@@ -1,6 +1,6 @@
 import { RestSerializer, Serializer } from 'miragejs';
 
-function convertIdsToNumbers(o: Record<string, unknown>) {
+export function convertIdsToNumbers(o: Record<string, unknown>) {
   Object.keys(o).forEach((k) => {
     const v = o[k];
     if (Array.isArray(v) || v instanceof Object) {
@@ -13,6 +13,11 @@ function convertIdsToNumbers(o: Record<string, unknown>) {
       }
     }
   });
+}
+
+export function normalizeRecord<T extends Record<string, unknown>>(o: T): T {
+  convertIdsToNumbers(o);
+  return o;
 }
 
 export const IntegerSerializer = RestSerializer.extend({

@@ -1,5 +1,6 @@
+export type TSurveyId = number;
 export interface TSurvey {
-  id: number;
+  id: TSurveyId;
   name?: string; // Optional? TSurveyhe survey name to display for user
   pages: TSurveyPage[];
 }
