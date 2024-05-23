@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import Link from '@mui/material/Link';
 import { Box, Divider, Drawer, Typography } from '@mui/material';
 
 import { appTitle } from 'src/core/constants/config/app';
+import { RouterLink } from 'src/components/MUI';
 
 import { layoutToolbarHeight, mediumLayoutTreshold } from 'src/core/constants/app';
 import { drawerWidth, AppSideMenu, TAppMenuItem } from 'src/entities/AppMenu';
@@ -43,9 +42,9 @@ export const AppDrawer: React.FC<TAppDrawerProps> = (props) => {
             variant="h6"
             sx={{ my: 2, height: layoutToolbarHeight }}
           >
-            <Link component={RouterLink} to="/" color="inherit" sx={{ textDecoration: 'none' }}>
+            <RouterLink to="/" color="inherit" sx={{ textDecoration: 'none' }}>
               {appTitle}
-            </Link>
+            </RouterLink>
           </Typography>
           <Divider />
           <AppSideMenu navItems={navItems} handleAppMenuClick={handleAppMenuClick} />

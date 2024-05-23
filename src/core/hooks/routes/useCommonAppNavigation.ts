@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // import { isDevBrowser } from 'src/core/constants/config';
 // import { showError } from 'src/ui/Basic';
@@ -10,30 +10,34 @@ import { demoUrl, loginUrl, mainUrl } from 'src/routes/urls';
 
 // NOTE: Should be wrapped by `obsrver` component
 
+interface TStateMemo {
+  sessionRootState: TSessionRootState | undefined;
+}
+
 export function useCommonAppNavigation() {
   const appSessionStore = useAppSessionStore();
   const navigate = useNavigate();
+  const location = useLocation();
+  const { pathname } = location;
   const { rootState: sessionRootState } = appSessionStore;
-  interface TStateMemo {
-    sessionRootState: TSessionRootState | undefined;
-  }
   // prettier-ignore
   const stateMemo = React.useMemo<TStateMemo>(() => ({ sessionRootState: undefined }), []);
   // Navigate...
   React.useEffect(() => {
-    // const oldSessionRootState = stateMemo.sessionRootState;
-    // console.log('[WaitingPage:useAppNavigation:sessionRootState]', {
-    //   oldSessionRootState,
-    //   sessionRootState,
-    // });
+    /* // DEBUG
+     * const oldSessionRootState = stateMemo.sessionRootState;
+     * console.log('[WaitingPage:useAppNavigation:sessionRootState]', {
+     *   pathname,
+     *   oldSessionRootState,
+     *   sessionRootState,
+     * });
+     */
     stateMemo.sessionRootState = sessionRootState;
     switch (sessionRootState) {
-      // case 'help': {
-      //   navigate(helpUrl);
-      //   break;
-      // }
       case 'main': {
-        navigate(mainUrl);
+        if (!pathname.startsWith(mainUrl)) {
+          navigate(mainUrl);
+        }
         break;
       }
       case 'demo': {
@@ -45,5 +49,5 @@ export function useCommonAppNavigation() {
         break;
       }
     }
-  }, [sessionRootState, stateMemo, navigate]);
+  }, [sessionRootState, stateMemo, navigate, pathname]);
 }

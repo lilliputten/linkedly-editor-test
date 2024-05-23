@@ -1,0 +1,14 @@
+diff --git a/node_modules/miragejs/types/index.d.ts b/node_modules/miragejs/types/index.d.ts
+index b887f9c..f3cec06 100644
+--- a/node_modules/miragejs/types/index.d.ts
++++ b/node_modules/miragejs/types/index.d.ts
+@@ -289,7 +289,8 @@ declare module "miragejs/-types" {
+ 
+   /** Represents the type of an instantiated Mirage model.  */
+   export type ModelInstance<Data extends {} = {}> = Data & {
+-    id?: string;
++    // NOTE: PATCHED: Allow to use numeric collection' ids.
++    id?: string | number;
+     attrs: Data;
+     modelName: string;
+ 

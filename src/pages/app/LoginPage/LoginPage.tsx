@@ -7,7 +7,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -15,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Check } from '@mui/icons-material';
 
+import { RouterLink } from 'src/components/MUI';
 // import { appTitle } from 'src/core/constants/config';
 // import { mainUrl } from 'src/routes/urls';
 import { useAppSessionStore } from 'src/store';
@@ -26,9 +26,9 @@ import { Scrollable } from 'src/ui/Basic';
  *   return (
  *     <Typography variant="body2" color="text.secondary" align="center" {...props}>
  *       {'Copyright © '}
- *       <Link color="inherit" href="/">
+ *       <RouterLink color="inherit" to="/">
  *         {appTitle}
- *       </Link>{' '}
+ *       </RouterLink>{' '}
  *       {new Date().getFullYear()}
  *       {'.'}
  *     </Typography>
@@ -126,14 +126,14 @@ export const LoginPage: React.FC = observer(() => {
             </Box>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <RouterLink to="#" variant="body2">
                   Forgot password?
-                </Link>
+                </RouterLink>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <RouterLink to="#" variant="body2">
                   Don't have an account? Sign Up
-                </Link>
+                </RouterLink>
               </Grid>
             </Grid>
           </Box>

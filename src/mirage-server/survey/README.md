@@ -1,0 +1,2 @@
+# Mirage data model `survey`
+

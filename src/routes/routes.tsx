@@ -9,6 +9,7 @@ import { AppRootLayout } from 'src/pages/app/AppRootLayout';
 // import { MainPage } from 'src/pages/main/MainPage';
 import { MainLayout } from 'src/pages/main/MainLayout';
 import { MainSurveysList } from 'src/pages/main/MainSurveysList';
+import { ShowSurvey } from 'src/pages/main/ShowSurvey';
 
 /** Routes
  * @see src/routes/urls.ts
@@ -28,6 +29,7 @@ export const routes: RouteObject[] = [
         children: [
           // prettier-ignore
           { index: true, element: <MainSurveysList /> },
+          { path: 'survey/:surveyId', element: <ShowSurvey /> },
           { path: 'start', element: <TestPage /> },
         ],
       },

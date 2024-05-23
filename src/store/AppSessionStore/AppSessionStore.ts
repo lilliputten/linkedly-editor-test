@@ -19,6 +19,7 @@ import {
 import { autoLoadUrls } from 'src/core/constants/app';
 import { getSavedOrQueryParameter } from 'src/core/helpers/generic';
 import { AppDataStore } from 'src/store/AppDataStore';
+import { isDev } from 'src/core/constants/config';
 // import { defaultNodesColorMode, TNodesColorMode, validNodesColorModes } from 'src/core/types/App';
 
 export type TAppSessionStoreStatus = undefined | 'dataLoaded' | 'finished';
@@ -108,6 +109,9 @@ const updatableParameters: TUpdatableParameter<TQueryParameter>[] = [
   // { id: 'autoLoadUrlNodes', type: 'string' },
 ];
 
+/** Allow to pass all login checks and go directly to inner data pages */
+const debugSkipLogin = isDev;
+
 export class AppSessionStore {
   // NOTE: remember to clean/reset properties in `clearData` or in `clearSettings`
 
@@ -185,22 +189,25 @@ export class AppSessionStore {
       showDemo,
       appDataStore,
     } = this;
+    let rootState = 'waiting';
     if (!inited || loading) {
-      return 'waiting';
+      rootState = 'waiting';
     } else if (showDemo) {
-      return 'demo';
+      rootState = 'demo';
     } else if (finished) {
-      return 'finished';
-    } else if (!logged) {
-      return 'login';
-    } else if (appDataStore && !appDataStore.ready) {
-      return 'main';
+      rootState = 'finished';
+    } else if (!logged && !debugSkipLogin) {
+      rootState = 'login';
+    } else if (appDataStore && !appDataStore.ready && debugSkipLogin) {
+      rootState = 'main';
     } else if (ready) {
-      return 'ready';
+      rootState = 'ready';
     } else {
-      return 'waiting';
+      rootState = 'waiting';
       // return 'welcome'; // UNUSED!
     }
+    console.log('[AppSessionStore:rootState]', rootState);
+    return rootState;
   }
 
   /** Is current status final and successful (started, stopped)? */
