@@ -24,7 +24,7 @@ export function getSurveyData(schema: AppSchema, request: AnyResponse) {
     return new Response(400, {}, { errors: ['Empty survey id passed'] });
   }
   // @ts-ignore: To clarify types
-  const found = schema.surveys.findBy({ id: surveyId });
+  let found = schema.surveys.findBy({ id: surveyId });
   // const all = schema.all('survey');
   // const found = all.models.find((item) => {
   //   const id = Number(item.id);
@@ -39,7 +39,10 @@ export function getSurveyData(schema: AppSchema, request: AnyResponse) {
     return new Response(400, {}, { errors: ['Survey not found'] });
   }
   if (found.attrs) {
-    return found.attrs;
+    found = found.attrs;
+  }
+  if (found.id && typeof found.id !== 'number') {
+    found.id = Number(found.id);
   }
   return found;
 }

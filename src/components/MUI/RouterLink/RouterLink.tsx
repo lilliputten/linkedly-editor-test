@@ -7,6 +7,21 @@ export interface TRouterLinkProps extends LinkOwnProps {
   // sx?: LinkOwnProps['sx'];
 }
 
+/* // UNUSED
+ * export class RouterLinkClass extends React.Component<TRouterLinkProps> {
+ *   render() {
+ *     const { children, ...restProps } = this.props;
+ *     return (
+ *       <Link component={RouterLinkComponent} {...restProps}>
+ *         {children}
+ *       </Link>
+ *     );
+ *   }
+ * }
+ */
+
+export { RouterLinkComponent };
+
 export const RouterLink: React.FC<TRouterLinkProps> = (props) => {
   const { children, ...restProps } = props;
   return (
