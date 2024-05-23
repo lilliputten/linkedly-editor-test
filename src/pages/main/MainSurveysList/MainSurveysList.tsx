@@ -20,7 +20,7 @@ import {
 import { isDev } from 'src/core/constants/config';
 import { getRandomStubImageUrl } from 'src/core/helpers/stubImages';
 import { Edit } from '@mui/icons-material';
-import { RouterLinkComponent } from 'src/components/MUI';
+import { RouterLinkComponent, PageTitle } from 'src/components/MUI';
 
 import styles from './MainSurveysList.module.scss';
 
@@ -45,20 +45,17 @@ export const MainSurveysList: React.FC<TPropsWithClassName> = observer((props) =
         setReady(true);
       });
   }, [isLogged]);
-  /* // DEMO: Dummy list
-   * const itemsCount = 1;
-   * const items = Array.from(Array(itemsCount)).map((_, n) => <p key={n}>Item {n}</p>);
-   */
   return (
     <>
       <Scrollable className={classNames(className, styles.root)}>
         <Container maxWidth="md">
+          <PageTitle mb={3}>Available surveys list</PageTitle>
           <Stack className="MainSurveysListList-List" spacing={2} useFlexGap>
             {/*
             <p>MainSurveysList</p>
             <pre>{JSON.stringify(surveysList, null, 2)}</pre>
             */}
-            {surveysList.map((item, no) => {
+            {surveysList.map((item) => {
               const { id, name } = item;
               const url = `/main/survey/${id}`;
               const imageUrl = getRandomStubImageUrl(id);
