@@ -4,9 +4,9 @@ import classNames from 'classnames';
 
 import { TPropsWithChildrenAndClassName } from 'src/core/types';
 
-import styles from './PageTitle.module.scss';
+import styles from './CustomTitle.module.scss';
 
-export const PageTitle: React.FC<TPropsWithChildrenAndClassName> = (props) => {
+export const CustomTitle: React.FC<TPropsWithChildrenAndClassName> = (props) => {
   const { children, className } = props;
   return (
     <Typography
