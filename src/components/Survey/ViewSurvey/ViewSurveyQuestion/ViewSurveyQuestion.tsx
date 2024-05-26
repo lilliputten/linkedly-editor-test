@@ -18,13 +18,15 @@ interface TViewSurveyQuestionProps {
 export const ViewSurveyQuestion: React.FC<TViewSurveyQuestionProps> = (props) => {
   const { questionData, className } = props;
   const {
+    // prettier-ignore
     questionId,
     typeId,
-    // orderNumber,
+    orderNumber,
     displayNumber,
     questionText,
     remark,
   } = questionData;
+  // TODO: Provide survey data?
   // prettier-ignore
   return (
     <SurveyNode nodeType="question" nodeId={questionId} className={classNames(className)} indent>
@@ -34,6 +36,7 @@ export const ViewSurveyQuestion: React.FC<TViewSurveyQuestionProps> = (props) =>
         <pre>{JSON.stringify(questions, null, 2)}</pre>
         */}
         <div><strong>typeId:</strong> {typeId}</div>
+        <div><strong>orderNumber:</strong> {orderNumber}</div>
         <div><strong>displayNumber:</strong> {displayNumber}</div>
         <div><strong>questionText:</strong> {questionText}</div>
         <div><strong>remark:</strong> {remark}</div>

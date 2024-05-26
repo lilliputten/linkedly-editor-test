@@ -5,6 +5,7 @@ import { PageTitle } from 'src/components/MUI';
 import { TSurvey } from 'src/entities/Survey/types';
 import { ViewSurveyPage } from 'src/components/Survey/ViewSurvey/ViewSurveyPage';
 import { SurveyNode, SurveyNodeContent } from 'src/components/Survey/SurveyNode';
+import { useSortedSurveyItems } from 'src/components/Survey/SurveyNode/hooks';
 
 interface TViewSurveyProps {
   surveyData: TSurvey;
@@ -14,8 +15,9 @@ interface TViewSurveyProps {
 export const ViewSurveyRoot: React.FC<TViewSurveyProps> = (props) => {
   const { surveyData, className } = props;
   const { id: surveyId, name, pages } = surveyData;
-  // TODO: Sort pages
-  const title = name || `Survery ${surveyId}`;
+  // Sort pages
+  const sortedPages = useSortedSurveyItems(pages);
+  const title = name || `Survey ${surveyId}`;
   return (
     <SurveyNode
       nodeType="root"
@@ -29,7 +31,7 @@ export const ViewSurveyRoot: React.FC<TViewSurveyProps> = (props) => {
         {/*
         <pre>{JSON.stringify(surveyData, null, 2)}</pre>
         */}
-        {pages.map((pageData) => {
+        {sortedPages.map((pageData) => {
           return <ViewSurveyPage key={pageData.pageId} pageData={pageData} />;
         })}
       </SurveyNodeContent>
