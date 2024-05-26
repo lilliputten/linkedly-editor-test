@@ -2,8 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
-import { Container, Stack } from '@mui/material';
-import { PageTitle } from 'src/components/MUI';
+import { Container } from '@mui/material';
 
 import { isDev } from 'src/core/constants/config';
 import { useCommonAppNavigation } from 'src/core/hooks/routes/useCommonAppNavigation';
@@ -11,11 +10,7 @@ import { TPropsWithClassName } from 'src/core/types';
 import { ThemedLoaderSplash, Scrollable } from 'src/ui/Basic';
 import { useLogged } from 'src/store/AppSessionStore';
 import { TSurveyId, TSurvey } from 'src/entities/Survey/types';
-
-/* TODO:
- *   - Show loader
- *   - Check miragejs data
- */
+import { ViewSurveyRoot } from 'src/components/Survey/ViewSurvey';
 
 export const ShowSurvey: React.FC<TPropsWithClassName> = observer((props) => {
   const { className } = props;
@@ -26,21 +21,10 @@ export const ShowSurvey: React.FC<TPropsWithClassName> = observer((props) => {
   const [ready, setReady] = React.useState(false);
   const [surveyData, setSurveyData] = React.useState<TSurvey | undefined>();
   React.useEffect(() => {
-    console.log('[ShowSurvey]', {
-      isLogged,
-      ready,
-      surveyId,
-    });
-  }, [isLogged, ready, surveyId]);
-  React.useEffect(() => {
     if ((!surveyId || !isLogged) && !isDev) {
       return;
     }
     const url = `/api/survey/${surveyId}`;
-    console.log('[ShowSurvey] start fetch', {
-      surveyId,
-      url,
-    });
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -58,11 +42,8 @@ export const ShowSurvey: React.FC<TPropsWithClassName> = observer((props) => {
   return (
     <>
       <Scrollable className={classNames(className, 'ShowSurvey')}>
-        <Container maxWidth="md">
-          <PageTitle mb={3}>Survey {surveyId}</PageTitle>
-          <Stack className="MainSurveysListList-List" spacing={2} useFlexGap>
-            <pre>{JSON.stringify(surveyData, null, 2)}</pre>
-          </Stack>
+        <Container maxWidth="md" sx={{ my: 2 }}>
+          {ready && !!surveyData && <ViewSurveyRoot surveyData={surveyData} />}
         </Container>
       </Scrollable>
       <ThemedLoaderSplash
