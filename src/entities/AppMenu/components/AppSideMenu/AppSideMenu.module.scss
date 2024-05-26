@@ -1,6 +1,6 @@
 .ListItemIcon {
   &:global(.MuiListItemIcon-root) {
-    color: $primaryColor;
+    opacity: 0.25;
     min-width: 40px;
   }
 }

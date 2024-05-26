@@ -1,7 +1,7 @@
 .navButtons {
   gap: 8px;
   :global(.MuiButton-startIcon) {
-    opacity: 0.5;
+    opacity: 0.25;
   }
   :global(.MuiButton-root) {
     transition: opacity $animationTimeMs;
