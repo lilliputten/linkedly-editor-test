@@ -119,7 +119,7 @@
     "postinstall": "echo --Run postinstall tasks-- && npm-run-all patch-node-packages",
     "clear-cache": "echo --Clear caches-- && rimraf node_modules/.cache && echo Cleared webpack cache && jest --clearCache",
     "stylelint": "echo --Lint styles-- && stylelint src/**/*.{css,scss,less}",
-    "prettier": "echo --Run prettier-- && prettier --write --cache . | grep -v '(cached)' || true",
+    "prettier": "echo --Run prettier-- && prettier --write --cache . | grep -v '(unchanged)' || true",
     "eslint": "echo --Lint sources-- && eslint src --ext js,ts,tsx",
     "type-check": "echo --Run typescript linter-- && tsc --pretty --noEmit",
     "test-all": "echo --Run all lint & test tasks-- && npm-run-all eslint type-check test && echo --All tests passed--",
