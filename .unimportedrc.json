@@ -1,0 +1,79 @@
+{
+  "rootDir": "./src",
+  "extensions": [".tsx", ".ts", ".js"],
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/*.tests.{js,jsx,ts,tsx}",
+    "**/*.test.{js,jsx,ts,tsx}",
+    "**/*.spec.{js,jsx,ts,tsx}",
+    "**/tests/**",
+    "**/__tests__/**",
+    "**/*.d.ts"
+  ],
+  "ignoreUnimported": [
+    "src/core/helpers/async/index.ts",
+    "src/core/helpers/async/promises.ts",
+    "src/core/helpers/async/sleepPromise.ts",
+    "src/core/helpers/colors/colors.ts",
+    "src/core/helpers/colors/index.ts",
+    "src/core/helpers/data/index.ts",
+    "src/core/helpers/data/loadDataFile.ts",
+    "src/core/helpers/data/makeTitleFromPropertyId.ts",
+    "src/core/helpers/data/safeParseJson.ts",
+    "src/core/helpers/store/index.ts",
+    "src/core/helpers/store/storeContextHelpers.ts",
+    "src/core/helpers/typescript/index.ts",
+    "src/core/helpers/typescript/typescript.ts",
+    "src/routes/index.ts",
+    "src/setupTests.ts",
+    "src/ui/hooks/index.ts",
+    "src/ui/hooks/useContainerSize.ts",
+    "src/ui/hooks/useContainerWidth.ts",
+    "src/ui/hooks/useResizeObserver.ts"
+  ],
+  "ignoreUnused": [],
+  "ignoreUnresolved": [
+    [
+      "devlop",
+      [
+        "node_modules\\react-markdown\\lib\\index.js",
+        "node_modules\\hast-util-to-jsx-runtime\\lib\\index.js",
+        "node_modules\\mdast-util-to-hast\\lib\\index.js",
+        "node_modules\\unified\\lib\\index.js"
+      ]
+    ],
+    [
+      "miragejs/-types",
+      [
+        "src\\mirage-server\\user\\models.ts",
+        "src\\mirage-server\\survey\\models.ts",
+        "src\\mirage-server\\survey\\routes.ts"
+      ]
+    ],
+    [
+      "miragejs/-types",
+      [
+        "src\\mirage-server\\user\\models.ts",
+        "src\\mirage-server\\survey\\surveyModels.ts",
+        "src\\mirage-server\\survey\\surveyRoutes.ts"
+      ]
+    ],
+    [
+      "miragejs/-types",
+      [
+        "src\\mirage-server\\user\\userModels.ts",
+        "src\\mirage-server\\survey\\surveyModels.ts",
+        "src\\mirage-server\\survey\\surveyRoutes.ts"
+      ]
+    ],
+    ["miragejs/orm/schema", ["src\\mirage-server\\AppSchema.ts"]],
+    [
+      "unist-util-visit-parents/do-not-use-color",
+      ["node_modules\\unist-util-visit-parents\\lib\\index.js"]
+    ],
+    ["vfile/do-not-use-conditional-minpath", ["node_modules\\vfile\\lib\\index.js"]],
+    ["vfile/do-not-use-conditional-minproc", ["node_modules\\vfile\\lib\\index.js"]],
+    ["vfile/do-not-use-conditional-minurl", ["node_modules\\vfile\\lib\\index.js"]]
+  ],
+  "respectGitignore": true
+}
