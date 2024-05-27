@@ -16,10 +16,11 @@ import {
   TUpdatableParameter,
   // TColor,
 } from 'src/core/types';
-import { autoLoadUrls } from 'src/core/constants/app';
+// import { autoLoadUrls } from 'src/core/constants/app';
 import { getSavedOrQueryParameter } from 'src/core/helpers/generic';
 import { AppDataStore } from 'src/store/AppDataStore';
 import { isDev } from 'src/core/constants/config';
+import { toBoolean } from 'src/core/helpers/basic';
 // import { defaultNodesColorMode, TNodesColorMode, validNodesColorModes } from 'src/core/types/App';
 
 export type TAppSessionStoreStatus = undefined | 'dataLoaded' | 'finished';
@@ -59,7 +60,7 @@ const queryParameters = [
   // These parameters will be excluded from `saveableParameters` (only to initialize from url query)...
   'doAutoLoad',
   'doAutoStart',
-  'autoLoadUrlTest',
+  // 'autoLoadUrlTest',
   // // TODO: Real data slots...
   // 'autoLoadUrlEdges',
   // 'autoLoadUrlFlows',
@@ -101,7 +102,7 @@ const updatableParameters: TUpdatableParameter<TQueryParameter>[] = [
   // Auto load...
   { id: 'doAutoLoad', type: 'boolean' },
   { id: 'doAutoStart', type: 'boolean' },
-  { id: 'autoLoadUrlTest', type: 'string' },
+  // { id: 'autoLoadUrlTest', type: 'string' },
   // // TODO: Real data slots...
   // { id: 'autoLoadUrlEdges', type: 'string' },
   // { id: 'autoLoadUrlFlows', type: 'string' },
@@ -110,7 +111,7 @@ const updatableParameters: TUpdatableParameter<TQueryParameter>[] = [
 ];
 
 /** Allow to pass all login checks and go directly to inner data pages */
-const debugSkipLogin = isDev;
+const DEBUG_SKIP_LOGIN = toBoolean(process.env.DEBUG_SKIP_LOGIN);
 
 export class AppSessionStore {
   // NOTE: remember to clean/reset properties in `clearData` or in `clearSettings`
@@ -156,7 +157,7 @@ export class AppSessionStore {
 
   @observable doAutoLoad: boolean = false;
   @observable doAutoStart: boolean = false;
-  @observable autoLoadUrlTest: string = autoLoadUrls.test;
+  // @observable autoLoadUrlTest: string = autoLoadUrls.test;
   // @observable autoLoadUrlEdges: string = autoLoadUrls.edges;
   // @observable autoLoadUrlFlows: string = autoLoadUrls.flows;
   // @observable autoLoadUrlGraphs: string = autoLoadUrls.graphs;
@@ -189,6 +190,18 @@ export class AppSessionStore {
       showDemo,
       appDataStore,
     } = this;
+    // eslint-disable-next-line no-console
+    const appDataStoreReady = appDataStore && !appDataStore.ready;
+    console.log('[AppSessionStore:rootState] start', {
+      inited,
+      loading,
+      ready,
+      logged,
+      finished,
+      showDemo,
+      appDataStore,
+      DEBUG_SKIP_LOGIN,
+    });
     let rootState = 'waiting';
     if (!inited || loading) {
       rootState = 'waiting';
@@ -196,17 +209,19 @@ export class AppSessionStore {
       rootState = 'demo';
     } else if (finished) {
       rootState = 'finished';
-    } else if (!logged && !debugSkipLogin) {
+    } else if (!logged && !DEBUG_SKIP_LOGIN) {
       rootState = 'login';
-    } else if (appDataStore && !appDataStore.ready && debugSkipLogin) {
-      rootState = 'main';
-    } else if (ready) {
-      rootState = 'ready';
+      // } else if (appDataStoreReady || DEBUG_SKIP_LOGIN) {
+      //   rootState = 'main';
+      // } else if (ready) {
+      //   rootState = 'ready';
     } else {
-      rootState = 'waiting';
+      rootState = 'main';
+      // rootState = 'waiting';
       // return 'welcome'; // UNUSED!
     }
-    console.log('[AppSessionStore:rootState]', rootState);
+    // eslint-disable-next-line no-console
+    console.log('[AppSessionStore:rootState] result', rootState);
     return rootState;
   }
 
@@ -403,7 +418,7 @@ export class AppSessionStore {
     // this.autoHideNodesMaxOutputs = defaultAutoHideNodesMaxOutputs;
     this.doAutoLoad = false;
     this.doAutoStart = false;
-    this.autoLoadUrlTest = autoLoadUrls.test;
+    // this.autoLoadUrlTest = autoLoadUrls.test;
     // this.autoLoadUrlEdges = autoLoadUrls.edges;
     // this.autoLoadUrlFlows = autoLoadUrls.flows;
     // this.autoLoadUrlGraphs = autoLoadUrls.graphs;
