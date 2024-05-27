@@ -7,7 +7,7 @@
 
 The Axiomica application.
 
-- Version: 0.0.1
-- Last changes timestamp: 2024.05.16 16:21 +0300
+- Version: 0.0.2
+- Last changes timestamp: 2024.05.27 03:40 +0300
 
 TODO: Create description for the build users.
