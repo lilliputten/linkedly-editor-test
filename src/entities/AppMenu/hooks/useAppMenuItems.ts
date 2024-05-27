@@ -4,10 +4,11 @@ import {
   HelpOutline,
   DarkMode,
   LightMode,
-  BugReport,
   Home,
-  Login,
-  Logout,
+  HowToReg,
+  Visibility,
+  Key,
+  KeyOff,
 } from '@mui/icons-material';
 
 import { isDev } from 'src/core/constants/config';
@@ -47,12 +48,13 @@ export function useAppMenuItems() {
       !isDark && { id: 'setDarkTheme', text: 'Dark theme', icon: DarkMode, title:'Set dark theme' },
       isDark && { id: 'setLightTheme', text: 'Light theme', icon: LightMode, title:'Set light theme' },
       { id: 'showHelp', text: 'Help', icon: HelpOutline, title:'Show application help', selected: showHelp },
-      allowDemo && { id: 'showDemo', text: 'Demo', icon: BugReport, title: 'Show demo', selected: pathname.startsWith(demoUrl) },
+      allowDemo && { id: 'showDemo', text: 'Demo', icon: Visibility, title: 'Show demo', selected: pathname.startsWith(demoUrl) },
       // allowDemo && !showDemo && { id: 'showDemo', text: 'Demo', icon: BugReport, title: 'Show demo' },
       // allowDemo && showDemo && { id: 'closeDemo', text: 'Close demo', icon: BugReport, title: 'Hide demo' },
       // TODO: Add logout item
-      logged && { id: 'logOut', text: 'Log out', icon: Logout },
-      !logged && { id: 'logIn', text: 'Log in', icon: Login },
+      logged && { id: 'signOut', text: 'Sign out', icon: KeyOff },
+      !logged && { id: 'signIn', text: 'Sign in', icon: Key },
+      !logged && { id: 'signUp', text: 'Sign up', icon: HowToReg, disabled: true },
     ].filter(Boolean) as TAppMenuItem[];
   }, [isDark, showHelp, allowDemo, pathname, logged]);
   return navItems;

@@ -24,10 +24,11 @@ export const ViewSurveyRoot: React.FC<TViewSurveyProps> = (props) => {
       nodeId={surveyId}
       className={classNames(className)}
       root
+      spacing={2}
       // indent
     >
-      <PageTitle mb={3}>{title}</PageTitle>
-      <SurveyNodeContent nodeType="root-content" root>
+      <PageTitle>{title}</PageTitle>
+      <SurveyNodeContent nodeBaseType="root-content" root>
         {/*
         <pre>{JSON.stringify(surveyData, null, 2)}</pre>
         */}

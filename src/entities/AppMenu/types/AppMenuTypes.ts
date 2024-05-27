@@ -6,4 +6,5 @@ export interface TAppMenuItem {
   text: string;
   title?: string;
   selected?: boolean;
+  disabled?: boolean;
 }

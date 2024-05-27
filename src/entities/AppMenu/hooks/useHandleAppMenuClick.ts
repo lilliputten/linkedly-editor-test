@@ -59,11 +59,11 @@ export function useHandleAppMenuClick() {
           // appSessionStore.setShowDemo(true);
           break;
         }
-        case 'logIn': {
+        case 'signIn': {
           navigate(loginUrl);
           break;
         }
-        case 'logOut': {
+        case 'signOut': {
           appSessionStore.setLogged(false);
           navigate(loginUrl);
           break;

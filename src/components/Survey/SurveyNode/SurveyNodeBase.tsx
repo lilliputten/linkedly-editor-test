@@ -1,23 +1,15 @@
 import * as React from 'react';
-import { Stack, StackOwnProps } from '@mui/material';
+import { Stack } from '@mui/material';
 import classNames from 'classnames';
 
-import { TPropsWithChildrenAndClassName } from 'src/core/types';
 import { useSurveyNodeSx } from './hooks';
+import { TSurveyNodeBaseProps } from './types';
 
-// export type TSurveyNodeProps = TPropsWithChildrenAndClassName &
-//   StackOwnProps & { root?: boolean; indent?: boolean };
-export interface TSurveyNodeProps extends TPropsWithChildrenAndClassName, StackOwnProps {
-  root?: boolean;
-  indent?: boolean;
-  nodeType?: string;
-  nodeId?: string | number;
-}
-
-export const SurveyNodeBase: React.FC<TSurveyNodeProps> = (props) => {
+export const SurveyNodeBase: React.FC<TSurveyNodeBaseProps> = (props) => {
   const {
     // prettier-ignore
     nodeType,
+    nodeBaseType,
     nodeId,
     children,
     className,
@@ -33,6 +25,7 @@ export const SurveyNodeBase: React.FC<TSurveyNodeProps> = (props) => {
       className={classNames(className)}
       data-node-id={nodeId}
       data-node-type={nodeType}
+      data-node-base-type={nodeBaseType}
       sx={{ ...surveyNodeSx, ...sx }}
       {...restProps}
     >

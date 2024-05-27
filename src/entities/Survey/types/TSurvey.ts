@@ -1,36 +1,38 @@
-export type TSurveyId = number;
+import { TQuestionType } from './TQuestionType';
+
+export type TSurveyItemId = number;
+export type TSurveyId = TSurveyItemId;
+
 export interface TSurvey {
   id: TSurveyId;
-  name?: string; // Optional? TSurveyhe survey name to display for user
+  name?: string; // Optional? The survey name.
   pages: TSurveyPage[];
 }
+
 export interface TSurveyOrderedItem {
   orderNumber: number;
 }
+
 export interface TSurveyPage extends TSurveyOrderedItem {
   // orderNumber: number; // in `TSurveyOrderedItem`
-  pageId: number;
+  pageId: TSurveyItemId;
   sections: TSurveySection[];
 }
 export interface TSurveySection extends TSurveyOrderedItem {
   // orderNumber: number; // in `TSurveyOrderedItem`
-  sectionId: number;
+  sectionId: TSurveyItemId;
   displayNumber: string;
   sectionName: string;
   sectionRemark?: string;
+  // TODO: Sections should be foldable.
   questions: TSurveyQuestion[];
-}
-// export type TSurveyQuestionType = 1 | 2;
-export enum TSurveyQuestionType {
-  TextField = 1,
-  YesNo = 2,
 }
 export interface TSurveyQuestion extends TSurveyOrderedItem {
   // orderNumber: number; // in `TSurveyOrderedItem`
-  questionId: number;
-  typeId: TSurveyQuestionType;
+  questionId: TSurveyItemId;
+  typeId: TQuestionType;
   displayNumber: string;
   questionText: string;
   remark?: string;
-  // TSurveyODO: Add other question fields?
+  // TODO: Add other question fields?
 }

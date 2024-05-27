@@ -9,6 +9,7 @@ export const SurveyNodeRemark: React.FC<TPropsWithChildrenAndClassName> = (props
   return (
     <SectionSubTitle
       className={classNames(className, 'SurveyNodeRemark')}
+      fontSize="sm"
       sx={{ my: 1, opacity: 0.5 }}
     >
       {children}

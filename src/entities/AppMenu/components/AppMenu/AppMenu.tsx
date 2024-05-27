@@ -29,6 +29,7 @@ export const AppMenu: React.FC<TAppMenuProps> = (props) => {
           title={item.title ? item.title : undefined}
           variant={item.selected ? 'outlined' : 'text'}
           color="secondary"
+          disabled={item.disabled}
         >
           {item.text}
         </Button>

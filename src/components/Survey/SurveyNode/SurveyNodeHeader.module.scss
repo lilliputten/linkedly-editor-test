@@ -1,0 +1,27 @@
+.rightContainer,
+.leftContainer,
+.prefix,
+.title,
+.icon,
+.toolbar,
+.root {
+  /*!KEEP*/
+}
+
+.root {
+  background-color: color.change(gray, $alpha: 0.2);
+}
+
+.wrapped {
+  &.icon,
+  &.toolbar {
+    opacity: 0.2;
+  }
+}
+
+.prefix {
+  &:global(.MuiTypography-root) {
+    opacity: 0.4;
+    font-weight: bold;
+  }
+}

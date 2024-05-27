@@ -17,7 +17,12 @@ export const AppSideMenu: React.FC<TAppSideMenuProps> = (props) => {
     <List>
       {navItems.map((item) => (
         <ListItem key={item.id} disablePadding title={item.title ? item.title : undefined}>
-          <ListItemButton id={item.id} onClick={handleAppMenuClick} selected={item.selected}>
+          <ListItemButton
+            id={item.id}
+            onClick={handleAppMenuClick}
+            selected={item.selected}
+            disabled={item.disabled}
+          >
             {item.icon && (
               <ListItemIcon className={styles.ListItemIcon}>
                 <item.icon />

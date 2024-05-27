@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { isDev } from 'src/core/constants/config';
 import { makeServer } from 'src/mirage-server/makeServer';
 
 import reportWebVitals from 'src/reportWebVitals';
@@ -27,7 +26,7 @@ if (__debugUseStrictMode) {
   );
 }
 
-if (isDev && toBoolean(process.env.USE_MIRAGE_SERVER)) {
+if (toBoolean(process.env.USE_MIRAGE_SERVER)) {
   // eslint-disable-next-line no-console
   console.warn('** USE_MIRAGE_SERVER: Running with mirage api server **');
   makeServer({ environment: 'development' });
