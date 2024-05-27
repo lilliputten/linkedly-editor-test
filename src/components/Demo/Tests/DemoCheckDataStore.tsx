@@ -2,11 +2,9 @@ import { observer } from 'mobx-react-lite';
 
 import { TDemoComponent } from 'src/core/types';
 import { useAppSessionStore } from 'src/store';
-import { getAppDataInfo, useAppDataStore } from 'src/store/AppDataStore';
 
 export const DemoCheckDataStore: TDemoComponent = observer(() => {
   const appSessionStore = useAppSessionStore();
-  const appDataStore = useAppDataStore();
   const {
     // prettier-ignore
     inited,
@@ -16,10 +14,12 @@ export const DemoCheckDataStore: TDemoComponent = observer(() => {
     error,
     logged,
   } = appSessionStore;
-  const {
-    // prettier-ignore
-    testData,
-  } = appDataStore;
+  /* // UNUSED: Show data state
+   * const {
+   *   // prettier-ignore
+   *   testData,
+   * } = appDataStore;
+   */
   return (
     <div className="DemoCheckDataStore">
       {/* ... */}
@@ -30,7 +30,9 @@ export const DemoCheckDataStore: TDemoComponent = observer(() => {
       <p>logged: {String(logged)}</p>
       <p>loading: {String(loading)}</p>
       <p>error: {String(error)}</p>
+      {/* // UNUSED: Show data state
       <p>testData: {getAppDataInfo(testData)}</p>
+      */}
     </div>
   );
 });

@@ -14,14 +14,10 @@ import {
   validMuiThemeModes,
   defaultMuiThemeMode,
   TUpdatableParameter,
-  // TColor,
 } from 'src/core/types';
-// import { autoLoadUrls } from 'src/core/constants/app';
 import { getSavedOrQueryParameter } from 'src/core/helpers/generic';
 import { AppDataStore } from 'src/store/AppDataStore';
-import { isDev } from 'src/core/constants/config';
 import { toBoolean } from 'src/core/helpers/basic';
-// import { defaultNodesColorMode, TNodesColorMode, validNodesColorModes } from 'src/core/types/App';
 
 export type TAppSessionStoreStatus = undefined | 'dataLoaded' | 'finished';
 
@@ -29,13 +25,6 @@ const storagePrefix = 'AppSessionStore:';
 
 // TODO: Move default parameters to constants?
 const defaultShowLeftPanel: boolean = false;
-/* // TODO: Basic app options...
- * const defaultBaseColor: TColor = '#0f0';
- * const defaultSecondColor: TColor = '#f00';
- * const defaultAutoHideNodes: boolean = false;
- * const defaultAutoHideNodesThreshold: number = 50;
- * const defaultAutoHideNodesMaxOutputs: number = 1;
- */
 
 /** Parameters what could be saved (via `saveParameter`) and restored from the
  * local storage (or from url query, via `restoreParameters`)
@@ -48,24 +37,9 @@ const queryParameters = [
   'useDemo',
   'showDemo',
 
-  // // Other basic app options...
-  // 'verticalLayout',
-  // 'nodesColorMode',
-  // 'baseNodesColor',
-  // 'secondNodesColor',
-  // 'autoHideNodes',
-  // 'autoHideNodesThreshold',
-  // 'autoHideNodesMaxOutputs',
-
   // These parameters will be excluded from `saveableParameters` (only to initialize from url query)...
   'doAutoLoad',
   'doAutoStart',
-  // 'autoLoadUrlTest',
-  // // TODO: Real data slots...
-  // 'autoLoadUrlEdges',
-  // 'autoLoadUrlFlows',
-  // 'autoLoadUrlGraphs',
-  // 'autoLoadUrlNodes',
 ] as const;
 export type TQueryParameter = (typeof queryParameters)[number];
 
@@ -91,23 +65,9 @@ const updatableParameters: TUpdatableParameter<TQueryParameter>[] = [
   { id: 'useDemo', type: 'boolean' },
   { id: 'showDemo', type: 'boolean' },
   { id: 'themeMode', type: 'string', validValues: validMuiThemeModes },
-  // // Basic app options...
-  // { id: 'verticalLayout', type: 'boolean' },
-  // { id: 'nodesColorMode', type: 'string', validValues: validNodesColorModes },
-  // { id: 'baseNodesColor', type: 'string' },
-  // { id: 'secondNodesColor', type: 'string' },
-  // { id: 'autoHideNodes', type: 'boolean' },
-  // { id: 'autoHideNodesThreshold', type: 'number' },
-  // { id: 'autoHideNodesMaxOutputs', type: 'number' },
   // Auto load...
   { id: 'doAutoLoad', type: 'boolean' },
   { id: 'doAutoStart', type: 'boolean' },
-  // { id: 'autoLoadUrlTest', type: 'string' },
-  // // TODO: Real data slots...
-  // { id: 'autoLoadUrlEdges', type: 'string' },
-  // { id: 'autoLoadUrlFlows', type: 'string' },
-  // { id: 'autoLoadUrlGraphs', type: 'string' },
-  // { id: 'autoLoadUrlNodes', type: 'string' },
 ];
 
 /** Allow to pass all login checks and go directly to inner data pages */
@@ -132,11 +92,13 @@ export class AppSessionStore {
   @observable status: TAppSessionStoreStatus;
   @observable error?: Error = undefined;
 
-  /** Callback to go to load new data page */
-  @observable loadNewDataCb?: () => void | undefined;
+  /* // UNUSED: [>* Callback to go to load new data page <]
+   * @observable loadNewDataCb?: () => void | undefined;
+   */
 
-  // TODO: Linked app data store...
-  @observable appDataStore?: AppDataStore;
+  /* // UNUSED: Don't mix session and data
+   * @observable appDataStore?: AppDataStore;
+   */
 
   // Settings...
 
@@ -146,22 +108,10 @@ export class AppSessionStore {
   /** Application theme */
   @observable themeMode: TMuiThemeMode = defaultMuiThemeMode;
 
-  /* // TODO: Basic app options...
-   * [>* Vertical layout <]
-   * @observable verticalLayout: boolean = false;
-   * [>* Chart nodes color mode (could be overriden individually later) <]
-   * @observable nodesColorMode: TNodesColorMode = defaultNodesColorMode;
-   */
-
   // Default auto load values...
 
   @observable doAutoLoad: boolean = false;
   @observable doAutoStart: boolean = false;
-  // @observable autoLoadUrlTest: string = autoLoadUrls.test;
-  // @observable autoLoadUrlEdges: string = autoLoadUrls.edges;
-  // @observable autoLoadUrlFlows: string = autoLoadUrls.flows;
-  // @observable autoLoadUrlGraphs: string = autoLoadUrls.graphs;
-  // @observable autoLoadUrlNodes: string = autoLoadUrls.nodes;
 
   // Lifecycle...
 
@@ -188,10 +138,8 @@ export class AppSessionStore {
       logged,
       finished,
       showDemo,
-      appDataStore,
     } = this;
     // eslint-disable-next-line no-console
-    const appDataStoreReady = appDataStore && !appDataStore.ready;
     console.log('[AppSessionStore:rootState] start', {
       inited,
       loading,
@@ -199,7 +147,6 @@ export class AppSessionStore {
       logged,
       finished,
       showDemo,
-      appDataStore,
       DEBUG_SKIP_LOGIN,
     });
     let rootState = 'waiting';
@@ -211,14 +158,9 @@ export class AppSessionStore {
       rootState = 'finished';
     } else if (!logged && !DEBUG_SKIP_LOGIN) {
       rootState = 'login';
-      // } else if (appDataStoreReady || DEBUG_SKIP_LOGIN) {
-      //   rootState = 'main';
-      // } else if (ready) {
-      //   rootState = 'ready';
     } else {
       rootState = 'main';
       // rootState = 'waiting';
-      // return 'welcome'; // UNUSED!
     }
     // eslint-disable-next-line no-console
     console.log('[AppSessionStore:rootState] result', rootState);
@@ -268,7 +210,6 @@ export class AppSessionStore {
   initSettings(): Promise<void> {
     // TODO?
     return Promise.resolve();
-    // TODO: Update data store if provided?
   }
 
   // Core setters...
@@ -317,47 +258,7 @@ export class AppSessionStore {
     this.status = status;
   }
 
-  // Session/Data relations...
-
-  /* // TODO: Update linked data store on basic options change...
-   * // TODO: Call this on hide settings change.
-   * updateHiddenGraphNodes() {
-   *   const {
-   *     // prettier-ignore
-   *     autoHideNodes,
-   *     autoHideNodesThreshold,
-   *     autoHideNodesMaxOutputs,
-   *     appDataStore,
-   *   } = this;
-   *   if (appDataStore) {
-   *     appDataStore.updateAutoHiddenGraphNodes({
-   *       autoHideNodes,
-   *       autoHideNodesThreshold,
-   *       autoHideNodesMaxOutputs,
-   *     });
-   *   }
-   * }
-   */
-
   // Reactions...
-
-  /* // TODO: Basic app options...
-   * @bound onAutoHideNodesChanged() {
-   *   this.updateHiddenGraphNodes();
-   * }
-   * @bound onAutoHideNodesParamsChanged() {
-   *   const { autoHideNodes } = this;
-   *   if (autoHideNodes) {
-   *     this.updateHiddenGraphNodes();
-   *   }
-   * }
-   * @bound onNodesColorModeChanged(nodesColorMode: TNodesColorMode) {
-   *   const { appDataStore } = this;
-   *   if (appDataStore) {
-   *     appDataStore.onNodesColorModeChanged(nodesColorMode);
-   *   }
-   * }
-   */
 
   /** Make some initalization/cleanup things for a data store */
   @bound onAppDataStore(appDataStore?: AppDataStore) {
@@ -376,14 +277,10 @@ export class AppSessionStore {
 
   // Other setters...
 
-  /** Set linked data store */
-  @action setAppDataStore(appDataStore?: AppDataStore) {
-    this.appDataStore = appDataStore;
-  }
-
-  @action setLoadNewDataCb(loadNewDataCb: typeof AppSessionStore.prototype.loadNewDataCb) {
-    this.loadNewDataCb = loadNewDataCb;
-  }
+  /* @action setLoadNewDataCb(loadNewDataCb: typeof AppSessionStore.prototype.loadNewDataCb) {
+   *   this.loadNewDataCb = loadNewDataCb;
+   * }
+   */
 
   // Generic utilities...
 
@@ -408,21 +305,8 @@ export class AppSessionStore {
     // TODO: Use saved on initialization default values and list of resetable parameters...
     this.showLeftPanel = defaultShowLeftPanel;
     this.themeMode = defaultMuiThemeMode;
-    // // TODO: Basic app options...
-    // this.verticalLayout = false;
-    // this.nodesColorMode = defaultNodesColorMode;
-    // this.baseNodesColor = defaultBaseColor;
-    // this.secondNodesColor = defaultSecondColor;
-    // this.autoHideNodes = defaultAutoHideNodes;
-    // this.autoHideNodesThreshold = defaultAutoHideNodesThreshold;
-    // this.autoHideNodesMaxOutputs = defaultAutoHideNodesMaxOutputs;
     this.doAutoLoad = false;
     this.doAutoStart = false;
-    // this.autoLoadUrlTest = autoLoadUrls.test;
-    // this.autoLoadUrlEdges = autoLoadUrls.edges;
-    // this.autoLoadUrlFlows = autoLoadUrls.flows;
-    // this.autoLoadUrlGraphs = autoLoadUrls.graphs;
-    // this.autoLoadUrlNodes = autoLoadUrls.nodes;
   }
 
   // Reactions...
@@ -436,8 +320,9 @@ export class AppSessionStore {
        * reaction(() => this.autoHideNodesMaxOutputs, this.onAutoHideNodesParamsChanged),
        * reaction(() => this.nodesColorMode, this.onNodesColorModeChanged),
        */
-      // TODO: Linked app data store...
-      reaction(() => this.appDataStore, this.onAppDataStore),
+      /* // UNUSED: Linked app data store...
+       * reaction(() => this.appDataStore, this.onAppDataStore),
+       */
       // Add reactions to save all the saveable parameters to the local storage...
       ...saveableParameters.map((id) =>
         reaction(() => this[id], this.saveParameter.bind(this, id)),
