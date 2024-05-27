@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "timetag": "240527-0340",
   "timestamp": "2024.05.27 03:40 +0300",
-  "changed": "2024.05.07, 19:35",
+  "changed": "2024.05.27, 22:46",
   "eslint-unused-rules": {
     "eqeqeq": [
       "warn",
@@ -109,6 +109,7 @@
     "stylelint-scss": "^5.3.1",
     "tinycolor2": "^1.6.0",
     "typescript": "^4.9.5",
+    "unimported": "^1.31.1",
     "web-vitals": "^2.1.4",
     "webpack-bundle-analyzer": "^4.10.1"
   },
@@ -130,6 +131,8 @@
     "serve-build": "echo --Serve build /at alternate port 3003/-- && serve build -l 3003",
     "cra-build": "echo --CRA build-- && craco build",
     "build": "echo --Make build-- && npm-run-all cra-build patch-build",
+    "check-imports": "echo --Check imports modules-- && unimported",
+    "check-imports-update": "echo --Update unimported/unresolved modules-- && unimported --update",
     "start-analyzer": "echo --Start build analyzer-- && cross-env START_ANALYZER=yes npm-run-all cra-build",
     "start-https": "echo --Start dev server with https- && cross-env HTTPS=true craco start",
     "start": "echo --Start dev server-- && cross-env GENERATE_SOURCEMAP=true craco start",

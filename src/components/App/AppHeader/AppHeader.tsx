@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { TPropsWithClassName } from 'src/core/types';
 import { layoutToolbarHeight, mediumLayoutTreshold } from 'src/core/constants/app';
 import { AppMenu, useAppMenuItems, useHandleAppMenuClick } from 'src/entities/AppMenu';
-import { AppTitleBlock } from 'src/components/App/AppTitleBlock/AppTitleBlock';
+import { AppTitleBlock } from 'src/components/App/AppTitleBlock';
 import { AppDrawer } from 'src/components/App/AppDrawer';
 
 import styles from './AppHeader.module.scss';

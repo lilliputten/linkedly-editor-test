@@ -16,23 +16,25 @@ export function useHandleAppMenuClick() {
       const { currentTarget } = ev;
       const { id } = currentTarget;
       switch (id) {
-        // case 'visualize': {
-        //   // TODO: Navigate to main app screen...
-        //   appSessionStore.setShowDemo(false);
-        //   appSessionStore.setShowHelp(false);
-        //   appDataStore.setReady(true);
-        //   break;
-        // }
-        // case 'loadData': {
-        //   // appSessionStore.setShowDemo(false);
-        //   // appSessionStore.setShowHelp(false);
-        //   // appSessionStore.setReady(true);
-        //   // if (loadNewDataCb) {
-        //   //   loadNewDataCb();
-        //   // }
-        //   navigate(loginUrl);
-        //   break;
-        // }
+        /* // UNUSED: Old session and data actions
+         * case 'visualize': {
+         *   // TODO: Navigate to main app screen...
+         *   appSessionStore.setShowDemo(false);
+         *   appSessionStore.setShowHelp(false);
+         *   appDataStore.setReady(true);
+         *   break;
+         * }
+         * case 'loadData': {
+         *   // appSessionStore.setShowDemo(false);
+         *   // appSessionStore.setShowHelp(false);
+         *   // appSessionStore.setReady(true);
+         *   // if (loadNewDataCb) {
+         *   //   loadNewDataCb();
+         *   // }
+         *   navigate(loginUrl);
+         *   break;
+         * }
+         */
         case 'home': {
           navigate('/');
           break;

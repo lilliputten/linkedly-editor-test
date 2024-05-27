@@ -5,7 +5,6 @@ import { isDevBrowser } from 'src/core/constants/config';
 import { showError } from 'src/ui/Basic';
 import { getErrorText } from 'src/core/helpers/basic';
 import { useAppSessionStore } from 'src/store/AppSessionStore';
-import { useAppDataStore } from 'src/store/AppDataStore';
 import { RouterWrapper } from 'src/routes/RouterWrapper';
 
 /** DEBUG: Don't wait for user action */
@@ -13,7 +12,6 @@ const __debugEmulateDataReady = false && isDevBrowser;
 
 function useAppSessionInit() {
   const appSessionStore = useAppSessionStore();
-  const appDataStore = useAppDataStore();
   // Init session store...
   React.useEffect(() => {
     // Init options, parameters and settings...
@@ -42,30 +40,31 @@ function useAppSessionInit() {
         // throw error;
       });
   }, [appSessionStore]);
-  // Init data store and provide data store link to session...
-  React.useEffect(() => {
-    // Set ready flag for demo mode. Otherwise it'll be set in `AppCoreStart` after data load
-    if (__debugEmulateDataReady) {
-      // TODO: Set demo data?
-      appDataStore.setReady(true);
-    }
-    appSessionStore.setAppDataStore(appDataStore);
-    return () => {
-      appSessionStore.setAppDataStore(undefined);
-    };
-  }, [appDataStore, appSessionStore]);
-  // Set load new data callback into the session store...
-  const loadNewData = React.useCallback(() => {
-    // console.log('[AppRouterWrapper:loadNewData]');
-    appDataStore.setReady(false);
-  }, [appDataStore]);
-  React.useEffect(() => {
-    // Set (and reset) handler for navigate to data load page...
-    appSessionStore.setLoadNewDataCb(loadNewData);
-    return () => {
-      appSessionStore.setLoadNewDataCb(undefined);
-    };
-  }, [appDataStore, appSessionStore, loadNewData]);
+  /* UNUSED: // Init data store and provide data store link to session (its' wrong to mix session and data)...
+   * React.useEffect(() => {
+   *   // Set ready flag for demo mode. Otherwise it'll be set in `AppCoreStart` after data load
+   *   if (__debugEmulateDataReady) {
+   *     // TODO: Set demo data?
+   *     appDataStore.setReady(true);
+   *   }
+   *   appSessionStore.setAppDataStore(appDataStore);
+   *   return () => {
+   *     appSessionStore.setAppDataStore(undefined);
+   *   };
+   * }, [appDataStore, appSessionStore]);
+   * // Set load new data callback into the session store...
+   * const loadNewData = React.useCallback(() => {
+   *   // console.log('[AppRouterWrapper:loadNewData]');
+   *   appDataStore.setReady(false);
+   * }, [appDataStore]);
+   * React.useEffect(() => {
+   *   // Set (and reset) handler for navigate to data load page...
+   *   appSessionStore.setLoadNewDataCb(loadNewData);
+   *   return () => {
+   *     appSessionStore.setLoadNewDataCb(undefined);
+   *   };
+   * }, [appSessionStore, loadNewData]);
+   */
 }
 
 export const AppRouterWrapper: React.FC = observer(() => {

@@ -15,8 +15,6 @@ import Container from '@mui/material/Container';
 import { Check } from '@mui/icons-material';
 
 import { RouterLink } from 'src/components/MUI';
-// import { appTitle } from 'src/core/constants/config';
-import { mainUrl } from 'src/routes/urls';
 import { useAppSessionStore } from 'src/store';
 import { useCommonAppNavigation } from 'src/core/hooks/routes/useCommonAppNavigation';
 import { Scrollable } from 'src/ui/Basic';

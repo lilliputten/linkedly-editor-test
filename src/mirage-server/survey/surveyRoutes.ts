@@ -30,11 +30,6 @@ export function getSurveyData(schema: AppSchema, request: AnyResponse) {
   //   const id = Number(item.id);
   //   return surveyId === id;
   // });
-  console.log('[routes:getSurveyData]', {
-    found,
-    surveyId,
-    request,
-  });
   if (!found) {
     return new Response(400, {}, { errors: ['Survey not found'] });
   }
