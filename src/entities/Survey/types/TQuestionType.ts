@@ -1,4 +1,4 @@
 export enum TQuestionType {
   TextField = 1,
-  YesNo = 2,
+  YesNo = 3,
 }
