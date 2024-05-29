@@ -12,7 +12,7 @@
           "displayNumber": "1.",
           "sectionName": "Contact Information",
           "sectionRemark": "Note: all information provided throughout this survey should describe the situation as of the date of completion. Future policy initiatives should be listed under Section 9 - Future plans.",
-          "questions": [
+          "items": [
             {
               "questionId": 2,
               "typeId": 1,

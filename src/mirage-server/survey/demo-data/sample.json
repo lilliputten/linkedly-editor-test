@@ -11,7 +11,7 @@
           "displayNumber": "1.",
           "sectionName": "Contact Information",
           "sectionRemark": "Note: all information provided throughout this survey should describe the situation as of the date of completion. Future policy initiatives should be listed under Section 9 - Future plans.",
-          "questions": [
+          "items": [
             {
               "questionId": 1022417819,
               "typeId": 1,
@@ -82,7 +82,7 @@
           "displayNumber": "2.",
           "sectionName": "Legislative Framework",
           "sectionRemark": "Please note that all legislation provided with a URL will be added to the BDT regulatory library on the TREG website.",
-          "questions": [
+          "items": [
             {
               "questionId": 1022410432,
               "typeId": 3,

@@ -2,6 +2,7 @@ import { TQuestionType } from './TQuestionType';
 
 export type TSurveyItemId = number;
 export type TSurveyId = TSurveyItemId;
+export type TSurveyPageId = TSurveyItemId;
 
 export interface TSurvey {
   id: TSurveyId;
@@ -15,9 +16,15 @@ export interface TSurveyOrderedItem {
 
 export interface TSurveyPage extends TSurveyOrderedItem {
   // orderNumber: number; // in `TSurveyOrderedItem`
-  pageId: TSurveyItemId;
+  pageId: TSurveyPageId;
   sections: TSurveySection[];
 }
+
+/** Section or question node
+ * Sections can contain both questions and sections, recoursivcely
+ */
+export type TSurveyItem = TSurveyQuestion & TSurveySection;
+
 export interface TSurveySection extends TSurveyOrderedItem {
   // orderNumber: number; // in `TSurveyOrderedItem`
   sectionId: TSurveyItemId;
@@ -25,7 +32,7 @@ export interface TSurveySection extends TSurveyOrderedItem {
   sectionName: string;
   sectionRemark?: string;
   // TODO: Sections should be foldable.
-  questions: TSurveyQuestion[];
+  items: TSurveyItem[];
 }
 export interface TSurveyQuestion extends TSurveyOrderedItem {
   // orderNumber: number; // in `TSurveyOrderedItem`
