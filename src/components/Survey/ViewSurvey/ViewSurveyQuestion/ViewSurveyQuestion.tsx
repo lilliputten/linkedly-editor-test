@@ -38,9 +38,6 @@ export const ViewSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion
     return (
       <>
         <SurveyNodeTitle>Question {questionId}</SurveyNodeTitle>
-        {/*
-        <pre>{JSON.stringify(questions, null, 2)}</pre>
-        */}
         <div><strong>typeId:</strong> {typeId}</div>
         <div><strong>orderNumber:</strong> {orderNumber}</div>
         <div><strong>displayNumber:</strong> {displayNumber}</div>

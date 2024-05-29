@@ -12,7 +12,7 @@
           "displayNumber": "1.",
           "sectionName": "Contact Information",
           "sectionRemark": "Note: all information provided throughout this survey should describe the situation as of the date of completion. Future policy initiatives should be listed under Section 9 - Future plans.",
-          "questions": [
+          "items": [
             {
               "questionId": 2,
               "typeId": 1,
@@ -27,6 +27,19 @@
               "orderNumber": 1,
               "displayNumber": "1.1.",
               "questionText": "Please provide the name and contact details of the person(s) who is the point of contact for this survey."
+            },
+            {
+              "sectionId": 13,
+              "displayNumber": "1.",
+              "sectionName": "Folded section",
+              "items": [
+                {
+                  "questionId": 131,
+                  "typeId": 1,
+                  "displayNumber": "1.3.1",
+                  "questionText": "Folded question"
+                }
+              ]
             }
           ]
         }

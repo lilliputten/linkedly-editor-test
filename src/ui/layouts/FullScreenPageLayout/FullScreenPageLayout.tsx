@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
-// import { useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import classNames from 'classnames';
 

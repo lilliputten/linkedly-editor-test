@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { TSurveySection } from 'src/entities/Survey/types';
+import { TSurveyItem, TSurveyQuestion, TSurveySection } from 'src/entities/Survey/types';
 import { ViewSurveyQuestion } from 'src/components/Survey/ViewSurvey/ViewSurveyQuestion';
 import { SurveyNode, SurveyNodeContent, SurveyNodeRemark } from 'src/components/Survey/SurveyNode';
 import { useSortedSurveyItems } from 'src/components/Survey/SurveyNode/hooks';
@@ -12,6 +12,18 @@ interface TViewSurveySectionProps {
   className?: string;
 }
 
+type TSurveyItemProps = { itemData: TSurveyItem };
+
+/** Render folderd section or question */
+const ViewSurveyItem: React.FC<TSurveyItemProps> = ({ itemData }) => {
+  const isQuestion = !!itemData.questionId;
+  if (isQuestion) {
+    return <ViewSurveyQuestion questionData={itemData} />;
+  } else {
+    return <ViewSurveySection sectionData={itemData} />;
+  }
+};
+
 export const ViewSurveySection: React.FC<TViewSurveySectionProps> = (props) => {
   const { sectionData, className } = props;
   const {
@@ -20,21 +32,12 @@ export const ViewSurveySection: React.FC<TViewSurveySectionProps> = (props) => {
     // displayNumber,
     sectionName,
     sectionRemark,
-    questions,
+    items,
   } = sectionData;
-  // Sort questions
-  const sortedQuestions = useSortedSurveyItems(questions);
-  // const hasTitle = !!(sectionName || sectionRemark);
+  // Sort items
+  const sortedItems = useSortedSurveyItems(items);
   return (
     <SurveyNode nodeType="section" nodeId={sectionId} className={classNames(className)}>
-      {/*
-      {hasTitle && (
-        <Stack className="ViewSurveySection-Title">
-          {sectionName && <SurveyNodeTitle>Section: {sectionName}</SurveyNodeTitle>}
-          {sectionRemark && <SurveyNodeRemark>{sectionRemark}</SurveyNodeRemark>}
-        </Stack>
-      )}
-      */}
       <SurveyNodeHeader
         // prettier-ignore
         // prefix={displayNumber}
@@ -43,13 +46,11 @@ export const ViewSurveySection: React.FC<TViewSurveySectionProps> = (props) => {
         toolbar="[TOOLBAR]"
       />
       {sectionRemark && <SurveyNodeRemark>{sectionRemark}</SurveyNodeRemark>}
-      {/*
-      <pre>{JSON.stringify(sectionData, null, 2)}</pre>
-      <pre>{JSON.stringify(sortedQuestions, null, 2)}</pre>
-      */}
       <SurveyNodeContent nodeBaseType="section-content" indent>
-        {sortedQuestions.map((questionData) => {
-          return <ViewSurveyQuestion key={questionData.questionId} questionData={questionData} />;
+        {sortedItems.map((itemData) => {
+          return (
+            <ViewSurveyItem key={itemData.sectionId || itemData.questionId} itemData={itemData} />
+          );
         })}
       </SurveyNodeContent>
     </SurveyNode>
