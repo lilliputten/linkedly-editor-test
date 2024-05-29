@@ -17,6 +17,7 @@ export interface TSurveyOrderedItem {
 export interface TSurveyPage extends TSurveyOrderedItem {
   // orderNumber: number; // in `TSurveyOrderedItem`
   pageId: TSurveyPageId;
+  name?: string; // Optional? The page name.
   sections: TSurveySection[];
 }
 
@@ -29,8 +30,8 @@ export interface TSurveySection extends TSurveyOrderedItem {
   // orderNumber: number; // in `TSurveyOrderedItem`
   sectionId: TSurveyItemId;
   displayNumber: string;
-  sectionName: string;
-  sectionRemark?: string;
+  name: string;
+  remark?: string;
   // TODO: Sections should be foldable.
   items: TSurveyItem[];
 }
@@ -39,7 +40,7 @@ export interface TSurveyQuestion extends TSurveyOrderedItem {
   questionId: TSurveyItemId;
   typeId: TQuestionType;
   displayNumber: string;
-  questionText: string;
+  text: string;
   remark?: string;
   // TODO: Add other question fields?
 }

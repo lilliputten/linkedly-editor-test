@@ -29,7 +29,7 @@ export const ViewSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion
     typeId,
     orderNumber,
     displayNumber,
-    questionText,
+    text,
     remark,
   } = questionData;
   const typeText = getQuestionTypeName(typeId);
@@ -41,7 +41,7 @@ export const ViewSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion
         <div><strong>typeId:</strong> {typeId}</div>
         <div><strong>orderNumber:</strong> {orderNumber}</div>
         <div><strong>displayNumber:</strong> {displayNumber}</div>
-        <div><strong>questionText:</strong> {questionText}</div>
+        <div><strong>text:</strong> {text}</div>
         <div><strong>remark:</strong> {remark}</div>
       </>
     );
@@ -51,7 +51,7 @@ export const ViewSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion
       {/*
       <SurveyNodeTitle>Question {questionId}</SurveyNodeTitle>
       <div className={classNames(styles.item, styles.number)}><span className={styles.itemLabel}>Number:</span> {displayNumber}</div>
-      <div className={classNames(styles.item, styles.text)}><span className={styles.itemLabel}>Text:</span> {questionText}</div>
+      <div className={classNames(styles.item, styles.text)}><span className={styles.itemLabel}>Text:</span> {text}</div>
       {!!remark && (
         <div className={classNames(styles.item, styles.remark)}>
           <span className={styles.itemLabel}>Remark:</span> {remark}
@@ -75,7 +75,7 @@ export const ViewSurveyQuestion: React.FC<TViewSurveyQuestionProps> = (props) =>
     // prettier-ignore
     questionId,
     displayNumber,
-    questionText,
+    text,
     remark,
     // typeId,
     // orderNumber,
@@ -90,7 +90,7 @@ export const ViewSurveyQuestion: React.FC<TViewSurveyQuestionProps> = (props) =>
       <SurveyNodeHeader
         // prettier-ignore
         prefix={displayNumber}
-        title={questionText}
+        title={text}
         icon="[ICON]"
         toolbar="[TOOLBAR]"
       />

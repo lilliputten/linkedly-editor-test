@@ -3,7 +3,7 @@ export function getUrlPath(url: string): string {
     .replace(/#.*$/, '')
     .replace(/\?.*$/, '')
     .replace(/[^/]*\.html$/, '');
-  /* // Probably this is a wrong approach, eg we can get: `/{pageName}/`
+  /* // Probably this is a wrong approach, eg we can get: `/{name}/`
    * if (urlPath && !urlPath.endsWith('/')) {
    *   urlPath += '/';
    * }

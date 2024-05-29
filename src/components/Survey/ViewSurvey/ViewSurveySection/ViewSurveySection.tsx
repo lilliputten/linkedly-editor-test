@@ -30,8 +30,8 @@ export const ViewSurveySection: React.FC<TViewSurveySectionProps> = (props) => {
     sectionId,
     // orderNumber,
     // displayNumber,
-    sectionName,
-    sectionRemark,
+    name,
+    remark,
     items,
   } = sectionData;
   // Sort items
@@ -41,11 +41,11 @@ export const ViewSurveySection: React.FC<TViewSurveySectionProps> = (props) => {
       <SurveyNodeHeader
         // prettier-ignore
         // prefix={displayNumber}
-        title={sectionName}
+        title={name}
         icon="[SECTION]"
         toolbar="[TOOLBAR]"
       />
-      {sectionRemark && <SurveyNodeRemark>{sectionRemark}</SurveyNodeRemark>}
+      {remark && <SurveyNodeRemark>{remark}</SurveyNodeRemark>}
       <SurveyNodeContent nodeBaseType="section-content" indent>
         {sortedItems.map((itemData) => {
           return (

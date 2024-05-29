@@ -10,9 +10,9 @@ import { TPropsWithClassName } from 'src/core/types';
 import { ThemedLoaderSplash, Scrollable } from 'src/ui/Basic';
 import { useLogged } from 'src/store/AppSessionStore';
 import { TSurveyId, TSurvey } from 'src/entities/Survey/types';
-import { ViewSurveyRoot } from 'src/components/Survey/ViewSurvey';
+import { EditSurveyRoot } from 'src/components/Survey/EditSurvey';
 
-export const ShowSurvey: React.FC<TPropsWithClassName> = observer((props) => {
+export const EditSurveyPage: React.FC<TPropsWithClassName> = observer((props) => {
   const { className } = props;
   const routerParams = useParams();
   const surveyId: TSurveyId = Number(routerParams.surveyId);
@@ -41,9 +41,9 @@ export const ShowSurvey: React.FC<TPropsWithClassName> = observer((props) => {
    */
   return (
     <>
-      <Scrollable className={classNames(className, 'ShowSurvey')}>
+      <Scrollable className={classNames(className, 'EditSurveyPage')}>
         <Container maxWidth="md" sx={{ my: 2 }}>
-          {ready && !!surveyData && <ViewSurveyRoot surveyData={surveyData} />}
+          {ready && !!surveyData && <EditSurveyRoot surveyData={surveyData} />}
         </Container>
       </Scrollable>
       <ThemedLoaderSplash
