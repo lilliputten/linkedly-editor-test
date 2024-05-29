@@ -29,11 +29,8 @@ export const EditSurveyRoot: React.FC<TEditSurveyProps> = (props) => {
     >
       <PageTitle>{title}</PageTitle>
       <SurveyNodeContent nodeBaseType="root-content" root>
-        {/*
-        <pre>{JSON.stringify(surveyData, null, 2)}</pre>
-        */}
         {sortedPages.map((pageData) => {
-          return <EditSurveyPage key={pageData.id} pageData={pageData} />;
+          return <EditSurveyPage key={pageData.pageId} pageData={pageData} />;
         })}
       </SurveyNodeContent>
     </SurveyNode>

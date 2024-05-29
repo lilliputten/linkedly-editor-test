@@ -42,7 +42,7 @@ export const LoginPage: React.FC = observer(() => {
    * const { logged } = appSessionStore;
    * React.useEffect(() => {
    *   if (logged) {
-   *     navigate(mainUrl);
+   *     navigate(makeRootUrl(mainRoute));
    *   }
    * }, [logged, navigate]);
    */
@@ -55,7 +55,7 @@ export const LoginPage: React.FC = observer(() => {
       //   password: data.get('password'),
       // });
       // TODO: Check login data
-      // navigate(mainUrl);
+      // navigate(makeRootUrl(mainRoute));
       appSessionStore.setLogged(true);
     },
     [appSessionStore],

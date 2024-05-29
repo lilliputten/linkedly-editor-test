@@ -4,6 +4,6 @@ import {
   createHashRouter,
 } from 'react-router-dom';
 
-import { routes } from './routes';
+import { routes } from './appRoutes';
 
 export const router = createHashRouter(routes);
