@@ -4,6 +4,7 @@ import { SelectChangeEvent } from '@mui/material/Select';
 
 import { TDemoComponent } from 'src/core/types';
 import { DemoCheckDataStore } from './Tests/DemoCheckDataStore';
+import { DemoEditableNode } from './Tests/DemoEditableNode';
 
 import styles from './Demo.module.scss';
 
@@ -14,6 +15,7 @@ interface TOption {
 
 const demoComponents: Record<string, TDemoComponent> = {
   DemoCheckDataStore: DemoCheckDataStore,
+  DemoEditableNode: DemoEditableNode,
 };
 const demoTexts: Record<string, string> = {
   // DemoCheckDataStore: 'Check data store',
