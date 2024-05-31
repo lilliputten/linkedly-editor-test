@@ -8,9 +8,29 @@ export const DemoEditableNode: TDemoComponent = observer(() => {
     <div className="DemoEditableNode">
       <EditableNode
         // prettier-ignore
-        nodeId="test-id"
+        nodeId="test-select"
+        editableType="select"
+        title="Select Field"
+        selectOptions={[
+          { value: 'XXX', name: 'Test string' },
+          { value: 1, name: 'Text' },
+          { value: 3, name: 'Yes / No' },
+        ]}
+        value={3}
+      />
+      <EditableNode
+        // prettier-ignore
+        nodeId="test-textarea"
+        editableType="textarea"
+        title="Text Area Field"
+        value="Editable text area"
+      />
+      <EditableNode
+        // prettier-ignore
+        nodeId="test-text"
         editableType="text"
-        value="Editable node"
+        title="Text Field"
+        value="Editable text"
         // value="test value extra mega super hyper buper long text"
       />
     </div>

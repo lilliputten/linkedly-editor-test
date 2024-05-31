@@ -82,7 +82,9 @@ export const EditableNodeDialog: React.FC<TEditableNodeDialogProps> = (props) =>
       PaperComponent={DialogPopupPaper}
       fullWidth
     >
-      <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <DialogTitle
+        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', pb: 0 }}
+      >
         <Box
           flexGrow={1}
           sx={{
@@ -101,9 +103,9 @@ export const EditableNodeDialog: React.FC<TEditableNodeDialogProps> = (props) =>
         </Box>
       </DialogTitle>
       <DialogContent>
-        <Box component="form" onSubmit={handleSubmit} noValidate>
+        <Box component="form" onSubmit={handleSubmit} noValidate pt={2}>
           <EditableNodeDialogField {...props} onChange={handleChange} />
-          <Stack direction="row" spacing={1} mt={3}>
+          <Stack direction="row" spacing={1} mt={2}>
             <Button type="submit" variant="contained" startIcon={<Check />} disabled={!hasChanged}>
               Save
             </Button>

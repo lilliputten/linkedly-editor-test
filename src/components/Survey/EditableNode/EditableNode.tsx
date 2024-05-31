@@ -10,6 +10,7 @@ import { TEditableNodeBaseProps } from './types/TEditableNodeBaseProps';
 import { EditableNodeDialog } from './EditableNodeDialog';
 
 import styles from './EditableNode.module.scss';
+import { useLabelText } from './EditableNodeDialog/Fields/hooks';
 
 type TTimeoutHandler = number; // ReturnType<typeof setTimeout>;
 type TMemo = { timeoutHandler: TTimeoutHandler | undefined };
@@ -24,11 +25,21 @@ export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
   const {
     nodeId,
     value: defaultValue,
-    title,
     wrap,
-    // editableType, // Editable field type
+    editableType, // Editable field type
+    selectOptions,
   } = nodeBaseProps;
   const [value, setValue] = React.useState<TEditableNodeValue>(defaultValue);
+  // Prepare the viosible value (for 'select' node type...
+  const showValue = React.useMemo(() => {
+    if (editableType === 'select' && selectOptions) {
+      const foundItem = selectOptions.find((item) => item.value === value);
+      if (foundItem) {
+        return foundItem.name;
+      }
+    }
+    return value;
+  }, [value, editableType, selectOptions]);
   /** Is dialog open? */
   const [isDialogOpen, setDialogOpen] = React.useState(false);
   /** Is dialog rendered in components tree? (Allow delay to show hide transition effect.) */
@@ -50,7 +61,7 @@ export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
     memo.timeoutHandler = setTimeout(setDialogMounted.bind(false), 300);
   }, [memo, setDialogOpen]);
 
-  const labelText = 'Click to edit ' + (title || 'field');
+  const labelText = useLabelText(props, 'Click to edit');
 
   return (
     <>
@@ -65,7 +76,7 @@ export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
             variant="body1"
             className={classNames(styles.textNode, wrap || styles.noWrap)}
           >
-            {value || ''}
+            {showValue || ''}
           </Typography>
           <Box className={styles.editIcon}>
             <Edit />

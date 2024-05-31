@@ -3,7 +3,7 @@ import { TEditableNodeValue } from './TEditableNodeValue';
 
 export interface TEditableNodeSelectItem {
   value: TEditableNodeValue;
-  text: string;
+  name: string;
 }
 
 export interface TEditableNodeBaseProps {
