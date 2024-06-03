@@ -12,7 +12,21 @@
   background-color: color.change(gray, $alpha: 0.2);
 }
 
+.leftContainer,
+.rightContainer {
+  overflow: hidden;
+  // align-items: center;
+  max-width: 100%;
+  // width: max-content;
+}
+.leftContainer {
+  flex: 1;
+}
+
 .wrapped {
+  // border: 1px dashed gray;
+  display: inline-block;
+  padding: 0.5rem 0.5rem;
   &.icon,
   &.toolbar {
     opacity: 0.2;

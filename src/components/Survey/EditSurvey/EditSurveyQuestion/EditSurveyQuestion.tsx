@@ -11,6 +11,8 @@ import {
 import { getQuestionTypeName } from 'src/entities/Survey/helpers';
 import { SurveyNodeHeader } from 'src/components/Survey/SurveyNode/SurveyNodeHeader';
 
+import { EditableNode } from 'src/components/Survey/EditableNode/EditableNode';
+
 import styles from './EditSurveyQuestion.module.scss';
 
 interface TEditSurveyQuestionProps {
@@ -80,6 +82,34 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
     // typeId,
     // orderNumber,
   } = questionData;
+  const displayNumberNode = React.useMemo(() => {
+    const id = `${questionId}-prefix`;
+    return (
+      <EditableNode
+        // prettier-ignore
+        nodeId={id}
+        editableType="text"
+        title="Display Number"
+        value={displayNumber}
+        // width={boxItemWidth}
+        // noShrink
+      />
+    );
+  }, [questionId, displayNumber]);
+  const textNode = React.useMemo(() => {
+    const id = `${questionId}-text`;
+    return (
+      <EditableNode
+        // prettier-ignore
+        nodeId={id}
+        editableType="text"
+        title="Question Text"
+        value={text}
+        flex={1}
+        // width={boxItemWidth}
+      />
+    );
+  }, [questionId, text]);
   return (
     <SurveyNode
       nodeType="question"
@@ -89,9 +119,10 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
     >
       <SurveyNodeHeader
         // prettier-ignore
-        prefix={displayNumber}
-        title={text}
-        icon="[ICON]"
+        prefix={displayNumberNode}
+        title={textNode}
+        // title={text}
+        icon="[O]"
         toolbar="[TOOLBAR]"
       />
       {remark && <SurveyNodeRemark>{remark}</SurveyNodeRemark>}

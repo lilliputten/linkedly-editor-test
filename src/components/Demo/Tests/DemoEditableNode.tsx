@@ -8,6 +8,22 @@ export const DemoEditableNode: TDemoComponent = observer(() => {
     <div className="DemoEditableNode">
       <EditableNode
         // prettier-ignore
+        nodeId="test-text"
+        editableType="text"
+        title="Text Field"
+        // value="Editable text"
+        value="Fake question with an extra long text data to check flex adaptive layout"
+      />
+      {/*
+      <EditableNode
+        // prettier-ignore
+        nodeId="test-textarea"
+        editableType="textarea"
+        title="Text Area Field"
+        value="Editable text area"
+      />
+      <EditableNode
+        // prettier-ignore
         nodeId="test-select"
         editableType="select"
         title="Select Field"
@@ -18,21 +34,7 @@ export const DemoEditableNode: TDemoComponent = observer(() => {
         ]}
         value={3}
       />
-      <EditableNode
-        // prettier-ignore
-        nodeId="test-textarea"
-        editableType="textarea"
-        title="Text Area Field"
-        value="Editable text area"
-      />
-      <EditableNode
-        // prettier-ignore
-        nodeId="test-text"
-        editableType="text"
-        title="Text Field"
-        value="Editable text"
-        // value="test value extra mega super hyper buper long text"
-      />
+      */}
     </div>
   );
 });

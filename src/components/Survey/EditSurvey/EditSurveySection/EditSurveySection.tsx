@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { TSurveyItem, TSurveySection } from 'src/entities/Survey/types';
+import { TSurveyItem, TSurveyQuestion, TSurveySection } from 'src/entities/Survey/types';
 import { EditSurveyQuestion } from 'src/components/Survey/EditSurvey/EditSurveyQuestion';
 import { SurveyNode, SurveyNodeContent, SurveyNodeRemark } from 'src/components/Survey/SurveyNode';
 import { useSortedSurveyItems } from 'src/components/Survey/SurveyNode/hooks';
@@ -16,11 +16,11 @@ type TSurveyItemProps = { itemData: TSurveyItem };
 
 /** Render folderd section or question */
 const EditSurveyItem: React.FC<TSurveyItemProps> = ({ itemData }) => {
-  const isQuestion = !!itemData.questionId;
+  const isQuestion = !!(itemData as TSurveyQuestion).questionId;
   if (isQuestion) {
-    return <EditSurveyQuestion questionData={itemData} />;
+    return <EditSurveyQuestion questionData={itemData as TSurveyQuestion} />;
   } else {
-    return <EditSurveySection sectionData={itemData} />;
+    return <EditSurveySection sectionData={itemData as TSurveySection} />;
   }
 };
 
@@ -48,9 +48,9 @@ export const EditSurveySection: React.FC<TEditSurveySectionProps> = (props) => {
       {remark && <SurveyNodeRemark>{remark}</SurveyNodeRemark>}
       <SurveyNodeContent nodeBaseType="section-content" indent>
         {sortedItems.map((itemData) => {
-          return (
-            <EditSurveyItem key={itemData.sectionId || itemData.questionId} itemData={itemData} />
-          );
+          const key =
+            (itemData as TSurveyQuestion).questionId || (itemData as TSurveySection).sectionId;
+          return <EditSurveyItem key={key} itemData={itemData} />;
         })}
       </SurveyNodeContent>
     </SurveyNode>

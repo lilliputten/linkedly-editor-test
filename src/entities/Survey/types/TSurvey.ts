@@ -24,7 +24,7 @@ export interface TSurveyPage extends TSurveyOrderedItem {
 /** Section or question node
  * Sections can contain both questions and sections, recoursivcely
  */
-export type TSurveyItem = TSurveyQuestion & TSurveySection;
+export type TSurveyItem = TSurveyQuestion | TSurveySection;
 
 export interface TSurveySection extends TSurveyOrderedItem {
   // orderNumber: number; // in `TSurveyOrderedItem`

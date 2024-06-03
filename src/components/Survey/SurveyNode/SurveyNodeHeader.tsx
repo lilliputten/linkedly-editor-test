@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Stack, Typography } from '@mui/material';
+import { Stack, StackProps, Typography } from '@mui/material';
 
 import styles from './SurveyNodeHeader.module.scss';
 
@@ -47,11 +47,15 @@ export const SurveyNodeHeader: React.FC<TSurveyNodeHeaderProps> = (props) => {
     icon,
     toolbar,
   } = props;
+  const stackDirection: StackProps['direction'] = { xs: 'column', sm: 'row' };
+  const stackAlignItems: StackProps['alignItems'] = { xs: 'flex-start', sm: 'center' };
+  const stackSpacing: StackProps['spacing'] = { xs: 0, sm: 0.5 };
   return (
     <Stack
       // prettier-ignore
-      direction="row"
-      spacing={1}
+      direction={stackDirection}
+      alignItems={stackAlignItems}
+      spacing={stackSpacing}
       px={1}
       py={0.5}
       className={classNames(className, styles.root)}
@@ -59,8 +63,9 @@ export const SurveyNodeHeader: React.FC<TSurveyNodeHeaderProps> = (props) => {
     >
       <Stack
         // prettier-ignore
-        direction="row"
-        spacing={1}
+        direction={stackDirection}
+        alignItems={stackAlignItems}
+        spacing={stackSpacing}
         className={classNames(className, styles.leftContainer)}
         flex={1}
       >
@@ -70,8 +75,9 @@ export const SurveyNodeHeader: React.FC<TSurveyNodeHeaderProps> = (props) => {
       </Stack>
       <Stack
         // prettier-ignore
-        direction="row"
-        spacing={1}
+        direction={stackDirection}
+        alignItems={stackAlignItems}
+        spacing={stackSpacing}
         className={classNames(className, styles.rightContainer)}
       >
         <WrappedNode className={styles.toolbar}>{toolbar}</WrappedNode>

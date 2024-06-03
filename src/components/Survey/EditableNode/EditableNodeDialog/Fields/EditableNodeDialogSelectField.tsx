@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { ChangeEventHandler } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { FormControl, InputLabel, MenuItem, TextField } from '@mui/material';
-// import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import { FormControl, InputLabel, MenuItem } from '@mui/material';
 
 import { TEditableNodeValue } from '../../types/TEditableNodeValue';
 
@@ -11,13 +9,6 @@ import { useLabelText } from './hooks';
 
 export const EditableNodeDialogSelectField: React.FC<TEditableNodeDialogFieldProps> = (props) => {
   const { nodeId, onChange, value: defaultValue, selectOptions } = props;
-
-  /*
-  const valueNode = React.useMemo(() => {
-    return selectOptions?.find((option) => option.value === defaultValue);
-  }, [defaultValue, selectOptions]);
-  const [value, setValue] = React.useState<TEditableNodeValue>(defaultValue);
-  */
 
   type TElement = HTMLSelectElement;
   const handleChange = React.useCallback(
