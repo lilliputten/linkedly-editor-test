@@ -5,13 +5,13 @@ import { TSurveyQuestion } from 'src/entities/Survey/types';
 import {
   SurveyNode,
   SurveyNodeContent,
-  SurveyNodeRemark,
+  SurveyNodeItemRow,
   SurveyNodeTitle,
 } from 'src/components/Survey/SurveyNode';
-import { getQuestionTypeName } from 'src/entities/Survey/helpers';
 import { SurveyNodeHeader } from 'src/components/Survey/SurveyNode/SurveyNodeHeader';
 
 import { EditableNode } from 'src/components/Survey/EditableNode/EditableNode';
+import { questionEditableTypeOptions } from 'src/components/Survey/EditableNode/types/TQuestionEditableType';
 
 import styles from './EditSurveyQuestion.module.scss';
 
@@ -34,7 +34,7 @@ export const EditSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion
     text,
     remark,
   } = questionData;
-  const typeText = getQuestionTypeName(typeId);
+  // const typeText = getQuestionTypeName(typeId);
   if (debugShowRawQuestion) {
     // prettier-ignore
     return (
@@ -50,23 +50,36 @@ export const EditSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion
   }
   return (
     <>
-      {/*
-      <SurveyNodeTitle>Question {questionId}</SurveyNodeTitle>
-      <div className={classNames(styles.item, styles.number)}><span className={styles.itemLabel}>Number:</span> {displayNumber}</div>
-      <div className={classNames(styles.item, styles.text)}><span className={styles.itemLabel}>Text:</span> {text}</div>
-      {!!remark && (
-        <div className={classNames(styles.item, styles.remark)}>
-          <span className={styles.itemLabel}>Remark:</span> {remark}
-        </div>
-      )}
-      */}
-      <div className={classNames(styles.item, styles.type)}>
-        <span className={styles.itemLabel}>Type:</span> {typeText}
-      </div>
-      <div className={classNames(styles.item, styles.comment)}>
-        {/* DEBUG */}
-        (Other parameters...)
-      </div>
+      {/* // XXX: To show remark here or below the header? */}
+      <SurveyNodeItemRow title="Remark:" activeButtonId={`${questionId}-remark-button`}>
+        <EditableNode
+          // prettier-ignore
+          key={`${questionId}-remark`}
+          nodeId={`${questionId}-remark`}
+          activeButtonId={`${questionId}-remark-button`}
+          className={classNames(styles.item)}
+          editableType="textarea"
+          title="Remark Text"
+          value={remark || ''}
+          flex={1}
+          wrap
+          // textClassName={styles.remark}
+        />
+      </SurveyNodeItemRow>
+      <SurveyNodeItemRow title="Type:" activeButtonId={`${questionId}-type-button`}>
+        <EditableNode
+          // prettier-ignore
+          key={`${questionId}-type`}
+          nodeId={`${questionId}-type`}
+          activeButtonId={`${questionId}-type-button`}
+          className={classNames(styles.item)}
+          editableType="select"
+          selectOptions={questionEditableTypeOptions}
+          title="Question Type"
+          value={typeId}
+          // flex={1}
+        />
+      </SurveyNodeItemRow>
     </>
   );
 };
@@ -78,7 +91,7 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
     questionId,
     displayNumber,
     text,
-    remark,
+    // remark,
     // typeId,
     // orderNumber,
   } = questionData;
@@ -121,8 +134,10 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
         toolbar="[TOOLBAR]"
       />
       <SurveyNodeContent nodeBaseType="question-content" className={styles.nodeContent}>
+        {/* // XXX: To show remark here or below the header?
         <EditableNode
           // prettier-ignore
+          key={`${questionId}-remark`}
           nodeId={`${questionId}-remark`}
           editableType="textarea"
           title="Remark Text"
@@ -131,6 +146,7 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
           wrap
           textClassName={styles.remark}
         />
+        */}
         <EditSurveyQuestionContent questionData={questionData} />
       </SurveyNodeContent>
     </SurveyNode>

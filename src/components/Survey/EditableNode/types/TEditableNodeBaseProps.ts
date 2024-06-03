@@ -1,9 +1,9 @@
 import { TEditableNodeType } from './TEditableNodeType';
 import { TEditableNodeValue } from './TEditableNodeValue';
 
-export interface TEditableNodeSelectItem {
-  value: TEditableNodeValue;
-  name: string;
+export interface TEditableNodeSelectItem<V = TEditableNodeValue, N = string> {
+  value: V;
+  name: N;
 }
 
 export interface TEditableNodeBaseProps {

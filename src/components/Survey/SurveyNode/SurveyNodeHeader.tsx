@@ -1,19 +1,23 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Stack, StackProps, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
+
+import { TReactNode } from 'src/core/types';
 
 import styles from './SurveyNodeHeader.module.scss';
-
-type TPrimitive = string | number | boolean;
-type TNode = React.ReactNode | TPrimitive;
+import {
+  responsiveNodeStackAlignItems,
+  responsiveNodeStackDirection,
+  responsiveNodeStackSpacing,
+} from './constants/responsiveNodeStyles';
 
 interface TSurveyNodeHeaderProps {
   className?: string;
   id?: number | string;
-  prefix?: TNode;
-  title?: TNode;
-  icon?: TNode;
-  toolbar?: TNode;
+  prefix?: TReactNode;
+  title?: TReactNode;
+  icon?: TReactNode;
+  toolbar?: TReactNode;
   /* TODO:
    *   - Icon
    *   - Exandable properties: expanded, handleExpand
@@ -21,7 +25,7 @@ interface TSurveyNodeHeaderProps {
    */
 }
 
-const WrappedNode: React.FC<{ className?: string; children?: TNode }> = (props) => {
+const WrappedNode: React.FC<{ className?: string; children?: TReactNode }> = (props) => {
   const { className, children } = props;
   const node = React.useMemo(() => {
     if (!children) {
@@ -47,16 +51,12 @@ export const SurveyNodeHeader: React.FC<TSurveyNodeHeaderProps> = (props) => {
     icon,
     toolbar,
   } = props;
-  // Show header in vertcal layout for narrow/mobile displays
-  const stackDirection: StackProps['direction'] = { xs: 'column', sm: 'row' };
-  const stackAlignItems: StackProps['alignItems'] = { xs: 'flex-start', sm: 'center' };
-  const stackSpacing: StackProps['spacing'] = { xs: 0, sm: 0.5 };
   return (
     <Stack
       // prettier-ignore
-      direction={stackDirection}
-      alignItems={stackAlignItems}
-      spacing={stackSpacing}
+      direction={responsiveNodeStackDirection}
+      alignItems={responsiveNodeStackAlignItems}
+      spacing={responsiveNodeStackSpacing}
       px={1}
       py={0.5}
       className={classNames(className, styles.root)}
@@ -64,9 +64,9 @@ export const SurveyNodeHeader: React.FC<TSurveyNodeHeaderProps> = (props) => {
     >
       <Stack
         // prettier-ignore
-        direction={stackDirection}
-        alignItems={stackAlignItems}
-        spacing={stackSpacing}
+        direction={responsiveNodeStackDirection}
+        alignItems={responsiveNodeStackAlignItems}
+        spacing={responsiveNodeStackSpacing}
         className={classNames(className, styles.leftContainer)}
         flex={1}
       >
@@ -76,9 +76,9 @@ export const SurveyNodeHeader: React.FC<TSurveyNodeHeaderProps> = (props) => {
       </Stack>
       <Stack
         // prettier-ignore
-        direction={stackDirection}
-        alignItems={stackAlignItems}
-        spacing={stackSpacing}
+        direction={responsiveNodeStackDirection}
+        alignItems={responsiveNodeStackAlignItems}
+        spacing={responsiveNodeStackSpacing}
         className={classNames(className, styles.rightContainer)}
       >
         <WrappedNode className={styles.toolbar}>{toolbar}</WrappedNode>

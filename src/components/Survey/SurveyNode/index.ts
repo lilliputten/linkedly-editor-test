@@ -1,4 +1,5 @@
 export * from './SurveyNode';
 export * from './SurveyNodeContent';
-export * from './SurveyNodeTitle';
+export * from './SurveyNodeItemRow';
 export * from './SurveyNodeRemark';
+export * from './SurveyNodeTitle';

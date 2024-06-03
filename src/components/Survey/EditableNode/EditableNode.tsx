@@ -16,23 +16,27 @@ type TTimeoutHandler = number; // ReturnType<typeof setTimeout>;
 type TMemo = { timeoutHandler: TTimeoutHandler | undefined };
 
 interface TEditableNodeProps extends TEditableNodeBaseProps {
+  activeButtonId?: string;
   className?: string;
   textClassName?: string;
   wrap?: boolean;
   noShrink?: boolean;
   overflow?: boolean;
   flex?: number;
+  setOpenDialogCb?: (openDialog: () => void) => void;
 }
 
 export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
   const {
     // prettier-ignore
+    activeButtonId,
     className,
     textClassName,
     wrap,
     noShrink,
     overflow,
     flex,
+    setOpenDialogCb,
     ...nodeBaseProps
   } = props;
   const {
@@ -65,6 +69,12 @@ export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
       memo.timeoutHandler = undefined;
     }
   }, [memo, setDialogOpen]);
+  // Register open dialog callback
+  React.useEffect(() => {
+    if (setOpenDialogCb) {
+      setOpenDialogCb(openDialog);
+    }
+  }, [openDialog, setOpenDialogCb]);
   const closeDialog = React.useCallback(() => {
     setDialogOpen(false);
     if (memo.timeoutHandler) {
@@ -96,7 +106,8 @@ export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
       >
         <ButtonBase
           // prettier-ignore
-          className={styles.clickableWrapper}
+          id={activeButtonId || `editable-node-${nodeId}-button`}
+          className={classNames(styles.clickableWrapper, isDialogOpen && styles.buttonActive)}
           title={labelText}
           onClick={openDialog}
         >

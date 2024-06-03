@@ -47,6 +47,10 @@ $smallSize: ($size / 8);
     background-color: color.change($primaryColor, $alpha: 0.1);
     border: 1px dashed color.change($primaryColor, $alpha: 0.3);
   }
+  &.buttonActive,
+  &:focus-within,
+  &:focus-visible,
+  &:target,
   &:focus {
     background-color: color.change($primaryColor, $alpha: 0.15);
     border: 1px dashed color.change($primaryColor, $alpha: 0.5);

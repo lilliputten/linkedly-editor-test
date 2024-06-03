@@ -1,5 +1,10 @@
 import React from 'react';
 
+// TODO: Move definitions to 'react' folder functions to helpers
+
+export type TReactPrimitive = string | number | boolean;
+export type TReactNode = React.ReactNode | TReactPrimitive;
+
 export interface TPropsWithClassName {
   className?: string;
 }
