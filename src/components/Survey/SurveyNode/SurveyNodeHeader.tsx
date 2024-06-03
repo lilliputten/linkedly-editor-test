@@ -47,6 +47,7 @@ export const SurveyNodeHeader: React.FC<TSurveyNodeHeaderProps> = (props) => {
     icon,
     toolbar,
   } = props;
+  // Show header in vertcal layout for narrow/mobile displays
   const stackDirection: StackProps['direction'] = { xs: 'column', sm: 'row' };
   const stackAlignItems: StackProps['alignItems'] = { xs: 'flex-start', sm: 'center' };
   const stackSpacing: StackProps['spacing'] = { xs: 0, sm: 0.5 };

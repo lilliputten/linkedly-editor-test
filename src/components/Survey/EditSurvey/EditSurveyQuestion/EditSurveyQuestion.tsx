@@ -83,30 +83,26 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
     // orderNumber,
   } = questionData;
   const displayNumberNode = React.useMemo(() => {
-    const id = `${questionId}-prefix`;
     return (
       <EditableNode
         // prettier-ignore
-        nodeId={id}
+        nodeId={`${questionId}-prefix`}
         editableType="text"
         title="Display Number"
         value={displayNumber}
-        // width={boxItemWidth}
         // noShrink
       />
     );
   }, [questionId, displayNumber]);
   const textNode = React.useMemo(() => {
-    const id = `${questionId}-text`;
     return (
       <EditableNode
         // prettier-ignore
-        nodeId={id}
+        nodeId={`${questionId}-text`}
         editableType="text"
         title="Question Text"
         value={text}
         flex={1}
-        // width={boxItemWidth}
       />
     );
   }, [questionId, text]);
@@ -121,12 +117,20 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
         // prettier-ignore
         prefix={displayNumberNode}
         title={textNode}
-        // title={text}
         icon="[O]"
         toolbar="[TOOLBAR]"
       />
-      {remark && <SurveyNodeRemark>{remark}</SurveyNodeRemark>}
       <SurveyNodeContent nodeBaseType="question-content" className={styles.nodeContent}>
+        <EditableNode
+          // prettier-ignore
+          nodeId={`${questionId}-remark`}
+          editableType="textarea"
+          title="Remark Text"
+          value={remark || ''}
+          flex={1}
+          wrap
+          textClassName={styles.remark}
+        />
         <EditSurveyQuestionContent questionData={questionData} />
       </SurveyNodeContent>
     </SurveyNode>

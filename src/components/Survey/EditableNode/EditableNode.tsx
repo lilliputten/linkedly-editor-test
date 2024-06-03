@@ -17,6 +17,7 @@ type TMemo = { timeoutHandler: TTimeoutHandler | undefined };
 
 interface TEditableNodeProps extends TEditableNodeBaseProps {
   className?: string;
+  textClassName?: string;
   wrap?: boolean;
   noShrink?: boolean;
   overflow?: boolean;
@@ -24,16 +25,21 @@ interface TEditableNodeProps extends TEditableNodeBaseProps {
 }
 
 export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
-  const { className, ...nodeBaseProps } = props;
   const {
-    nodeId,
-    value: defaultValue,
+    // prettier-ignore
+    className,
+    textClassName,
     wrap,
     noShrink,
     overflow,
-    editableType, // Editable field type
-    selectOptions,
     flex,
+    ...nodeBaseProps
+  } = props;
+  const {
+    nodeId,
+    editableType, // Editable field type
+    value: defaultValue,
+    selectOptions,
   } = nodeBaseProps;
   const [value, setValue] = React.useState<TEditableNodeValue>(defaultValue);
   // Prepare the viosible value (for 'select' node type...
@@ -69,12 +75,15 @@ export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
 
   const labelText = useLabelText(props, 'Click to edit');
 
+  const isEmpty = !showValue;
+
   const rootClassName = classNames(
     className,
     styles.root,
     wrap || styles.noWrap,
     overflow || styles.noOverflow,
     noShrink && styles.noShrink,
+    isEmpty && styles.empty,
   );
 
   return (
@@ -91,7 +100,7 @@ export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
           title={labelText}
           onClick={openDialog}
         >
-          <Typography variant="body1" className={classNames(styles.textNode)}>
+          <Typography variant="body1" className={classNames(textClassName, styles.textNode)}>
             {showValue || ''}
           </Typography>
           <Box className={styles.editIcon}>

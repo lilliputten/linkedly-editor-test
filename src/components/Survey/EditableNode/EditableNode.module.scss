@@ -1,5 +1,4 @@
 .root {
-  /*!KEEP*/
   overflow: hidden;
   width: max-content;
   max-width: 100%;
@@ -31,9 +30,8 @@ $smallSize: ($size / 8);
 }
 
 .clickableWrapper {
+  min-width: 1.35rem;
   transition: all $transitionTimeMs;
-  // position: relative;
-  // border: 1px solid blue !important;
   flex: 1;
   gap: 0.25rem;
   align-self: flex-start;
@@ -45,20 +43,24 @@ $smallSize: ($size / 8);
     justify-content: flex-start;
     border: 1px solid transparent;
   }
+  .empty & {
+    background-color: color.change($primaryColor, $alpha: 0.1);
+    border: 1px dashed color.change($primaryColor, $alpha: 0.3);
+  }
   &:focus {
     background-color: color.change($primaryColor, $alpha: 0.15);
-    border: 1px dashed color.change($primaryColor, $alpha: 0.5); //  !important;
+    border: 1px dashed color.change($primaryColor, $alpha: 0.5);
   }
   &:hover {
     background-color: color.change($primaryColor, $alpha: 0.3);
-    border: 1px dashed color.change($primaryColor, $alpha: 0.75); //  !important;
+    border: 1px dashed color.change($primaryColor, $alpha: 0.75);
     .editIcon {
       opacity: 0.8;
     }
   }
   &:active {
     background-color: color.change($primaryColor, $alpha: 0.5);
-    border: 1px dashed color.change($primaryColor, $alpha: 1); //  !important;
+    border: 1px dashed color.change($primaryColor, $alpha: 1);
   }
 }
 
@@ -76,17 +78,12 @@ $smallSize: ($size / 8);
   .clickableWrapper,
   .textNode {
     white-space: nowrap;
-    // overflow: hidden;
-    // text-overflow: ellipsis;
-    // max-width: 100%;
   }
 }
 
 .noOverflow {
-  // &.root,
   .clickableWrapper,
   .textNode {
-    // border: 1px solid red;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
