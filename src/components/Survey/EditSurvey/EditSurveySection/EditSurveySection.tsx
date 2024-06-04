@@ -3,14 +3,11 @@ import classNames from 'classnames';
 
 import {
   TSurveyItem,
-  TSurveyItemId,
+  TSurveyNodeChangeParams,
   TSurveyQuestion,
   TSurveySection,
 } from 'src/entities/Survey/types';
-import {
-  EditSurveyQuestion,
-  TSurveyQuestionChangeParams,
-} from 'src/components/Survey/EditSurvey/EditSurveyQuestion';
+import { EditSurveyQuestion } from 'src/components/Survey/EditSurvey/EditSurveyQuestion';
 import {
   SurveyNode,
   SurveyNodeFoldedContent,
@@ -25,27 +22,15 @@ import {
   TEditableNodeChangeParams,
 } from 'src/components/Survey/EditableNode/EditableNode';
 
-export interface TSurveySectionChangeParams {
-  nodeData: TSurveySection;
-  nodeId: TSurveyItemId;
-  reorderRequired?: boolean;
-  valueId: TEditableNodeChangeParams['valueId'];
-  value: TEditableNodeChangeParams['value'] | TSurveyItem[];
-}
-
-export type TSurveySectionItemChangeParams =
-  | TSurveySectionChangeParams
-  | TSurveyQuestionChangeParams;
-
 interface TEditSurveySectionProps {
   sectionData: TSurveySection;
   className?: string;
-  onChange?: (params: TSurveySectionChangeParams) => void;
+  onChange?: (params: TSurveyNodeChangeParams) => void;
 }
 
 interface TSurveyItemProps {
   itemData: TSurveyItem;
-  onChange?: (params: TSurveySectionItemChangeParams) => void;
+  onChange?: (params: TSurveyNodeChangeParams) => void;
 }
 
 /** Render folderd section or question */
@@ -132,7 +117,7 @@ export const EditSurveySection: React.FC<TEditSurveySectionProps> = (props) => {
   // Sort items
   const sortedItems = useSortedSurveyItems(items);
   const handleItemChange = React.useCallback(
-    (params: TSurveySectionItemChangeParams) => {
+    (params: TSurveyNodeChangeParams) => {
       const { nodeId, nodeData } = params;
       // const isQuestion = !!(nodeData as TSurveyQuestion).questionId;
       const changedItems = sectionData.items.map((item) => {
@@ -140,13 +125,13 @@ export const EditSurveySection: React.FC<TEditSurveySectionProps> = (props) => {
           nodeId === (item as TSurveyQuestion).questionId ||
           nodeId === (item as TSurveySection).sectionId
         ) {
-          return nodeData;
+          return nodeData as TSurveyItem;
         }
         return item;
       });
       const changedSectionData: TSurveySection = { ...sectionData, items: changedItems };
       const valueId = 'items';
-      const changedItemsParams: TSurveySectionChangeParams = {
+      const changedItemsParams: TSurveyNodeChangeParams = {
         nodeData: changedSectionData,
         nodeId: sectionId,
         value: changedItems,
@@ -160,7 +145,7 @@ export const EditSurveySection: React.FC<TEditSurveySectionProps> = (props) => {
         changedSectionData,
         changedItemsParams,
       });
-      debugger;
+      // debugger;
       if (onChange) {
         onChange(changedItemsParams);
       }
@@ -179,13 +164,13 @@ export const EditSurveySection: React.FC<TEditSurveySectionProps> = (props) => {
         // eslint-disable-next-line no-debugger
         debugger;
       }
-      const id = valueId as keyof TSurveyQuestion;
+      const id = valueId as keyof TSurveySection;
       // Create updated question data object...
       const changedSectionData: TSurveySection = { ...sectionData, [id]: value };
       // Is reorder required for uplevel container? (TODO: Track the current node in viewpoint on re-order?)
       const reorderRequired = valueId === 'orderNumber';
       // Construct parameters data for up-level change handler
-      const changedParams: TSurveySectionChangeParams = {
+      const changedParams: TSurveyNodeChangeParams = {
         nodeData: changedSectionData,
         nodeId: sectionId,
         value,
@@ -202,7 +187,7 @@ export const EditSurveySection: React.FC<TEditSurveySectionProps> = (props) => {
         changedSectionData,
         changedParams,
       });
-      debugger;
+      // debugger;
       if (onChange) {
         onChange(changedParams);
       }

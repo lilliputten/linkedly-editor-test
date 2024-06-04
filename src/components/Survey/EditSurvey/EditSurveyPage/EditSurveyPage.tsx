@@ -1,17 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import {
-  TSurveyItem,
-  TSurveyItemId,
-  TSurveyPage,
-  TSurveyQuestion,
-  TSurveySection,
-} from 'src/entities/Survey/types';
-import {
-  EditSurveySection,
-  TSurveySectionChangeParams,
-} from 'src/components/Survey/EditSurvey/EditSurveySection';
+import { TSurveyNodeChangeParams, TSurveyPage, TSurveySection } from 'src/entities/Survey/types';
+import { EditSurveySection } from 'src/components/Survey/EditSurvey/EditSurveySection';
 import {
   SurveyNode,
   SurveyNodeFoldedContent,
@@ -25,22 +16,10 @@ import {
   TEditableNodeChangeParams,
 } from 'src/components/Survey/EditableNode/EditableNode';
 
-export interface TSurveyPageChangeParams {
-  nodeData: TSurveyPage;
-  nodeId: TSurveyItemId;
-  reorderRequired?: boolean;
-  valueId: TEditableNodeChangeParams['valueId'];
-  value: TEditableNodeChangeParams['value'] | TSurveyItem[];
-}
-
-export type TSurveyPageItemChangeParams = TSurveySectionChangeParams;
-
-// type TSurveySectionItemChangeParams = TSurveySectionChangeParams | TSurveyQuestionChangeParams;
-
 interface TEditSurveyPageProps {
   pageData: TSurveyPage;
   className?: string;
-  onChange?: (params: TSurveyPageChangeParams) => void;
+  onChange?: (params: TSurveyNodeChangeParams) => void;
 }
 
 const EditSurveyPageContent: React.FC<{
@@ -93,18 +72,18 @@ export const EditSurveyPage: React.FC<TEditSurveyPageProps> = (props) => {
   const sortedSections = useSortedSurveyItems(items);
 
   const handleItemChange = React.useCallback(
-    (params: TSurveyPageItemChangeParams) => {
+    (params: TSurveyNodeChangeParams) => {
       const { nodeId, nodeData } = params;
       // const isQuestion = !!(nodeData as TSurveyQuestion).questionId;
       const changedItems = pageData.items.map((item) => {
         if (nodeId === (item as TSurveySection).sectionId) {
-          return nodeData;
+          return nodeData as TSurveySection;
         }
         return item;
       });
       const changedPageData: TSurveyPage = { ...pageData, items: changedItems };
       const valueId = 'items';
-      const changedItemsParams: TSurveyPageChangeParams = {
+      const changedItemsParams: TSurveyNodeChangeParams = {
         nodeData: changedPageData,
         nodeId: pageId,
         value: changedItems,
@@ -118,7 +97,7 @@ export const EditSurveyPage: React.FC<TEditSurveyPageProps> = (props) => {
         changedPageData,
         changedItemsParams,
       });
-      debugger;
+      // debugger;
       if (onChange) {
         onChange(changedItemsParams);
       }
@@ -137,13 +116,13 @@ export const EditSurveyPage: React.FC<TEditSurveyPageProps> = (props) => {
         // eslint-disable-next-line no-debugger
         debugger;
       }
-      const id = valueId as keyof TSurveyQuestion;
+      const id = valueId as keyof TSurveyPage;
       // Create updated question data object...
       const changedPageData: TSurveyPage = { ...pageData, [id]: value };
       // Is reorder required for uplevel container? (TODO: Track the current node in viewpoint on re-order?)
       const reorderRequired = valueId === 'orderNumber';
       // Construct parameters data for up-level change handler
-      const changedParams: TSurveyPageChangeParams = {
+      const changedParams: TSurveyNodeChangeParams = {
         nodeData: changedPageData,
         nodeId: pageId,
         value,
@@ -160,7 +139,7 @@ export const EditSurveyPage: React.FC<TEditSurveyPageProps> = (props) => {
         changedPageData,
         changedParams,
       });
-      debugger;
+      // debugger;
       if (onChange) {
         onChange(changedParams);
       }

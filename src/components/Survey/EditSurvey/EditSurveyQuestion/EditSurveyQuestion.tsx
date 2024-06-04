@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { TSurveyItemId, TSurveyQuestion } from 'src/entities/Survey/types';
+import { TSurveyNodeChangeParams, TSurveyQuestion } from 'src/entities/Survey/types';
 import {
   SurveyNode,
   SurveyNodeFoldedContent,
@@ -19,18 +19,10 @@ import { questionEditableTypeOptions } from 'src/components/Survey/EditableNode/
 
 import styles from './EditSurveyQuestion.module.scss';
 
-export interface TSurveyQuestionChangeParams {
-  nodeData: TSurveyQuestion;
-  nodeId: TSurveyItemId;
-  reorderRequired?: boolean;
-  valueId: TEditableNodeChangeParams['valueId'];
-  value: TEditableNodeChangeParams['value'];
-}
-
 interface TEditSurveyQuestionProps {
   questionData: TSurveyQuestion;
   className?: string;
-  onChange?: (params: TSurveyQuestionChangeParams) => void;
+  onChange?: (params: TSurveyNodeChangeParams) => void;
 }
 
 /** DEBUG: Show plain question data */
@@ -99,7 +91,6 @@ const EditSurveyQuestionContent: React.FC<{
           isNumber
         />
       </SurveyNodeItemRow>
-      {/* // XXX: To show remark here or below the header? */}
       <SurveyNodeItemRow title="Remark:" activeButtonId={`question-${questionId}-remark-button`}>
         <EditableNode
           // prettier-ignore
@@ -163,7 +154,7 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
       // Is reorder required for uplevel container? (TODO: Track the current node in viewpoint on re-order?)
       const reorderRequired = valueId === 'orderNumber';
       // Construct parameters data for up-level change handler
-      const changedParams: TSurveyQuestionChangeParams = {
+      const changedParams: TSurveyNodeChangeParams = {
         nodeData: changedQuestionData,
         nodeId: questionId,
         value,
@@ -180,7 +171,7 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
         changedQuestionData,
         changedParams,
       });
-      debugger;
+      // debugger;
       if (onChange) {
         onChange(changedParams);
       }

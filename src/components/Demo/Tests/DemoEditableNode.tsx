@@ -1,9 +1,7 @@
-import { observer } from 'mobx-react-lite';
+import { TDemoComponent } from 'src/core/types';
 import { EditableNode } from 'src/components/Survey/EditableNode/EditableNode';
 
-import { TDemoComponent } from 'src/core/types';
-
-export const DemoEditableNode: TDemoComponent = observer(() => {
+export const DemoEditableNode: TDemoComponent = () => {
   return (
     <div className="DemoEditableNode">
       <EditableNode
@@ -37,6 +35,6 @@ export const DemoEditableNode: TDemoComponent = observer(() => {
       */}
     </div>
   );
-});
+};
 
 DemoEditableNode.__title = 'Editable node';

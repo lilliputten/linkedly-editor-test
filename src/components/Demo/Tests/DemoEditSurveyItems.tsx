@@ -1,11 +1,9 @@
-import { observer } from 'mobx-react-lite';
+import { TDemoComponent } from 'src/core/types';
 import {
   EditSurveyPage,
   EditSurveyQuestion,
   EditSurveySection,
 } from 'src/components/Survey/EditSurvey';
-
-import { TDemoComponent } from 'src/core/types';
 import { TSurveyPage, TSurveyQuestion, TSurveySection } from 'src/entities/Survey/types';
 
 /** Which demos to show? */
@@ -15,7 +13,7 @@ const show = {
   question: false,
 };
 
-export const DemoEditSurveyItems: TDemoComponent = observer(() => {
+export const DemoEditSurveyItems: TDemoComponent = () => {
   const questionData: TSurveyQuestion = {
     questionId: 2,
     typeId: 1,
@@ -38,6 +36,7 @@ export const DemoEditSurveyItems: TDemoComponent = observer(() => {
   };
   const pageData: TSurveyPage = {
     pageId: 7463886,
+    name: 'Test page',
     orderNumber: 1,
     items: [sectionData],
   };
@@ -65,6 +64,6 @@ export const DemoEditSurveyItems: TDemoComponent = observer(() => {
       )}
     </div>
   );
-});
+};
 
 DemoEditSurveyItems.__title = 'Edit Survey Items';

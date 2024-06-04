@@ -10,6 +10,8 @@ export interface TSurvey {
   items: TSurveyPage[];
 }
 
+export type TSurveyRoot = TSurvey;
+
 export interface TSurveyOrderedItem {
   orderNumber: number;
 }
@@ -25,7 +27,7 @@ export interface TSurveyPage extends TSurveyOrderedItem {
  * Sections can contain both questions and sections, recoursivcely
  */
 export type TSurveyItem = TSurveyQuestion | TSurveySection;
-export type TSurveyGenericItem = TSurveyPage | TSurveyItem;
+export type TSurveyGenericItem = TSurvey | TSurveyPage | TSurveyItem;
 
 export interface TSurveySection extends TSurveyOrderedItem {
   // orderNumber: number; // in `TSurveyOrderedItem`

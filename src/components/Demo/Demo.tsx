@@ -6,6 +6,7 @@ import { TDemoComponent } from 'src/core/types';
 import { DemoCheckDataStore } from './Tests/DemoCheckDataStore';
 import { DemoEditableNode } from './Tests/DemoEditableNode';
 import { DemoEditSurveyItems } from './Tests/DemoEditSurveyItems';
+import { DemoEditSurvey } from './Tests/DemoEditSurvey';
 
 import styles from './Demo.module.scss';
 
@@ -18,6 +19,7 @@ const demoComponents: Record<string, TDemoComponent> = {
   DemoCheckDataStore: DemoCheckDataStore,
   DemoEditableNode: DemoEditableNode,
   DemoEditSurveyItems: DemoEditSurveyItems,
+  DemoEditSurvey: DemoEditSurvey,
 };
 const demoTexts: Record<string, string> = {
   // DemoCheckDataStore: 'Check data store',

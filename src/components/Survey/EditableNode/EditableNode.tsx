@@ -4,8 +4,6 @@ import { Box, Typography } from '@mui/material';
 import ButtonBase from '@mui/material/ButtonBase';
 import { Edit } from '@mui/icons-material';
 
-import { TSurveyItemId, TSurveyGenericItem } from 'src/entities/Survey/types';
-
 import { TEditableNodeValue } from './types/TEditableNodeValue';
 import { TEditableNodeBaseId, TEditableNodeBaseProps } from './types/TEditableNodeBaseProps';
 import { EditableNodeDialog } from './EditableNodeDialog';
