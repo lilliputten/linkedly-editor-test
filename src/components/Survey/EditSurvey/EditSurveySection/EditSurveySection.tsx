@@ -8,7 +8,7 @@ import {
   SurveyNodeFoldedContent,
   SurveyNodeItemRow,
   SurveyNodeOwnContent,
-  SurveyNodeRemark,
+  // SurveyNodeRemark,
 } from 'src/components/Survey/SurveyNode';
 import { useSortedSurveyItems } from 'src/components/Survey/SurveyNode/hooks';
 import { SurveyNodeHeader } from 'src/components/Survey/SurveyNode/SurveyNodeHeader';
@@ -40,6 +40,19 @@ const EditSurveySectionContent: React.FC<{ sectionData: TSurveySection }> = (pro
   } = sectionData;
   return (
     <>
+      <SurveyNodeItemRow title="ID:" activeButtonId={`section-${sectionId}-id-button`}>
+        <EditableNode
+          // prettier-ignore
+          key={`section-${sectionId}-id`}
+          nodeId={`section-${sectionId}-id`}
+          activeButtonId={`section-${sectionId}-id-button`}
+          editableType="text"
+          title="Section ID"
+          value={sectionId || ''}
+          flex={1}
+          wrap
+        />
+      </SurveyNodeItemRow>
       <SurveyNodeItemRow title="Remark:" activeButtonId={`section-${sectionId}-remark-button`}>
         <EditableNode
           // prettier-ignore
@@ -65,7 +78,7 @@ export const EditSurveySection: React.FC<TEditSurveySectionProps> = (props) => {
     // orderNumber,
     // displayNumber,
     name,
-    remark,
+    // remark,
     items,
   } = sectionData;
   // Sort items

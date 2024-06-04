@@ -8,6 +8,8 @@ import { TEditableNodeValue } from '../../types/TEditableNodeValue';
 import { TEditableNodeDialogFieldProps } from './TEditableNodeDialogFieldProps';
 import { useLabelText } from './hooks';
 
+const showRows = 5;
+
 export const EditableNodeDialogTextAreaField: React.FC<TEditableNodeDialogFieldProps> = (props) => {
   const { nodeId, onChange, value: defaultValue } = props;
 
@@ -36,7 +38,7 @@ export const EditableNodeDialogTextAreaField: React.FC<TEditableNodeDialogFieldP
       defaultValue={defaultValue}
       onChange={handleChange}
       multiline
-      rows={8}
+      rows={showRows}
     />
   );
 };

@@ -51,6 +51,21 @@ const EditSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion }> = (
   }
   return (
     <>
+      <SurveyNodeItemRow title="ID:" activeButtonId={`question-${questionId}-id-button`}>
+        <EditableNode
+          // prettier-ignore
+          key={`question-${questionId}-id`}
+          nodeId={`question-${questionId}-id`}
+          activeButtonId={`question-${questionId}-id-button`}
+          className={classNames(styles.item)}
+          editableType="text"
+          title="Question ID"
+          value={questionId || ''}
+          flex={1}
+          wrap
+          // textClassName={styles.remark}
+        />
+      </SurveyNodeItemRow>
       {/* // XXX: To show remark here or below the header? */}
       <SurveyNodeItemRow title="Remark:" activeButtonId={`question-${questionId}-remark-button`}>
         <EditableNode

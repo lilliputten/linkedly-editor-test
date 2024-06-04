@@ -2,7 +2,11 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { TSurveyItem, TSurveyQuestion, TSurveySection } from 'src/entities/Survey/types';
-import { SurveyNode, SurveyNodeFoldedContent, SurveyNodeRemark } from 'src/components/Survey/SurveyNode';
+import {
+  SurveyNode,
+  SurveyNodeFoldedContent,
+  SurveyNodeRemark,
+} from 'src/components/Survey/SurveyNode';
 import { useSortedSurveyItems } from 'src/components/Survey/SurveyNode/hooks';
 import { SurveyNodeHeader } from 'src/components/Survey/SurveyNode/SurveyNodeHeader';
 import { EditSurveyQuestion, EditSurveySection } from '../../EditSurvey';

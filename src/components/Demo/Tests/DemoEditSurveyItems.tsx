@@ -1,8 +1,19 @@
 import { observer } from 'mobx-react-lite';
-import { EditSurveyQuestion, EditSurveySection } from 'src/components/Survey/EditSurvey';
+import {
+  EditSurveyPage,
+  EditSurveyQuestion,
+  EditSurveySection,
+} from 'src/components/Survey/EditSurvey';
 
 import { TDemoComponent } from 'src/core/types';
-import { TSurveyQuestion, TSurveySection } from 'src/entities/Survey/types';
+import { TSurveyPage, TSurveyQuestion, TSurveySection } from 'src/entities/Survey/types';
+
+/** Which demos to show? */
+const show = {
+  page: true,
+  section: false,
+  question: false,
+};
 
 export const DemoEditSurveyItems: TDemoComponent = observer(() => {
   const questionData: TSurveyQuestion = {
@@ -25,18 +36,33 @@ export const DemoEditSurveyItems: TDemoComponent = observer(() => {
       'Note: all information provided throughout this survey should describe the situation as of the date of completion. Future policy initiatives should be listed under Section 9 - Future plans.',
     items: [questionData],
   };
+  const pageData: TSurveyPage = {
+    pageId: 7463886,
+    orderNumber: 1,
+    sections: [sectionData],
+  };
   return (
     <div className="DemoEditSurveyItems">
       {/*
-      <EditSurveyQuestion
-        // prettier-ignore
-        questionData={questionData}
-      />
-      */}
-      <EditSurveySection
-        // prettier-ignore
-        sectionData={sectionData}
-      />
+       */}
+      {show.question && (
+        <EditSurveyQuestion
+          // prettier-ignore
+          questionData={questionData}
+        />
+      )}
+      {show.section && (
+        <EditSurveySection
+          // prettier-ignore
+          sectionData={sectionData}
+        />
+      )}
+      {show.page && (
+        <EditSurveyPage
+          // prettier-ignore
+          pageData={pageData}
+        />
+      )}
     </div>
   );
 });
