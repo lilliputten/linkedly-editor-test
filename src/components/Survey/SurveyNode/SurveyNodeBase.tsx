@@ -27,6 +27,8 @@ export const SurveyNodeBase: React.FC<TSurveyNodeBaseProps> = (props) => {
       data-node-type={nodeType}
       data-node-base-type={nodeBaseType}
       sx={{ ...surveyNodeSx, ...sx }}
+      spacing={0.5}
+      py={1}
       {...restProps}
     >
       {children}

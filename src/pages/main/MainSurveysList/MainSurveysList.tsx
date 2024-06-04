@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Container, Stack } from '@mui/material';
+import { Edit, Save, Visibility } from '@mui/icons-material';
 
 import { useCommonAppNavigation } from 'src/core/hooks/routes/useCommonAppNavigation';
 import { TPropsWithClassName } from 'src/core/types';
@@ -19,10 +20,55 @@ import {
 
 import { isDev } from 'src/core/constants/config';
 import { getRandomStubImageUrl } from 'src/core/helpers/stubImages';
-import { Edit } from '@mui/icons-material';
 import { RouterLinkComponent, PageTitle } from 'src/components/MUI';
+import { makeRootUrl } from 'src/core/helpers/urls';
+import { mainRoute, mainSurveyRoute } from 'src/routes/appUrls';
 
 import styles from './MainSurveysList.module.scss';
+
+export const MainSurveyItem: React.FC<{ item: TSurveyListItem }> = ({ item }) => {
+  const { id, name } = item;
+  const url = makeRootUrl([mainRoute, mainSurveyRoute, String(id)]);
+  const imageUrl = getRandomStubImageUrl(id);
+  const title = name || `Survey ${id}`; // + (isDev ? ` (${imageUrl})` : '');
+  return (
+    <Card key={id} className="MainSurveysListList-Item">
+      {/* @ts-ignore: Suppress error for `to` property. TODO: To solve this problem using typings? */}
+      <CardActionArea
+        // prettier-ignore
+        to={url}
+        LinkComponent={RouterLinkComponent}
+      >
+        <CardMedia
+          // prettier-ignore
+          component="img"
+          height="140"
+          image={imageUrl}
+          alt={title}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {title}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Description
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button component={RouterLinkComponent} color="primary" startIcon={<Edit />} to={url}>
+          Edit
+        </Button>
+        <Button color="primary" startIcon={<Visibility />} disabled>
+          Preview
+        </Button>
+        <Button color="primary" startIcon={<Save />} disabled>
+          Save
+        </Button>
+      </CardActions>
+    </Card>
+  );
+};
 
 export const MainSurveysList: React.FC<TPropsWithClassName> = observer((props) => {
   const { className } = props;
@@ -55,48 +101,9 @@ export const MainSurveysList: React.FC<TPropsWithClassName> = observer((props) =
             <p>MainSurveysList</p>
             <pre>{JSON.stringify(surveysList, null, 2)}</pre>
             */}
-            {surveysList.map((item) => {
-              const { id, name } = item;
-              const url = `/main/survey/${id}`;
-              const imageUrl = getRandomStubImageUrl(id);
-              const title = name || `Survey ${id}`; // + (isDev ? ` (${imageUrl})` : '');
-              return (
-                <Card key={id} className="MainSurveysListList-Item">
-                  {/* @ts-ignore: Suppress error for `to` property. TODO: To solve this problem using typings? */}
-                  <CardActionArea
-                    // prettier-ignore
-                    to={url}
-                    LinkComponent={RouterLinkComponent}
-                  >
-                    {/* <RouterLink to={url}> */}
-                    <CardMedia
-                      // prettier-ignore
-                      component="img"
-                      height="140"
-                      image={imageUrl}
-                      alt={title}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {title}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Description
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions>
-                    <Button
-                      // size="small"
-                      color="primary"
-                      startIcon={<Edit />}
-                    >
-                      Edit
-                    </Button>
-                  </CardActions>
-                </Card>
-              );
-            })}
+            {surveysList.map((item) => (
+              <MainSurveyItem key={item.id} item={item} />
+            ))}
           </Stack>
         </Container>
       </Scrollable>

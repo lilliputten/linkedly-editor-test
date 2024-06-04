@@ -6,7 +6,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // import { getErrorText } from 'src/core/helpers/basic';
 // import { TPropsWithChildrenAndClassName } from 'src/core/types';
 import { TSessionRootState, useAppSessionStore } from 'src/store/AppSessionStore';
-import { demoUrl, loginUrl, mainUrl } from 'src/routes/urls';
+import { demoRoute, loginRoute, mainRoute } from 'src/routes/appUrls';
+import { makeRootUrl } from 'src/core/helpers/urls';
 
 // NOTE: Should be wrapped by `obsrver` component
 
@@ -35,17 +36,18 @@ export function useCommonAppNavigation() {
     stateMemo.sessionRootState = sessionRootState;
     switch (sessionRootState) {
       case 'main': {
+        const mainUrl = makeRootUrl(mainRoute);
         if (!pathname.startsWith(mainUrl)) {
           navigate(mainUrl);
         }
         break;
       }
       case 'demo': {
-        navigate(demoUrl);
+        navigate(makeRootUrl(demoRoute));
         break;
       }
       case 'login': {
-        navigate(loginUrl);
+        navigate(makeRootUrl(loginRoute));
         break;
       }
     }

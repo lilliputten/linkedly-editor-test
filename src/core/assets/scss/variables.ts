@@ -50,6 +50,9 @@ export {
   transitionTime,
   animationTime,
   disappearTime,
+  transitionTimeMs,
+  animationTimeMs,
+  disappearTimeMs,
 
   // Colors...
   primaryColor,

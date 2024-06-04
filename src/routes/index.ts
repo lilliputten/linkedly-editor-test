@@ -1,4 +1,4 @@
-export * from './router';
-export * from './routes';
-export * from './urls';
+export * from './appRouter';
+export * from './appRoutes';
+export * from './appUrls';
 export * from './RouterWrapper';

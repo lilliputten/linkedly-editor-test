@@ -2,10 +2,14 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { TSurveyItem, TSurveyQuestion, TSurveySection } from 'src/entities/Survey/types';
-import { ViewSurveyQuestion } from 'src/components/Survey/ViewSurvey/ViewSurveyQuestion';
-import { SurveyNode, SurveyNodeContent, SurveyNodeRemark } from 'src/components/Survey/SurveyNode';
+import {
+  SurveyNode,
+  SurveyNodeFoldedContent,
+  SurveyNodeRemark,
+} from 'src/components/Survey/SurveyNode';
 import { useSortedSurveyItems } from 'src/components/Survey/SurveyNode/hooks';
 import { SurveyNodeHeader } from 'src/components/Survey/SurveyNode/SurveyNodeHeader';
+import { EditSurveyQuestion, EditSurveySection } from '../../EditSurvey';
 
 interface TViewSurveySectionProps {
   sectionData: TSurveySection;
@@ -16,11 +20,11 @@ type TSurveyItemProps = { itemData: TSurveyItem };
 
 /** Render folderd section or question */
 const ViewSurveyItem: React.FC<TSurveyItemProps> = ({ itemData }) => {
-  const isQuestion = !!itemData.questionId;
+  const isQuestion = !!(itemData as TSurveyQuestion).questionId;
   if (isQuestion) {
-    return <ViewSurveyQuestion questionData={itemData} />;
+    return <EditSurveyQuestion questionData={itemData as TSurveyQuestion} />;
   } else {
-    return <ViewSurveySection sectionData={itemData} />;
+    return <EditSurveySection sectionData={itemData as TSurveySection} />;
   }
 };
 
@@ -30,8 +34,8 @@ export const ViewSurveySection: React.FC<TViewSurveySectionProps> = (props) => {
     sectionId,
     // orderNumber,
     // displayNumber,
-    sectionName,
-    sectionRemark,
+    name,
+    remark,
     items,
   } = sectionData;
   // Sort items
@@ -41,18 +45,18 @@ export const ViewSurveySection: React.FC<TViewSurveySectionProps> = (props) => {
       <SurveyNodeHeader
         // prettier-ignore
         // prefix={displayNumber}
-        title={sectionName}
+        title={name}
         icon="[SECTION]"
         toolbar="[TOOLBAR]"
       />
-      {sectionRemark && <SurveyNodeRemark>{sectionRemark}</SurveyNodeRemark>}
-      <SurveyNodeContent nodeBaseType="section-content" indent>
+      {remark && <SurveyNodeRemark>{remark}</SurveyNodeRemark>}
+      <SurveyNodeFoldedContent nodeBaseType="section-content" indent>
         {sortedItems.map((itemData) => {
-          return (
-            <ViewSurveyItem key={itemData.sectionId || itemData.questionId} itemData={itemData} />
-          );
+          const key =
+            (itemData as TSurveyQuestion).questionId || (itemData as TSurveySection).sectionId;
+          return <ViewSurveyItem key={key} itemData={itemData} />;
         })}
-      </SurveyNodeContent>
+      </SurveyNodeFoldedContent>
     </SurveyNode>
   );
 };

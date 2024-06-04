@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppSessionStore } from 'src/store/AppSessionStore';
 
-import { demoUrl, loginUrl } from 'src/routes/urls';
+import { demoRoute, loginRoute, rootUrl } from 'src/routes/appUrls';
+import { makeRootUrl } from 'src/core/helpers/urls';
 
 export function useHandleAppMenuClick() {
   const navigate = useNavigate();
@@ -16,27 +17,8 @@ export function useHandleAppMenuClick() {
       const { currentTarget } = ev;
       const { id } = currentTarget;
       switch (id) {
-        /* // UNUSED: Old session and data actions
-         * case 'visualize': {
-         *   // TODO: Navigate to main app screen...
-         *   appSessionStore.setShowDemo(false);
-         *   appSessionStore.setShowHelp(false);
-         *   appDataStore.setReady(true);
-         *   break;
-         * }
-         * case 'loadData': {
-         *   // appSessionStore.setShowDemo(false);
-         *   // appSessionStore.setShowHelp(false);
-         *   // appSessionStore.setReady(true);
-         *   // if (loadNewDataCb) {
-         *   //   loadNewDataCb();
-         *   // }
-         *   navigate(loginUrl);
-         *   break;
-         * }
-         */
         case 'home': {
-          navigate('/');
+          navigate(makeRootUrl(rootUrl));
           break;
         }
         case 'setLightTheme': {
@@ -49,7 +31,6 @@ export function useHandleAppMenuClick() {
         }
         case 'showHelp': {
           appSessionStore.setShowHelp(true);
-          // navigate(helpUrl);
           break;
         }
         case 'hideHelp': {
@@ -57,17 +38,16 @@ export function useHandleAppMenuClick() {
           break;
         }
         case 'showDemo': {
-          navigate(demoUrl);
-          // appSessionStore.setShowDemo(true);
+          navigate(makeRootUrl(demoRoute));
           break;
         }
         case 'signIn': {
-          navigate(loginUrl);
+          navigate(makeRootUrl(loginRoute));
           break;
         }
         case 'signOut': {
           appSessionStore.setLogged(false);
-          navigate(loginUrl);
+          navigate(makeRootUrl(loginRoute));
           break;
         }
       }

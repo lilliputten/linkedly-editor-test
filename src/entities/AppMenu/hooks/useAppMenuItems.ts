@@ -14,7 +14,7 @@ import {
 import { isDev } from 'src/core/constants/config';
 import { useAppSessionStore } from 'src/store/AppSessionStore';
 
-import { demoUrl } from 'src/routes/urls';
+import { demoRoute } from 'src/routes/appUrls';
 
 import { TAppMenuItem } from '../types/AppMenuTypes';
 
@@ -34,7 +34,7 @@ export function useAppMenuItems() {
       !isDark && { id: 'setDarkTheme', text: 'Dark theme', icon: DarkMode, title:'Set dark theme' },
       isDark && { id: 'setLightTheme', text: 'Light theme', icon: LightMode, title:'Set light theme' },
       { id: 'showHelp', text: 'Help', icon: HelpOutline, title:'Show application help', selected: showHelp },
-      allowDemo && { id: 'showDemo', text: 'Demo', icon: Visibility, title: 'Show demo', selected: pathname.startsWith(demoUrl) },
+      allowDemo && { id: 'showDemo', text: 'Demo', icon: Visibility, title: 'Show demo', selected: pathname.startsWith(demoRoute) },
       logged && { id: 'signOut', text: 'Sign out', icon: KeyOff },
       !logged && { id: 'signIn', text: 'Sign in', icon: Key },
       !logged && { id: 'signUp', text: 'Sign up', icon: HowToReg, disabled: true },

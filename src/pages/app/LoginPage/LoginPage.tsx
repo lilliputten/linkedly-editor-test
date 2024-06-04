@@ -42,7 +42,7 @@ export const LoginPage: React.FC = observer(() => {
    * const { logged } = appSessionStore;
    * React.useEffect(() => {
    *   if (logged) {
-   *     navigate(mainUrl);
+   *     navigate(makeRootUrl(mainRoute));
    *   }
    * }, [logged, navigate]);
    */
@@ -50,12 +50,12 @@ export const LoginPage: React.FC = observer(() => {
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       // const data = new FormData(event.currentTarget);
-      // console.log('[LoginPage:LoginPage] handleSubmit', {
+      // console.log('[LoginPage] handleSubmit', {
       //   login: data.get('login'),
       //   password: data.get('password'),
       // });
       // TODO: Check login data
-      // navigate(mainUrl);
+      // navigate(makeRootUrl(mainRoute));
       appSessionStore.setLogged(true);
     },
     [appSessionStore],
