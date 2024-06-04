@@ -14,9 +14,9 @@ interface TViewSurveyPageProps {
 
 export const ViewSurveyPage: React.FC<TViewSurveyPageProps> = (props) => {
   const { pageData, className } = props;
-  const { pageId, sections } = pageData;
+  const { pageId, items } = pageData;
   // Sort sections
-  const sortedSections = useSortedSurveyItems(sections);
+  const sortedSections = useSortedSurveyItems(items);
   return (
     <SurveyNode
       nodeType="page"

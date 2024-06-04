@@ -33,7 +33,9 @@ export interface TSurveySectionChangeParams {
   value: TEditableNodeChangeParams['value'] | TSurveyItem[];
 }
 
-type TSurveySectionItemChangeParams = TSurveySectionChangeParams | TSurveyQuestionChangeParams;
+export type TSurveySectionItemChangeParams =
+  | TSurveySectionChangeParams
+  | TSurveyQuestionChangeParams;
 
 interface TEditSurveySectionProps {
   sectionData: TSurveySection;
@@ -65,6 +67,7 @@ const EditSurveySectionContent: React.FC<{
     // prettier-ignore
     sectionId,
     remark,
+    orderNumber,
   } = sectionData;
   return (
     <>
@@ -78,6 +81,23 @@ const EditSurveySectionContent: React.FC<{
           title="Section ID"
           value={sectionId || ''}
           valueId="sectionId"
+          onChange={handleChange}
+          isNumber
+        />
+      </SurveyNodeItemRow>
+      <SurveyNodeItemRow
+        title="Order Number:"
+        activeButtonId={`section-${sectionId}-orderNumber-button`}
+      >
+        <EditableNode
+          // prettier-ignore
+          key={`section-${sectionId}-orderNumber`}
+          nodeId={`section-${sectionId}-orderNumber`}
+          activeButtonId={`section-${sectionId}-orderNumber-button`}
+          editableType="text"
+          title="Order Number"
+          value={orderNumber}
+          valueId="orderNumber"
           onChange={handleChange}
           isNumber
         />

@@ -1,10 +1,10 @@
 {
   "id": 417,
-  "pages": [
+  "items": [
     {
       "pageId": 7463886,
       "orderNumber": 1,
-      "sections": [
+      "items": [
         {
           "sectionId": 18709239,
           "orderNumber": 1,
@@ -75,7 +75,7 @@
     {
       "pageId": 7462824,
       "orderNumber": 1,
-      "sections": [
+      "items": [
         {
           "sectionId": 18708587,
           "orderNumber": 2,

@@ -39,7 +39,7 @@ export const DemoEditSurveyItems: TDemoComponent = observer(() => {
   const pageData: TSurveyPage = {
     pageId: 7463886,
     orderNumber: 1,
-    sections: [sectionData],
+    items: [sectionData],
   };
   return (
     <div className="DemoEditSurveyItems">

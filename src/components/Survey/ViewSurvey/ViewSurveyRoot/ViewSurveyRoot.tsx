@@ -14,9 +14,9 @@ interface TViewSurveyProps {
 
 export const ViewSurveyRoot: React.FC<TViewSurveyProps> = (props) => {
   const { surveyData, className } = props;
-  const { id: surveyId, name, pages } = surveyData;
+  const { id: surveyId, name, items } = surveyData;
   // Sort pages
-  const sortedPages = useSortedSurveyItems(pages);
+  const sortedPages = useSortedSurveyItems(items);
   const title = name || `Survey ${surveyId}`;
   return (
     <SurveyNode

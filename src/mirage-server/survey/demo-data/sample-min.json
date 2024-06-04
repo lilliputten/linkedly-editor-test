@@ -1,11 +1,11 @@
 {
   "id": 111,
   "name": "Minimal survey sample",
-  "pages": [
+  "items": [
     {
       "pageId": 7463886,
       "orderNumber": 1,
-      "sections": [
+      "items": [
         {
           "sectionId": 18709239,
           "orderNumber": 1,

@@ -7,7 +7,7 @@ export type TSurveyPageId = TSurveyItemId;
 export interface TSurvey {
   id: TSurveyId;
   name?: string; // Optional? The survey name.
-  pages: TSurveyPage[];
+  items: TSurveyPage[];
 }
 
 export interface TSurveyOrderedItem {
@@ -18,7 +18,7 @@ export interface TSurveyPage extends TSurveyOrderedItem {
   // orderNumber: number; // in `TSurveyOrderedItem`
   pageId: TSurveyPageId;
   name?: string; // Optional? The page name.
-  sections: TSurveySection[];
+  items: TSurveySection[];
 }
 
 /** Section or question node
