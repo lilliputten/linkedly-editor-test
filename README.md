@@ -7,8 +7,8 @@
 
 The axiomica application.
 
-- Version: 0.0.2
-- Last changes timestamp: 2024.05.29 22:50 +0300
+- Version: 0.0.3
+- Last changes timestamp: 2024.06.05 00:48 +0300
 
 TODO: Add the project description.
 

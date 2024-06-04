@@ -1,8 +1,8 @@
 {
   "name": "axiomica-mvp-2024",
-  "version": "0.0.2",
-  "timetag": "240529-2250",
-  "timestamp": "2024.05.29 22:50 +0300",
+  "version": "0.0.3",
+  "timetag": "240605-0048",
+  "timestamp": "2024.06.05 00:48 +0300",
   "changed": "2024.05.27, 22:46",
   "eslint-unused-rules": {
     "eqeqeq": [
