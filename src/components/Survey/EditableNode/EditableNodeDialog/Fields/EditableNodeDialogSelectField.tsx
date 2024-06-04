@@ -46,7 +46,7 @@ export const EditableNodeDialogSelectField: React.FC<TEditableNodeDialogFieldPro
         data-editable-node-dialog-text-field-id={nodeId}
         variant="outlined"
         autoFocus
-        defaultValue={defaultValue as unknown as HTMLSelectElement}
+        value={defaultValue as unknown as HTMLSelectElement}
         onChange={handleChange}
       >
         {options}

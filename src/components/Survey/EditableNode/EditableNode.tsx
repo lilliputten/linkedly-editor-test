@@ -4,16 +4,24 @@ import { Box, Typography } from '@mui/material';
 import ButtonBase from '@mui/material/ButtonBase';
 import { Edit } from '@mui/icons-material';
 
-import { TEditableNodeValue } from './types/TEditableNodeValue';
-import { TEditableNodeBaseProps } from './types/TEditableNodeBaseProps';
+import { TSurveyItemId, TSurveyGenericItem } from 'src/entities/Survey/types';
 
+import { TEditableNodeValue } from './types/TEditableNodeValue';
+import { TEditableNodeBaseId, TEditableNodeBaseProps } from './types/TEditableNodeBaseProps';
 import { EditableNodeDialog } from './EditableNodeDialog';
+import { useLabelText } from './EditableNodeDialog/Fields/hooks';
 
 import styles from './EditableNode.module.scss';
-import { useLabelText } from './EditableNodeDialog/Fields/hooks';
 
 type TTimeoutHandler = number; // ReturnType<typeof setTimeout>;
 type TMemo = { timeoutHandler: TTimeoutHandler | undefined };
+
+export interface TEditableNodeChangeParams {
+  valueId?: string;
+  value: TEditableNodeValue;
+  nodeId: TEditableNodeBaseId;
+  node: TEditableNodeBaseProps;
+}
 
 interface TEditableNodeProps extends TEditableNodeBaseProps {
   activeButtonId?: string;
@@ -24,6 +32,9 @@ interface TEditableNodeProps extends TEditableNodeBaseProps {
   overflow?: boolean;
   flex?: number;
   setOpenDialogCb?: (openDialog: () => void) => void;
+  valueId?: string;
+  onChange?: (params: TEditableNodeChangeParams) => void;
+  isNumber?: boolean;
 }
 
 export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
@@ -37,6 +48,9 @@ export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
     overflow,
     flex,
     setOpenDialogCb,
+    valueId,
+    onChange,
+    isNumber,
     ...nodeBaseProps
   } = props;
   const {
@@ -46,6 +60,24 @@ export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
     selectOptions,
   } = nodeBaseProps;
   const [value, setValue] = React.useState<TEditableNodeValue>(defaultValue);
+  const updateValue = React.useCallback(
+    (value: TEditableNodeValue) => {
+      if (isNumber) {
+        value = Number(value) || '';
+      }
+      setValue(value);
+      if (onChange && nodeId) {
+        const params: TEditableNodeChangeParams = {
+          valueId,
+          value,
+          nodeId,
+          node: nodeBaseProps,
+        };
+        onChange(params);
+      }
+    },
+    [isNumber, nodeBaseProps, nodeId, onChange, valueId],
+  );
   // Prepare the viosible value (for 'select' node type...
   const showValue = React.useMemo(() => {
     if (editableType === 'select' && selectOptions) {
@@ -125,7 +157,7 @@ export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
           value={value}
           open={isDialogOpen}
           closeDialog={closeDialog}
-          onChange={setValue}
+          onChange={updateValue}
         />
       )}
     </>

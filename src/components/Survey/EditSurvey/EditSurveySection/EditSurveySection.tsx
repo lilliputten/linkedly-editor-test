@@ -1,8 +1,16 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { TSurveyItem, TSurveyQuestion, TSurveySection } from 'src/entities/Survey/types';
-import { EditSurveyQuestion } from 'src/components/Survey/EditSurvey/EditSurveyQuestion';
+import {
+  TSurveyItem,
+  TSurveyItemId,
+  TSurveyQuestion,
+  TSurveySection,
+} from 'src/entities/Survey/types';
+import {
+  EditSurveyQuestion,
+  TSurveyQuestionChangeParams,
+} from 'src/components/Survey/EditSurvey/EditSurveyQuestion';
 import {
   SurveyNode,
   SurveyNodeFoldedContent,
@@ -12,27 +20,47 @@ import {
 } from 'src/components/Survey/SurveyNode';
 import { useSortedSurveyItems } from 'src/components/Survey/SurveyNode/hooks';
 import { SurveyNodeHeader } from 'src/components/Survey/SurveyNode/SurveyNodeHeader';
-import { EditableNode } from 'src/components/Survey/EditableNode/EditableNode';
+import {
+  EditableNode,
+  TEditableNodeChangeParams,
+} from 'src/components/Survey/EditableNode/EditableNode';
+
+export interface TSurveySectionChangeParams {
+  nodeData: TSurveySection;
+  nodeId: TSurveyItemId;
+  reorderRequired?: boolean;
+  valueId: TEditableNodeChangeParams['valueId'];
+  value: TEditableNodeChangeParams['value'] | TSurveyItem[];
+}
+
+type TSurveySectionItemChangeParams = TSurveySectionChangeParams | TSurveyQuestionChangeParams;
 
 interface TEditSurveySectionProps {
   sectionData: TSurveySection;
   className?: string;
+  onChange?: (params: TSurveySectionChangeParams) => void;
 }
 
-type TSurveyItemProps = { itemData: TSurveyItem };
+interface TSurveyItemProps {
+  itemData: TSurveyItem;
+  onChange?: (params: TSurveySectionItemChangeParams) => void;
+}
 
 /** Render folderd section or question */
-const EditSurveyItem: React.FC<TSurveyItemProps> = ({ itemData }) => {
+const EditSurveyItem: React.FC<TSurveyItemProps> = ({ itemData, onChange }) => {
   const isQuestion = !!(itemData as TSurveyQuestion).questionId;
   if (isQuestion) {
-    return <EditSurveyQuestion questionData={itemData as TSurveyQuestion} />;
+    return <EditSurveyQuestion questionData={itemData as TSurveyQuestion} onChange={onChange} />;
   } else {
-    return <EditSurveySection sectionData={itemData as TSurveySection} />;
+    return <EditSurveySection sectionData={itemData as TSurveySection} onChange={onChange} />;
   }
 };
 
-const EditSurveySectionContent: React.FC<{ sectionData: TSurveySection }> = (props) => {
-  const { sectionData } = props;
+const EditSurveySectionContent: React.FC<{
+  sectionData: TSurveySection;
+  handleChange: (params: TEditableNodeChangeParams) => void;
+}> = (props) => {
+  const { sectionData, handleChange } = props;
   const {
     // prettier-ignore
     sectionId,
@@ -49,8 +77,9 @@ const EditSurveySectionContent: React.FC<{ sectionData: TSurveySection }> = (pro
           editableType="text"
           title="Section ID"
           value={sectionId || ''}
-          flex={1}
-          wrap
+          valueId="sectionId"
+          onChange={handleChange}
+          isNumber
         />
       </SurveyNodeItemRow>
       <SurveyNodeItemRow title="Remark:" activeButtonId={`section-${sectionId}-remark-button`}>
@@ -62,9 +91,8 @@ const EditSurveySectionContent: React.FC<{ sectionData: TSurveySection }> = (pro
           editableType="textarea"
           title="Remark Text"
           value={remark || ''}
-          flex={1}
-          wrap
-          // textClassName={styles.remark}
+          valueId="remark"
+          onChange={handleChange}
         />
       </SurveyNodeItemRow>
     </>
@@ -72,7 +100,7 @@ const EditSurveySectionContent: React.FC<{ sectionData: TSurveySection }> = (pro
 };
 
 export const EditSurveySection: React.FC<TEditSurveySectionProps> = (props) => {
-  const { sectionData, className } = props;
+  const { sectionData, className, onChange } = props;
   const {
     sectionId,
     // orderNumber,
@@ -83,6 +111,85 @@ export const EditSurveySection: React.FC<TEditSurveySectionProps> = (props) => {
   } = sectionData;
   // Sort items
   const sortedItems = useSortedSurveyItems(items);
+  const handleItemChange = React.useCallback(
+    (params: TSurveySectionItemChangeParams) => {
+      const { nodeId, nodeData } = params;
+      // const isQuestion = !!(nodeData as TSurveyQuestion).questionId;
+      const changedItems = sectionData.items.map((item) => {
+        if (
+          nodeId === (item as TSurveyQuestion).questionId ||
+          nodeId === (item as TSurveySection).sectionId
+        ) {
+          return nodeData;
+        }
+        return item;
+      });
+      const changedSectionData: TSurveySection = { ...sectionData, items: changedItems };
+      const valueId = 'items';
+      const changedItemsParams: TSurveySectionChangeParams = {
+        nodeData: changedSectionData,
+        nodeId: sectionId,
+        value: changedItems,
+        valueId,
+      };
+      console.log('[EditSurveySection:handleItemChange]', valueId, {
+        changedItems,
+        sectionId,
+        params,
+        sectionData,
+        changedSectionData,
+        changedItemsParams,
+      });
+      debugger;
+      if (onChange) {
+        onChange(changedItemsParams);
+      }
+    },
+    [sectionId, sectionData, onChange],
+  );
+
+  const handleChange = React.useCallback(
+    (params: TEditableNodeChangeParams) => {
+      const { valueId, value } = params;
+      // Check if value id has defined...
+      if (!valueId) {
+        const error = new Error('No value id provided!');
+        // eslint-disable-next-line no-console
+        console.error(error);
+        // eslint-disable-next-line no-debugger
+        debugger;
+      }
+      const id = valueId as keyof TSurveyQuestion;
+      // Create updated question data object...
+      const changedSectionData: TSurveySection = { ...sectionData, [id]: value };
+      // Is reorder required for uplevel container? (TODO: Track the current node in viewpoint on re-order?)
+      const reorderRequired = valueId === 'orderNumber';
+      // Construct parameters data for up-level change handler
+      const changedParams: TSurveySectionChangeParams = {
+        nodeData: changedSectionData,
+        nodeId: sectionId,
+        value,
+        valueId,
+        reorderRequired,
+      };
+      console.log('[EditSurveySection:handleChange]', valueId, {
+        value,
+        valueId,
+        params,
+        reorderRequired,
+        sectionId,
+        sectionData,
+        changedSectionData,
+        changedParams,
+      });
+      debugger;
+      if (onChange) {
+        onChange(changedParams);
+      }
+    },
+    [sectionId, sectionData, onChange],
+  );
+
   const nameNode = React.useMemo(() => {
     return (
       <EditableNode
@@ -91,10 +198,12 @@ export const EditSurveySection: React.FC<TEditSurveySectionProps> = (props) => {
         editableType="text"
         title="Section Name"
         value={name}
+        valueId="name"
+        onChange={handleChange}
         flex={1}
       />
     );
-  }, [sectionId, name]);
+  }, [sectionId, name, handleChange]);
   return (
     <SurveyNode nodeType="section" nodeId={sectionId} className={classNames(className)} indent>
       <SurveyNodeHeader
@@ -104,30 +213,14 @@ export const EditSurveySection: React.FC<TEditSurveySectionProps> = (props) => {
         icon="[SECTION]"
         toolbar="[TOOLBAR]"
       />
-      {/*
-      {remark && <SurveyNodeRemark>{remark}</SurveyNodeRemark>}
-      */}
       <SurveyNodeOwnContent nodeBaseType="section-own-content">
-        <EditSurveySectionContent sectionData={sectionData} />
+        <EditSurveySectionContent sectionData={sectionData} handleChange={handleChange} />
       </SurveyNodeOwnContent>
       <SurveyNodeFoldedContent nodeBaseType="section-content">
-        {/* // XXX: To show remark here or below the header?
-        <EditableNode
-          // prettier-ignore
-          key={`section-${sectionId}-remark`}
-          nodeId={`section-${sectionId}-remark`}
-          editableType="textarea"
-          title="Remark Text"
-          value={remark || ''}
-          flex={1}
-          wrap
-          textClassName={styles.remark}
-        />
-        */}
         {sortedItems.map((itemData) => {
           const key =
             (itemData as TSurveyQuestion).questionId || (itemData as TSurveySection).sectionId;
-          return <EditSurveyItem key={key} itemData={itemData} />;
+          return <EditSurveyItem key={key} itemData={itemData} onChange={handleItemChange} />;
         })}
       </SurveyNodeFoldedContent>
     </SurveyNode>

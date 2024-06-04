@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { TSurveyQuestion } from 'src/entities/Survey/types';
+import { TSurveyItemId, TSurveyQuestion } from 'src/entities/Survey/types';
 import {
   SurveyNode,
   SurveyNodeFoldedContent,
@@ -11,21 +11,36 @@ import {
 } from 'src/components/Survey/SurveyNode';
 import { SurveyNodeHeader } from 'src/components/Survey/SurveyNode/SurveyNodeHeader';
 
-import { EditableNode } from 'src/components/Survey/EditableNode/EditableNode';
+import {
+  EditableNode,
+  TEditableNodeChangeParams,
+} from 'src/components/Survey/EditableNode/EditableNode';
 import { questionEditableTypeOptions } from 'src/components/Survey/EditableNode/types/TQuestionEditableType';
 
 import styles from './EditSurveyQuestion.module.scss';
 
+export interface TSurveyQuestionChangeParams {
+  nodeData: TSurveyQuestion;
+  nodeId: TSurveyItemId;
+  reorderRequired?: boolean;
+  valueId: TEditableNodeChangeParams['valueId'];
+  value: TEditableNodeChangeParams['value'];
+}
+
 interface TEditSurveyQuestionProps {
   questionData: TSurveyQuestion;
   className?: string;
+  onChange?: (params: TSurveyQuestionChangeParams) => void;
 }
 
 /** DEBUG: Show plain question data */
 const debugShowRawQuestion = false;
 
-const EditSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion }> = (props) => {
-  const { questionData } = props;
+const EditSurveyQuestionContent: React.FC<{
+  questionData: TSurveyQuestion;
+  handleChange: (params: TEditableNodeChangeParams) => void;
+}> = (props) => {
+  const { questionData, handleChange } = props;
   const {
     // prettier-ignore
     questionId,
@@ -61,9 +76,27 @@ const EditSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion }> = (
           editableType="text"
           title="Question ID"
           value={questionId || ''}
-          flex={1}
-          wrap
-          // textClassName={styles.remark}
+          valueId="questionId"
+          onChange={handleChange}
+          isNumber
+        />
+      </SurveyNodeItemRow>
+      <SurveyNodeItemRow
+        title="Order Number:"
+        activeButtonId={`question-${questionId}-orderNumber-button`}
+      >
+        <EditableNode
+          // prettier-ignore
+          key={`question-${questionId}-orderNumber`}
+          nodeId={`question-${questionId}-orderNumber`}
+          activeButtonId={`question-${questionId}-orderNumber-button`}
+          className={classNames(styles.item)}
+          editableType="text"
+          title="Order Number"
+          value={orderNumber}
+          valueId="orderNumber"
+          onChange={handleChange}
+          isNumber
         />
       </SurveyNodeItemRow>
       {/* // XXX: To show remark here or below the header? */}
@@ -77,9 +110,10 @@ const EditSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion }> = (
           editableType="textarea"
           title="Remark Text"
           value={remark || ''}
+          valueId="remark"
+          onChange={handleChange}
           flex={1}
           wrap
-          // textClassName={styles.remark}
         />
       </SurveyNodeItemRow>
       <SurveyNodeItemRow title="Type:" activeButtonId={`question-${questionId}-type-button`}>
@@ -93,7 +127,8 @@ const EditSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion }> = (
           selectOptions={questionEditableTypeOptions}
           title="Question Type"
           value={typeId}
-          // flex={1}
+          valueId="typeId"
+          onChange={handleChange}
         />
       </SurveyNodeItemRow>
     </>
@@ -101,7 +136,7 @@ const EditSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion }> = (
 };
 
 export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) => {
-  const { questionData, className } = props;
+  const { questionData, className, onChange } = props;
   const {
     // prettier-ignore
     questionId,
@@ -111,6 +146,47 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
     // typeId,
     // orderNumber,
   } = questionData;
+  const handleChange = React.useCallback(
+    (params: TEditableNodeChangeParams) => {
+      const { valueId, value } = params;
+      // Check if value id has defined...
+      if (!valueId) {
+        const error = new Error('No value id provided!');
+        // eslint-disable-next-line no-console
+        console.error(error);
+        // eslint-disable-next-line no-debugger
+        debugger;
+      }
+      const id = valueId as keyof TSurveyQuestion;
+      // Create updated question data object...
+      const changedQuestionData: TSurveyQuestion = { ...questionData, [id]: value };
+      // Is reorder required for uplevel container? (TODO: Track the current node in viewpoint on re-order?)
+      const reorderRequired = valueId === 'orderNumber';
+      // Construct parameters data for up-level change handler
+      const changedParams: TSurveyQuestionChangeParams = {
+        nodeData: changedQuestionData,
+        nodeId: questionId,
+        value,
+        valueId,
+        reorderRequired,
+      };
+      console.log('[EditSurveyQuestion:handleChange]', valueId, {
+        value,
+        valueId,
+        params,
+        reorderRequired,
+        questionId,
+        questionData,
+        changedQuestionData,
+        changedParams,
+      });
+      debugger;
+      if (onChange) {
+        onChange(changedParams);
+      }
+    },
+    [questionId, questionData, onChange],
+  );
   const displayNumberNode = React.useMemo(() => {
     return (
       <EditableNode
@@ -119,10 +195,12 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
         editableType="text"
         title="Display Number"
         value={displayNumber}
+        valueId="displayNumber"
+        onChange={handleChange}
         // noShrink
       />
     );
-  }, [questionId, displayNumber]);
+  }, [questionId, displayNumber, handleChange]);
   const textNode = React.useMemo(() => {
     return (
       <EditableNode
@@ -131,10 +209,12 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
         editableType="text"
         title="Question Text"
         value={text}
+        valueId="text"
+        onChange={handleChange}
         flex={1}
       />
     );
-  }, [questionId, text]);
+  }, [questionId, text, handleChange]);
   return (
     <SurveyNode
       nodeType="question"
@@ -150,7 +230,7 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
         toolbar="[TOOLBAR]"
       />
       <SurveyNodeOwnContent nodeBaseType="question-own-content" className={styles.nodeOwnContent}>
-        <EditSurveyQuestionContent questionData={questionData} />
+        <EditSurveyQuestionContent questionData={questionData} handleChange={handleChange} />
       </SurveyNodeOwnContent>
       <SurveyNodeFoldedContent nodeBaseType="question-content" className={styles.nodeFoldedContent}>
         {/* // XXX: To show remark here or below the header?

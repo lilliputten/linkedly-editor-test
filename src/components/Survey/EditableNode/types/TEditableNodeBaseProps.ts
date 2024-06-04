@@ -1,3 +1,4 @@
+import { TSurveyItemId } from 'src/entities/Survey/types';
 import { TEditableNodeType } from './TEditableNodeType';
 import { TEditableNodeValue } from './TEditableNodeValue';
 
@@ -6,8 +7,11 @@ export interface TEditableNodeSelectItem<V = TEditableNodeValue, N = string> {
   name: N;
 }
 
+export type TEditableNodeBaseId = string | number;
+
 export interface TEditableNodeBaseProps {
   nodeId?: string | number;
+  // nodeId?: TSurveyItemId; // string | number;
   title?: string;
   editableType: TEditableNodeType;
   value: TEditableNodeValue;

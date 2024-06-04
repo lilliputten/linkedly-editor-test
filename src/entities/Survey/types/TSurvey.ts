@@ -25,6 +25,7 @@ export interface TSurveyPage extends TSurveyOrderedItem {
  * Sections can contain both questions and sections, recoursivcely
  */
 export type TSurveyItem = TSurveyQuestion | TSurveySection;
+export type TSurveyGenericItem = TSurveyPage | TSurveyItem;
 
 export interface TSurveySection extends TSurveyOrderedItem {
   // orderNumber: number; // in `TSurveyOrderedItem`
