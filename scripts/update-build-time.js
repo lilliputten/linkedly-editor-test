@@ -1,5 +1,5 @@
 /** @desc Update build date/time tag file with current timestamp
- *  @changed 2024.05.07, 19:54
+ *  @changed 2024.05.23, 21:39
  */
 /* eslint-disable no-console */
 
@@ -78,7 +78,9 @@ if (fs.existsSync(staticPath)) {
 }
 
 // Write build info data to use in the source code...
-fs.writeFileSync(buildInfoJsonFileName, JSON.stringify(buildInfo, undefined, 2) + '\n', 'utf8');
+if (fs.existsSync(srcPath)) {
+  fs.writeFileSync(buildInfoJsonFileName, JSON.stringify(buildInfo, undefined, 2) + '\n', 'utf8');
+}
 
 function formatDate(date, timeZone, fmt) {
   let dayjsDate = dayjs(date);
