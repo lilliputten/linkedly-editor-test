@@ -14,8 +14,8 @@ import {
 
 import { AppRootLayout } from 'src/pages/app/AppRootLayout';
 import { DemoPage } from 'src/pages/app/DemoPage';
-import { EditSurveyPage } from 'src/pages/main/EditSurveyPage';
 import { LoginPage } from 'src/pages/app/LoginPage';
+import { MainEditSurveyPage } from 'src/pages/main/MainEditSurveyPage';
 import { MainLayout } from 'src/pages/main/MainLayout';
 import { MainSurveysList } from 'src/pages/main/MainSurveysList';
 import { StartPage } from 'src/pages/app/StartPage';
@@ -40,7 +40,7 @@ export const routes: RouteObject[] = [
         children: [
           // prettier-ignore
           { index: true, element: <MainSurveysList /> },
-          { path: makeUrl([mainSurveyRoute, ':surveyId']), element: <EditSurveyPage /> },
+          { path: makeUrl([mainSurveyRoute, ':surveyId']), element: <MainEditSurveyPage /> },
           { path: startRoute, element: <TestPage /> },
         ],
       },

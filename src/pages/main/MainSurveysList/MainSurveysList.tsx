@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Container, Stack } from '@mui/material';
-import { Edit } from '@mui/icons-material';
+import { Edit, Save, Visibility } from '@mui/icons-material';
 
 import { useCommonAppNavigation } from 'src/core/hooks/routes/useCommonAppNavigation';
 import { TPropsWithClassName } from 'src/core/types';
@@ -39,7 +39,6 @@ export const MainSurveyItem: React.FC<{ item: TSurveyListItem }> = ({ item }) =>
         to={url}
         LinkComponent={RouterLinkComponent}
       >
-        {/* <RouterLink to={url}> */}
         <CardMedia
           // prettier-ignore
           component="img"
@@ -57,12 +56,14 @@ export const MainSurveyItem: React.FC<{ item: TSurveyListItem }> = ({ item }) =>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button
-          // size="small"
-          color="primary"
-          startIcon={<Edit />}
-        >
+        <Button component={RouterLinkComponent} color="primary" startIcon={<Edit />} to={url}>
           Edit
+        </Button>
+        <Button color="primary" startIcon={<Visibility />} disabled>
+          Preview
+        </Button>
+        <Button color="primary" startIcon={<Save />} disabled>
+          Save
         </Button>
       </CardActions>
     </Card>

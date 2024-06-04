@@ -62,7 +62,6 @@ export const DemoEditSurvey: TDemoComponent = () => {
     // debugger;
     setSurveyData(nodeData as TSurvey);
   }, []);
-
   return (
     <div className="DemoEditSurvey">
       <EditSurveyRoot

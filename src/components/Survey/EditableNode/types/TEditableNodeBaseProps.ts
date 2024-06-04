@@ -1,4 +1,3 @@
-import { TSurveyItemId } from 'src/entities/Survey/types';
 import { TEditableNodeType } from './TEditableNodeType';
 import { TEditableNodeValue } from './TEditableNodeValue';
 
