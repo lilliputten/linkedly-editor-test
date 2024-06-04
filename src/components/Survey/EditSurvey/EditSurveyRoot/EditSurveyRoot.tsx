@@ -4,7 +4,7 @@ import { PageTitle } from 'src/components/MUI';
 
 import { TSurvey } from 'src/entities/Survey/types';
 import { EditSurveyPage } from 'src/components/Survey/EditSurvey/EditSurveyPage';
-import { SurveyNode, SurveyNodeContent } from 'src/components/Survey/SurveyNode';
+import { SurveyNode, SurveyNodeFoldedContent } from 'src/components/Survey/SurveyNode';
 import { useSortedSurveyItems } from 'src/components/Survey/SurveyNode/hooks';
 
 interface TEditSurveyProps {
@@ -28,11 +28,11 @@ export const EditSurveyRoot: React.FC<TEditSurveyProps> = (props) => {
       // indent
     >
       <PageTitle>{title}</PageTitle>
-      <SurveyNodeContent nodeBaseType="root-content" root>
+      <SurveyNodeFoldedContent nodeBaseType="root-content" root>
         {sortedPages.map((pageData) => {
           return <EditSurveyPage key={pageData.pageId} pageData={pageData} />;
         })}
-      </SurveyNodeContent>
+      </SurveyNodeFoldedContent>
     </SurveyNode>
   );
 };

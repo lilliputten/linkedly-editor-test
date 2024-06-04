@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { TSurveyQuestion } from 'src/entities/Survey/types';
 import {
   SurveyNode,
-  SurveyNodeContent,
+  SurveyNodeFoldedContent,
   SurveyNodeRemark,
   SurveyNodeTitle,
 } from 'src/components/Survey/SurveyNode';
@@ -95,9 +95,9 @@ export const ViewSurveyQuestion: React.FC<TViewSurveyQuestionProps> = (props) =>
         toolbar="[TOOLBAR]"
       />
       {remark && <SurveyNodeRemark>{remark}</SurveyNodeRemark>}
-      <SurveyNodeContent nodeBaseType="question-content" className={styles.nodeContent}>
+      <SurveyNodeFoldedContent nodeBaseType="question-content" className={styles.nodeContent}>
         <ViewSurveyQuestionContent questionData={questionData} />
-      </SurveyNodeContent>
+      </SurveyNodeFoldedContent>
     </SurveyNode>
   );
 };

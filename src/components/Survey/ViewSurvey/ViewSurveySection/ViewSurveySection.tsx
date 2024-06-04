@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import { TSurveyItem, TSurveyQuestion, TSurveySection } from 'src/entities/Survey/types';
-import { SurveyNode, SurveyNodeContent, SurveyNodeRemark } from 'src/components/Survey/SurveyNode';
+import { SurveyNode, SurveyNodeFoldedContent, SurveyNodeRemark } from 'src/components/Survey/SurveyNode';
 import { useSortedSurveyItems } from 'src/components/Survey/SurveyNode/hooks';
 import { SurveyNodeHeader } from 'src/components/Survey/SurveyNode/SurveyNodeHeader';
 import { EditSurveyQuestion, EditSurveySection } from '../../EditSurvey';
@@ -46,13 +46,13 @@ export const ViewSurveySection: React.FC<TViewSurveySectionProps> = (props) => {
         toolbar="[TOOLBAR]"
       />
       {remark && <SurveyNodeRemark>{remark}</SurveyNodeRemark>}
-      <SurveyNodeContent nodeBaseType="section-content" indent>
+      <SurveyNodeFoldedContent nodeBaseType="section-content" indent>
         {sortedItems.map((itemData) => {
           const key =
             (itemData as TSurveyQuestion).questionId || (itemData as TSurveySection).sectionId;
           return <ViewSurveyItem key={key} itemData={itemData} />;
         })}
-      </SurveyNodeContent>
+      </SurveyNodeFoldedContent>
     </SurveyNode>
   );
 };

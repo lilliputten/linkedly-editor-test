@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { EditSurveyQuestion } from 'src/components/Survey/EditSurvey';
+import { EditSurveyQuestion, EditSurveySection } from 'src/components/Survey/EditSurvey';
 
 import { TDemoComponent } from 'src/core/types';
 import { TSurveyQuestion, TSurveySection } from 'src/entities/Survey/types';
@@ -15,6 +15,7 @@ export const DemoEditSurveyItems: TDemoComponent = observer(() => {
     remark:
       'By "adding" new fields, you will automatically import references entered in previous years. If field is empty, please complete it with relevant reference.',
   };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const sectionData: TSurveySection = {
     sectionId: 18709239,
     orderNumber: 1,
@@ -26,16 +27,16 @@ export const DemoEditSurveyItems: TDemoComponent = observer(() => {
   };
   return (
     <div className="DemoEditSurveyItems">
+      {/*
       <EditSurveyQuestion
         // prettier-ignore
         questionData={questionData}
       />
-      {/*
+      */}
       <EditSurveySection
         // prettier-ignore
         sectionData={sectionData}
       />
-      */}
     </div>
   );
 });

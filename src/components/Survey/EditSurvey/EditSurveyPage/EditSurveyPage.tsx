@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { TSurveyPage } from 'src/entities/Survey/types';
 import { EditSurveySection } from 'src/components/Survey/EditSurvey/EditSurveySection';
-import { SurveyNode, SurveyNodeContent } from 'src/components/Survey/SurveyNode';
+import { SurveyNode, SurveyNodeFoldedContent } from 'src/components/Survey/SurveyNode';
 import { useSortedSurveyItems } from 'src/components/Survey/SurveyNode/hooks';
 import { SurveyNodeHeader } from 'src/components/Survey/SurveyNode/SurveyNodeHeader';
 
@@ -26,11 +26,11 @@ export const EditSurveyPage: React.FC<TEditSurveyPageProps> = (props) => {
         toolbar="[TOOLBAR]"
       />
 
-      <SurveyNodeContent nodeBaseType="page-content" indent>
+      <SurveyNodeFoldedContent nodeBaseType="page-content" indent>
         {sortedSections.map((sectionData) => {
           return <EditSurveySection key={sectionData.sectionId} sectionData={sectionData} />;
         })}
-      </SurveyNodeContent>
+      </SurveyNodeFoldedContent>
     </SurveyNode>
   );
 };

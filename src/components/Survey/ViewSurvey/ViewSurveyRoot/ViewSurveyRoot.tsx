@@ -4,7 +4,7 @@ import { PageTitle } from 'src/components/MUI';
 
 import { TSurvey } from 'src/entities/Survey/types';
 import { ViewSurveyPage } from 'src/components/Survey/ViewSurvey/ViewSurveyPage';
-import { SurveyNode, SurveyNodeContent } from 'src/components/Survey/SurveyNode';
+import { SurveyNode, SurveyNodeFoldedContent } from 'src/components/Survey/SurveyNode';
 import { useSortedSurveyItems } from 'src/components/Survey/SurveyNode/hooks';
 
 interface TViewSurveyProps {
@@ -28,14 +28,14 @@ export const ViewSurveyRoot: React.FC<TViewSurveyProps> = (props) => {
       // indent
     >
       <PageTitle>{title}</PageTitle>
-      <SurveyNodeContent nodeBaseType="root-content" root>
+      <SurveyNodeFoldedContent nodeBaseType="root-content" root>
         {/*
         <pre>{JSON.stringify(surveyData, null, 2)}</pre>
         */}
         {sortedPages.map((pageData) => {
           return <ViewSurveyPage key={pageData.pageId} pageData={pageData} />;
         })}
-      </SurveyNodeContent>
+      </SurveyNodeFoldedContent>
     </SurveyNode>
   );
 };

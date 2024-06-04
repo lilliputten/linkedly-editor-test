@@ -83,7 +83,7 @@ export const EditableNode: React.FC<TEditableNodeProps> = (props) => {
     memo.timeoutHandler = setTimeout(setDialogMounted.bind(false), 300);
   }, [memo, setDialogOpen]);
 
-  const labelText = useLabelText(props, 'Click to edit');
+  const labelText = useLabelText(props, 'Edit');
 
   const isEmpty = !showValue;
 

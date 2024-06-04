@@ -4,8 +4,9 @@ import classNames from 'classnames';
 import { TSurveyQuestion } from 'src/entities/Survey/types';
 import {
   SurveyNode,
-  SurveyNodeContent,
+  SurveyNodeFoldedContent,
   SurveyNodeItemRow,
+  SurveyNodeOwnContent,
   SurveyNodeTitle,
 } from 'src/components/Survey/SurveyNode';
 import { SurveyNodeHeader } from 'src/components/Survey/SurveyNode/SurveyNodeHeader';
@@ -23,7 +24,7 @@ interface TEditSurveyQuestionProps {
 /** DEBUG: Show plain question data */
 const debugShowRawQuestion = false;
 
-export const EditSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion }> = (props) => {
+const EditSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion }> = (props) => {
   const { questionData } = props;
   const {
     // prettier-ignore
@@ -51,12 +52,12 @@ export const EditSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion
   return (
     <>
       {/* // XXX: To show remark here or below the header? */}
-      <SurveyNodeItemRow title="Remark:" activeButtonId={`${questionId}-remark-button`}>
+      <SurveyNodeItemRow title="Remark:" activeButtonId={`question-${questionId}-remark-button`}>
         <EditableNode
           // prettier-ignore
-          key={`${questionId}-remark`}
-          nodeId={`${questionId}-remark`}
-          activeButtonId={`${questionId}-remark-button`}
+          key={`question-${questionId}-remark`}
+          nodeId={`question-${questionId}-remark`}
+          activeButtonId={`question-${questionId}-remark-button`}
           className={classNames(styles.item)}
           editableType="textarea"
           title="Remark Text"
@@ -66,12 +67,12 @@ export const EditSurveyQuestionContent: React.FC<{ questionData: TSurveyQuestion
           // textClassName={styles.remark}
         />
       </SurveyNodeItemRow>
-      <SurveyNodeItemRow title="Type:" activeButtonId={`${questionId}-type-button`}>
+      <SurveyNodeItemRow title="Type:" activeButtonId={`question-${questionId}-type-button`}>
         <EditableNode
           // prettier-ignore
-          key={`${questionId}-type`}
-          nodeId={`${questionId}-type`}
-          activeButtonId={`${questionId}-type-button`}
+          key={`question-${questionId}-type`}
+          nodeId={`question-${questionId}-type`}
+          activeButtonId={`question-${questionId}-type-button`}
           className={classNames(styles.item)}
           editableType="select"
           selectOptions={questionEditableTypeOptions}
@@ -99,7 +100,7 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
     return (
       <EditableNode
         // prettier-ignore
-        nodeId={`${questionId}-prefix`}
+        nodeId={`question-${questionId}-prefix`}
         editableType="text"
         title="Display Number"
         value={displayNumber}
@@ -111,7 +112,7 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
     return (
       <EditableNode
         // prettier-ignore
-        nodeId={`${questionId}-text`}
+        nodeId={`question-${questionId}-text`}
         editableType="text"
         title="Question Text"
         value={text}
@@ -133,12 +134,15 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
         icon="[O]"
         toolbar="[TOOLBAR]"
       />
-      <SurveyNodeContent nodeBaseType="question-content" className={styles.nodeContent}>
+      <SurveyNodeOwnContent nodeBaseType="question-own-content" className={styles.nodeOwnContent}>
+        <EditSurveyQuestionContent questionData={questionData} />
+      </SurveyNodeOwnContent>
+      <SurveyNodeFoldedContent nodeBaseType="question-content" className={styles.nodeFoldedContent}>
         {/* // XXX: To show remark here or below the header?
         <EditableNode
           // prettier-ignore
-          key={`${questionId}-remark`}
-          nodeId={`${questionId}-remark`}
+          key={`question-${questionId}-remark`}
+          nodeId={`question-${questionId}-remark`}
           editableType="textarea"
           title="Remark Text"
           value={remark || ''}
@@ -147,8 +151,7 @@ export const EditSurveyQuestion: React.FC<TEditSurveyQuestionProps> = (props) =>
           textClassName={styles.remark}
         />
         */}
-        <EditSurveyQuestionContent questionData={questionData} />
-      </SurveyNodeContent>
+      </SurveyNodeFoldedContent>
     </SurveyNode>
   );
 };
