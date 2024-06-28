@@ -1,14 +1,14 @@
 <!--
 @since 2024.05.07, 19:34
-@changed 2024.06.28, 17:08
+@changed 2024.06.28, 23:59
 -->
 
 # linkedly-editor-test
 
 Linkedly editor demo.
 
-- Version: 0.0.1
-- Last changes timestamp: 2024.06.28 13:48 +0000
+- Version: 0.0.2
+- Last changes timestamp: 2024.06.28 18:32 +0000
 
 TODO: Add the project description.
 
@@ -21,7 +21,15 @@ TODO: Add the project description.
 
 Repository: https://github.com/lilliputten/linkedly-editor-test
 
-Demo deploy server (with a recent build): http://linkedly-editor-test.lilliputten.com/ (TODO!)
+Demo deploy servers (with a recent build):
+
+- https://linkedly-editor-test.netlify.app/
+- https://linkedly-editor-test-lilliputtens-projects.vercel.app/
+
+Deploy server control panels:
+
+- https://app.netlify.com/sites/linkedly-editor-test
+- https://vercel.com/lilliputtens-projects/linkedly-editor-test/
 
 ## Project workflow
 
