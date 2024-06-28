@@ -40,7 +40,7 @@ export const routes: RouteObject[] = [
         children: [
           // prettier-ignore
           { index: true, element: <MainCampaignsList /> },
-          { path: makeUrl([mainCampaignRoute, ':surveyId']), element: <MainEditCampaignPage /> },
+          { path: makeUrl([mainCampaignRoute, ':campaignId']), element: <MainEditCampaignPage /> },
           { path: startRoute, element: <TestPage /> },
         ],
       },

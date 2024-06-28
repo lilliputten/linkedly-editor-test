@@ -17,33 +17,33 @@ import {
 import { CampaignNodeHeader } from 'src/components/Campaign/CampaignNode/CampaignNodeHeader';
 
 interface TEditCampaignProps {
-  surveyData: TCampaign;
+  campaignData: TCampaign;
   className?: string;
   onChange?: (params: TCampaignNodeChangeParams) => void;
 }
 
 const EditCampaignRootContent: React.FC<{
-  surveyData: TCampaign;
+  campaignData: TCampaign;
   handleChange: (params: TEditableNodeChangeParams) => void;
 }> = (props) => {
-  const { surveyData, handleChange } = props;
+  const { campaignData, handleChange } = props;
   const {
     // prettier-ignore
-    id: surveyId,
+    id: campaignId,
     // orderNumber,
-  } = surveyData;
+  } = campaignData;
   return (
     <>
-      <CampaignNodeItemRow title="ID:" activeButtonId={`campaign-${surveyId}-id-button`}>
+      <CampaignNodeItemRow title="ID:" activeButtonId={`campaign-${campaignId}-id-button`}>
         <EditableNode
           // prettier-ignore
-          key={`campaign-${surveyId}-id`}
-          nodeId={`campaign-${surveyId}-id`}
-          activeButtonId={`campaign-${surveyId}-id-button`}
+          key={`campaign-${campaignId}-id`}
+          nodeId={`campaign-${campaignId}-id`}
+          activeButtonId={`campaign-${campaignId}-id-button`}
           editableType="text"
           title="Campaign ID"
-          value={surveyId || ''}
-          valueId="surveyId"
+          value={campaignId || ''}
+          valueId="campaignId"
           onChange={handleChange}
         />
       </CampaignNodeItemRow>
@@ -52,8 +52,8 @@ const EditCampaignRootContent: React.FC<{
 };
 
 export const EditCampaignRoot: React.FC<TEditCampaignProps> = (props) => {
-  const { surveyData, className, onChange } = props;
-  const { id: surveyId, name, items } = surveyData;
+  const { campaignData, className, onChange } = props;
+  const { id: campaignId, name, items } = campaignData;
   // Sort pages
   const sortedPages = useSortedCampaignItems(items);
 
@@ -61,34 +61,25 @@ export const EditCampaignRoot: React.FC<TEditCampaignProps> = (props) => {
     (params: TCampaignNodeChangeParams) => {
       const { nodeId, nodeData } = params;
       // const isQuestion = !!(nodeData as TCampaignQuestion).questionId;
-      const changedItems = surveyData.items.map((item) => {
+      const changedItems = campaignData.items.map((item) => {
         if (nodeId === item.pageId) {
           return nodeData as TCampaignPage;
         }
         return item;
       });
-      const changedCampaignData: TCampaign = { ...surveyData, items: changedItems };
+      const changedCampaignData: TCampaign = { ...campaignData, items: changedItems };
       const valueId = 'items';
       const changedItemsParams: TCampaignNodeChangeParams = {
         nodeData: changedCampaignData,
-        nodeId: surveyId,
+        nodeId: campaignId,
         value: changedItems,
         valueId,
       };
-      console.log('[EditCampaignRoot:handleItemChange]', valueId, {
-        changedItems,
-        surveyId,
-        params,
-        surveyData,
-        changedCampaignData,
-        changedItemsParams,
-      });
-      // debugger;
       if (onChange) {
         onChange(changedItemsParams);
       }
     },
-    [surveyId, surveyData, onChange],
+    [campaignId, campaignData, onChange],
   );
 
   const handleChange = React.useCallback(
@@ -104,40 +95,29 @@ export const EditCampaignRoot: React.FC<TEditCampaignProps> = (props) => {
       }
       const id = valueId as keyof TCampaign;
       // Create updated question data object...
-      const changedCampaignData: TCampaign = { ...surveyData, [id]: value };
+      const changedCampaignData: TCampaign = { ...campaignData, [id]: value };
       // Is reorder required for uplevel container? (TODO: Track the current node in viewpoint on re-order?)
       const reorderRequired = valueId === 'orderNumber'; // XXX: Is it used here?
       // Construct parameters data for up-level change handler
       const changedParams: TCampaignNodeChangeParams = {
         nodeData: changedCampaignData,
-        nodeId: surveyId,
+        nodeId: campaignId,
         value,
         valueId,
         reorderRequired,
       };
-      console.log('[EditCampaignRoot:handleChange]', valueId, {
-        value,
-        valueId,
-        params,
-        reorderRequired,
-        surveyId,
-        surveyData,
-        changedCampaignData,
-        changedParams,
-      });
-      // debugger;
       if (onChange) {
         onChange(changedParams);
       }
     },
-    [surveyId, surveyData, onChange],
+    [campaignId, campaignData, onChange],
   );
 
   const nameNode = React.useMemo(() => {
     return (
       <EditableNode
         // prettier-ignore
-        nodeId={`campaign-${surveyId}-name`}
+        nodeId={`campaign-${campaignId}-name`}
         editableType="text"
         title="Campaign Name"
         value={name || ''}
@@ -146,17 +126,17 @@ export const EditCampaignRoot: React.FC<TEditCampaignProps> = (props) => {
         flex={1}
       />
     );
-  }, [surveyId, name, handleChange]);
+  }, [campaignId, name, handleChange]);
   return (
-    <CampaignNode nodeType="root" nodeId={surveyId} className={classNames(className)} root>
+    <CampaignNode nodeType="root" nodeId={campaignId} className={classNames(className)} root>
       <CampaignNodeHeader
         // prettier-ignore
         title={nameNode}
-        icon="[SURVEY]"
+        icon="[CAMPAIGN]"
         toolbar="[TOOLBAR]"
       />
       <CampaignNodeOwnContent nodeBaseType="page-own-content">
-        <EditCampaignRootContent surveyData={surveyData} handleChange={handleChange} />
+        <EditCampaignRootContent campaignData={campaignData} handleChange={handleChange} />
       </CampaignNodeOwnContent>
       <CampaignNodeFoldedContent nodeBaseType="root-content" root indent>
         {sortedPages.map((pageData) => {

@@ -43,30 +43,22 @@ const defaultCampaignData: TCampaign = {
 };
 
 export const DemoEditCampaign: TDemoComponent = () => {
-  const [surveyData, setCampaignData] = React.useState<TCampaign>(defaultCampaignData);
+  const [campaignData, setCampaignData] = React.useState<TCampaign>(defaultCampaignData);
   const handleChange = React.useCallback((params: TCampaignNodeChangeParams) => {
     const {
       nodeData, // {id: 111, name: 'Minimal campaign sample', items: Array(1)}
-      nodeId, // 111
-      value, // [{…}]
-      valueId, // "items"
+      // nodeId, // 111
+      // value, // [{…}]
+      // valueId, // "items"
     } = params;
-    console.log('[DemoEditCampaign:handleChange]', {
-      nodeData,
-      nodeId,
-      value,
-      valueId,
-      params,
-      defaultCampaignData,
-    });
-    // debugger;
+
     setCampaignData(nodeData as TCampaign);
   }, []);
   return (
     <div className="DemoEditCampaign">
       <EditCampaignRoot
         // prettier-ignore
-        surveyData={surveyData}
+        campaignData={campaignData}
         onChange={handleChange}
       />
     </div>

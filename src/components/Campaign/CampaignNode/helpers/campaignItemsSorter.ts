@@ -1,6 +1,6 @@
 import { TCampaignOrderedItem } from 'src/entities/Campaign/types';
 
-export function surveyItemsSorter(a: TCampaignOrderedItem, b: TCampaignOrderedItem) {
+export function campaignItemsSorter(a: TCampaignOrderedItem, b: TCampaignOrderedItem) {
   const aN = a?.orderNumber;
   const bN = b?.orderNumber;
   const noA = aN == null;

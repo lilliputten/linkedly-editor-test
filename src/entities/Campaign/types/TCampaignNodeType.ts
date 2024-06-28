@@ -1,8 +1,8 @@
-export const surveyNodeTypes = [
+export const campaignNodeTypes = [
   // prettier-ignore
   'question',
   'section',
   'page',
   'root',
 ] as const;
-export type TCampaignNodeType = (typeof surveyNodeTypes)[number];
+export type TCampaignNodeType = (typeof campaignNodeTypes)[number];

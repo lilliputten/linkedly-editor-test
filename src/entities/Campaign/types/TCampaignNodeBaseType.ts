@@ -1,6 +1,6 @@
 // @see `TCampaignNodeType`
 //
-export const surveyNodeSkeletonTypes = [
+export const campaignNodeSkeletonTypes = [
   // prettier-ignore
   'question',
   'section',
@@ -15,4 +15,4 @@ export const surveyNodeSkeletonTypes = [
   'page-own-content',
   'root-own-content',
 ] as const;
-export type TCampaignNodeBaseType = (typeof surveyNodeSkeletonTypes)[number];
+export type TCampaignNodeBaseType = (typeof campaignNodeSkeletonTypes)[number];

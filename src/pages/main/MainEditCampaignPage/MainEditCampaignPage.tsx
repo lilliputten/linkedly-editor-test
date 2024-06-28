@@ -15,17 +15,17 @@ import { EditCampaignRoot } from 'src/components/Campaign/EditCampaign';
 export const MainEditCampaignPage: React.FC<TPropsWithClassName> = observer((props) => {
   const { className } = props;
   const routerParams = useParams();
-  const surveyId: TCampaignId = Number(routerParams.surveyId);
+  const campaignId: TCampaignId = Number(routerParams.campaignId);
   useCommonAppNavigation();
   const isLogged = useLogged();
   const [ready, setReady] = React.useState(false);
-  const [surveyData, setCampaignData] = React.useState<TCampaign | undefined>();
+  const [campaignData, setCampaignData] = React.useState<TCampaign | undefined>();
   const [hasChanged, setHasChanged] = React.useState(false);
   React.useEffect(() => {
-    if ((!surveyId || !isLogged) && !isDev) {
+    if ((!campaignId || !isLogged) && !isDev) {
       return;
     }
-    const url = `/api/campaign/${surveyId}`;
+    const url = `/api/campaign/${campaignId}`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -36,22 +36,14 @@ export const MainEditCampaignPage: React.FC<TPropsWithClassName> = observer((pro
       .finally(() => {
         setReady(true);
       });
-  }, [isLogged, surveyId]);
+  }, [isLogged, campaignId]);
   const handleChange = React.useCallback((params: TCampaignNodeChangeParams) => {
     const {
       nodeData, // {id: 111, name: 'Minimal campaign sample', items: Array(1)}
-      nodeId, // 111
-      value, // [{…}]
-      valueId, // "items"
+      // nodeId, // 111
+      // value, // [{…}]
+      // valueId, // "items"
     } = params;
-    console.log('[MainEditCampaignPage:handleChange]', {
-      nodeData,
-      nodeId,
-      value,
-      valueId,
-      params,
-    });
-    // debugger;
     setCampaignData(nodeData as TCampaign);
     setHasChanged(true);
   }, []);
@@ -72,10 +64,10 @@ export const MainEditCampaignPage: React.FC<TPropsWithClassName> = observer((pro
               </Typography>
             </Box>
           )}
-          {ready && !!surveyData && (
+          {ready && !!campaignData && (
             <EditCampaignRoot
               // prettier-ignore
-              surveyData={surveyData}
+              campaignData={campaignData}
               onChange={handleChange}
             />
           )}

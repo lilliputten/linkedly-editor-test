@@ -161,17 +161,6 @@ export const EditCampaignQuestion: React.FC<TEditCampaignQuestionProps> = (props
         valueId,
         reorderRequired,
       };
-      console.log('[EditCampaignQuestion:handleChange]', valueId, {
-        value,
-        valueId,
-        params,
-        reorderRequired,
-        questionId,
-        questionData,
-        changedQuestionData,
-        changedParams,
-      });
-      // debugger;
       if (onChange) {
         onChange(changedParams);
       }

@@ -139,15 +139,6 @@ export const EditCampaignSection: React.FC<TEditCampaignSectionProps> = (props) 
         value: changedItems,
         valueId,
       };
-      console.log('[EditCampaignSection:handleItemChange]', valueId, {
-        changedItems,
-        sectionId,
-        params,
-        sectionData,
-        changedSectionData,
-        changedItemsParams,
-      });
-      // debugger;
       if (onChange) {
         onChange(changedItemsParams);
       }
@@ -179,17 +170,6 @@ export const EditCampaignSection: React.FC<TEditCampaignSectionProps> = (props) 
         valueId,
         reorderRequired,
       };
-      console.log('[EditCampaignSection:handleChange]', valueId, {
-        value,
-        valueId,
-        params,
-        reorderRequired,
-        sectionId,
-        sectionData,
-        changedSectionData,
-        changedParams,
-      });
-      // debugger;
       if (onChange) {
         onChange(changedParams);
       }

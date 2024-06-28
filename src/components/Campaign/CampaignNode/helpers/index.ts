@@ -1,1 +1,1 @@
-export * from './surveyItemsSorter';
+export * from './campaignItemsSorter';

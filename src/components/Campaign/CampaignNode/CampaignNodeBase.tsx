@@ -18,7 +18,7 @@ export const CampaignNodeBase: React.FC<TCampaignNodeBaseProps> = (props) => {
     indent = false,
     ...restProps
   } = props;
-  const surveyNodeSx = useCampaignNodeSx({ root, indent });
+  const campaignNodeSx = useCampaignNodeSx({ root, indent });
   return (
     <Stack
       // prettier-ignore
@@ -26,7 +26,7 @@ export const CampaignNodeBase: React.FC<TCampaignNodeBaseProps> = (props) => {
       data-node-id={nodeId}
       data-node-type={nodeType}
       data-node-base-type={nodeBaseType}
-      sx={{ ...surveyNodeSx, ...sx }}
+      sx={{ ...campaignNodeSx, ...sx }}
       spacing={0.5}
       py={1}
       {...restProps}

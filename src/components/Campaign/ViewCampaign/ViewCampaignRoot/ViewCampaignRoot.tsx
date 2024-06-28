@@ -8,20 +8,20 @@ import { CampaignNode, CampaignNodeFoldedContent } from 'src/components/Campaign
 import { useSortedCampaignItems } from 'src/components/Campaign/CampaignNode/hooks';
 
 interface TViewCampaignProps {
-  surveyData: TCampaign;
+  campaignData: TCampaign;
   className?: string;
 }
 
 export const ViewCampaignRoot: React.FC<TViewCampaignProps> = (props) => {
-  const { surveyData, className } = props;
-  const { id: surveyId, name, items } = surveyData;
+  const { campaignData, className } = props;
+  const { id: campaignId, name, items } = campaignData;
   // Sort pages
   const sortedPages = useSortedCampaignItems(items);
-  const title = name || `Campaign ${surveyId}`;
+  const title = name || `Campaign ${campaignId}`;
   return (
     <CampaignNode
       nodeType="root"
-      nodeId={surveyId}
+      nodeId={campaignId}
       className={classNames(className)}
       root
       spacing={2}
@@ -30,7 +30,7 @@ export const ViewCampaignRoot: React.FC<TViewCampaignProps> = (props) => {
       <PageTitle>{title}</PageTitle>
       <CampaignNodeFoldedContent nodeBaseType="root-content" root>
         {/*
-        <pre>{JSON.stringify(surveyData, null, 2)}</pre>
+        <pre>{JSON.stringify(campaignData, null, 2)}</pre>
         */}
         {sortedPages.map((pageData) => {
           return <ViewCampaignPage key={pageData.pageId} pageData={pageData} />;
