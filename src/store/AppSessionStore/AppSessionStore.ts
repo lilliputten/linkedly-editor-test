@@ -156,8 +156,8 @@ export class AppSessionStore {
       rootState = 'demo';
     } else if (finished) {
       rootState = 'finished';
-      // } else if (!logged && !DEBUG_SKIP_LOGIN) {
-      //   rootState = 'login';
+    } else if (!logged && !DEBUG_SKIP_LOGIN) {
+      rootState = 'login';
     } else {
       rootState = 'main';
       // rootState = 'waiting';
