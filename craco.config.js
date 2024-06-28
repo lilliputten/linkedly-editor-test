@@ -33,7 +33,9 @@ const cracoConfig = {
     plugins: {
       add: [
         // Enable core nodejs polyfills (like 'buffer' etc) for webpack 5
-        new NodePolyfillPlugin(),
+        new NodePolyfillPlugin({
+          excludeAliases: ['console'],
+        }),
         // Build analyzer
         startAnalyzer &&
           new BundleAnalyzerPlugin({
