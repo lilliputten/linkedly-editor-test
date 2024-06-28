@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { Outlet, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import { Box, Container, Stack, Typography } from '@mui/material';
 
@@ -10,8 +10,6 @@ import { TPropsWithClassName } from 'src/core/types';
 import { ThemedLoaderSplash, Scrollable } from 'src/ui/Basic';
 import { useLogged } from 'src/store/AppSessionStore';
 import { TSequenceId, TSequence, TSequenceNodeChangeParams } from 'src/entities/Sequence/types';
-import { EditSequenceRoot } from 'src/components/Sequence/EditSequence';
-import { MainMenu } from 'src/components/Main/MainMenu';
 
 import { LeftMenu } from 'src/components/App/LeftMenu';
 import { MainEditSequencePage } from 'src/pages/main/MainEditSequencePage';
