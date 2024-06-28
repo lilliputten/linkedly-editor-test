@@ -35,7 +35,7 @@ function prettifyHtml() {
 function writeBuildInfo(cb) {
   const buildInfoText = getBuildInfoText();
   // eslint-disable-next-line no-console
-  console.log('Build info:\n' + buildInfoText);
+  // console.log('Build info:\n' + buildInfoText);
   fs.writeFile('build/build.txt', buildInfoText, cb);
 }
 
