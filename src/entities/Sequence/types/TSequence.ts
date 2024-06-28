@@ -40,7 +40,7 @@ export interface TSequenceSection extends TSequenceOrderedItem {
 }
 export interface TSequenceElement extends TSequenceOrderedItem {
   // orderNumber: number; // in `TSequenceOrderedItem`
-  questionId: TSequenceItemId;
+  sequenceElementId: TSequenceItemId;
   typeId: TSequenceElementType;
   displayNumber: string;
   text: string;

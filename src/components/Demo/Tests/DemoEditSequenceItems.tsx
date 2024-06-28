@@ -14,8 +14,8 @@ const show = {
 };
 
 export const DemoEditSequenceItems: TDemoComponent = () => {
-  const questionData: TSequenceElement = {
-    questionId: 2,
+  const SequenceElementData: TSequenceElement = {
+    sequenceElementId: 2,
     typeId: 1,
     orderNumber: 2,
     displayNumber: '1.3.',
@@ -32,7 +32,7 @@ export const DemoEditSequenceItems: TDemoComponent = () => {
     name: 'Contact Information',
     remark:
       'Note: all information provided throughout this sequence should describe the situation as of the date of completion. Future policy initiatives should be listed under Section 9 - Future plans.',
-    items: [questionData],
+    items: [SequenceElementData],
   };
   const pageData: TSequencePage = {
     pageId: 7463886,
@@ -47,7 +47,7 @@ export const DemoEditSequenceItems: TDemoComponent = () => {
       {show.question && (
         <EditSequenceElement
           // prettier-ignore
-          questionData={questionData}
+          SequenceElementData={SequenceElementData}
         />
       )}
       {show.section && (

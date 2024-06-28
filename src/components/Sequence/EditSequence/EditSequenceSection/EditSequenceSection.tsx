@@ -35,9 +35,11 @@ interface TSequenceItemProps {
 
 /** Render folderd section or question */
 const EditSequenceItem: React.FC<TSequenceItemProps> = ({ itemData, onChange }) => {
-  const isQuestion = !!(itemData as TSequenceElement).questionId;
+  const isQuestion = !!(itemData as TSequenceElement).sequenceElementId;
   if (isQuestion) {
-    return <EditSequenceElement questionData={itemData as TSequenceElement} onChange={onChange} />;
+    return (
+      <EditSequenceElement SequenceElementData={itemData as TSequenceElement} onChange={onChange} />
+    );
   } else {
     return <EditSequenceSection sectionData={itemData as TSequenceSection} onChange={onChange} />;
   }
@@ -119,10 +121,10 @@ export const EditSequenceSection: React.FC<TEditSequenceSectionProps> = (props) 
   const handleItemChange = React.useCallback(
     (params: TSequenceNodeChangeParams) => {
       const { nodeId, nodeData } = params;
-      // const isQuestion = !!(nodeData as TSequenceElement).questionId;
+      // const isQuestion = !!(nodeData as TSequenceElement).sequenceElementId;
       const changedItems = sectionData.items.map((item) => {
         if (
-          nodeId === (item as TSequenceElement).questionId ||
+          nodeId === (item as TSequenceElement).sequenceElementId ||
           nodeId === (item as TSequenceSection).sectionId
         ) {
           return nodeData as TSequenceItem;
@@ -204,7 +206,8 @@ export const EditSequenceSection: React.FC<TEditSequenceSectionProps> = (props) 
       <SequenceNodeFoldedContent nodeBaseType="section-content">
         {sortedItems.map((itemData) => {
           const key =
-            (itemData as TSequenceElement).questionId || (itemData as TSequenceSection).sectionId;
+            (itemData as TSequenceElement).sequenceElementId ||
+            (itemData as TSequenceSection).sectionId;
           return <EditSequenceItem key={key} itemData={itemData} onChange={handleItemChange} />;
         })}
       </SequenceNodeFoldedContent>
