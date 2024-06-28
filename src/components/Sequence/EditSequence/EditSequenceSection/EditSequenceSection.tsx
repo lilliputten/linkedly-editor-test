@@ -35,8 +35,8 @@ interface TSequenceItemProps {
 
 /** Render folderd section or sequence */
 const EditSequenceItem: React.FC<TSequenceItemProps> = ({ itemData, onChange }) => {
-  const isQuestion = !!(itemData as TSequenceElement).sequenceElementId;
-  if (isQuestion) {
+  const isSequenceElement = !!(itemData as TSequenceElement).sequenceElementId;
+  if (isSequenceElement) {
     return (
       <EditSequenceElement SequenceElementData={itemData as TSequenceElement} onChange={onChange} />
     );
@@ -121,7 +121,7 @@ export const EditSequenceSection: React.FC<TEditSequenceSectionProps> = (props) 
   const handleItemChange = React.useCallback(
     (params: TSequenceNodeChangeParams) => {
       const { nodeId, nodeData } = params;
-      // const isQuestion = !!(nodeData as TSequenceElement).sequenceElementId;
+      // const isSequenceElement = !!(nodeData as TSequenceElement).sequenceElementId;
       const changedItems = sectionData.items.map((item) => {
         if (
           nodeId === (item as TSequenceElement).sequenceElementId ||

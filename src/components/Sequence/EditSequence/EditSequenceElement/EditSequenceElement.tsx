@@ -26,7 +26,7 @@ interface TEditSequenceElementProps {
 }
 
 /** DEBUG: Show plain sequence data */
-const debugShowRawQuestion = false;
+const debugShowRawSequenceElement = false;
 
 const EditSequenceElementContent: React.FC<{
   SequenceElementData: TSequenceElement;
@@ -43,7 +43,7 @@ const EditSequenceElementContent: React.FC<{
     remark,
   } = SequenceElementData;
   // const typeText = getSequenceElementTypeName(typeId);
-  if (debugShowRawQuestion) {
+  if (debugShowRawSequenceElement) {
     // prettier-ignore
     return (
       <>

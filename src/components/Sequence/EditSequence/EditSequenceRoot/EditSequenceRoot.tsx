@@ -60,7 +60,7 @@ export const EditSequenceRoot: React.FC<TEditSequenceProps> = (props) => {
   const handleItemChange = React.useCallback(
     (params: TSequenceNodeChangeParams) => {
       const { nodeId, nodeData } = params;
-      // const isQuestion = !!(nodeData as TSequenceElement).sequenceElementId;
+      // const isSequenceElement = !!(nodeData as TSequenceElement).sequenceElementId;
       const changedItems = sequenceData.items.map((item) => {
         if (nodeId === item.pageId) {
           return nodeData as TSequencePage;
