@@ -192,17 +192,17 @@ export const EditSequenceSection: React.FC<TEditSequenceSectionProps> = (props) 
     );
   }, [sectionId, name, handleChange]);
   return (
-    <SequenceNode nodeType="section" nodeId={sectionId} className={classNames(className)} indent>
+    <SequenceNode nodeType="section" nodeId={sectionId} className={classNames(className)}>
       <SequenceNodeHeader
         // prettier-ignore
         // prefix={creditsCount}
-        title={nameNode}
-        icon="[SECTION]"
-        toolbar="[TOOLBAR]"
+        title={name}
+        // icon="[SECTION]"
+        // toolbar="[TOOLBAR]"
       />
-      <SequenceNodeOwnContent nodeBaseType="section-own-content">
+      {/* <SequenceNodeOwnContent nodeBaseType="section-own-content">
         <EditSequenceSectionContent sectionData={sectionData} handleChange={handleChange} />
-      </SequenceNodeOwnContent>
+      </SequenceNodeOwnContent> */}
       <SequenceNodeFoldedContent nodeBaseType="section-content">
         {sortedItems.map((itemData) => {
           const key =

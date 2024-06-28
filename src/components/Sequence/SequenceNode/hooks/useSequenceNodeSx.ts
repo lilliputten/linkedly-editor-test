@@ -11,7 +11,7 @@ export function useSequenceNodeSx(props: Pick<TSequenceNodeOwnProps, 'root' | 'i
   const sx: SxProps<Theme> = {
     my: 0.5,
     pl: showIndent ? 2 : 0,
-    borderLeft: showIndent ? '1px solid rgba(127,127,127, 0.5)' : '',
+    // borderLeft: showIndent ? '1px solid rgba(127,127,127, 0.5)' : '',
   };
   return sx;
 }

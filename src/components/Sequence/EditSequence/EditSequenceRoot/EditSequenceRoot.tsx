@@ -129,16 +129,16 @@ export const EditSequenceRoot: React.FC<TEditSequenceProps> = (props) => {
   }, [sequenceId, name, handleChange]);
   return (
     <SequenceNode nodeType="root" nodeId={sequenceId} className={classNames(className)} root>
-      <SequenceNodeHeader
+      {/* <SequenceNodeHeader
         // prettier-ignore
         title={nameNode}
         icon="[SEQUENCE]"
         toolbar="[TOOLBAR]"
-      />
-      <SequenceNodeOwnContent nodeBaseType="page-own-content">
+      /> */}
+      {/* <SequenceNodeOwnContent nodeBaseType="page-own-content">
         <EditSequenceRootContent sequenceData={sequenceData} handleChange={handleChange} />
-      </SequenceNodeOwnContent>
-      <SequenceNodeFoldedContent nodeBaseType="root-content" root indent>
+      </SequenceNodeOwnContent> */}
+      <SequenceNodeFoldedContent nodeBaseType="root-content" root>
         {sortedPages.map((pageData) => {
           return (
             <EditSequencePage

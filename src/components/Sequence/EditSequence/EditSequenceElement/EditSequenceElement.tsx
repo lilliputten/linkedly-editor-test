@@ -56,83 +56,7 @@ const EditSequenceElementContent: React.FC<{
       </>
     );
   }
-  return (
-    <>
-      <SequenceNodeItemRow
-        title="ID:"
-        activeButtonId={`sequenceElement-${sequenceElementId}-id-button`}
-      >
-        <EditableNode
-          // prettier-ignore
-          key={`sequenceElement-${sequenceElementId}-id`}
-          nodeId={`sequenceElement-${sequenceElementId}-id`}
-          activeButtonId={`sequenceElement-${sequenceElementId}-id-button`}
-          className={classNames(styles.item)}
-          editableType="text"
-          title="Sequence Element ID"
-          value={sequenceElementId || ''}
-          valueId="sequenceElementId"
-          onChange={handleChange}
-          isNumber
-        />
-      </SequenceNodeItemRow>
-      <SequenceNodeItemRow
-        title="Order Number:"
-        activeButtonId={`sequenceElement-${sequenceElementId}-orderNumber-button`}
-      >
-        <EditableNode
-          // prettier-ignore
-          key={`sequenceElement-${sequenceElementId}-orderNumber`}
-          nodeId={`sequenceElement-${sequenceElementId}-orderNumber`}
-          activeButtonId={`sequenceElement-${sequenceElementId}-orderNumber-button`}
-          className={classNames(styles.item)}
-          editableType="text"
-          title="Order Number"
-          value={orderNumber}
-          valueId="orderNumber"
-          onChange={handleChange}
-          isNumber
-        />
-      </SequenceNodeItemRow>
-      <SequenceNodeItemRow
-        title="Remark:"
-        activeButtonId={`sequenceElement-${sequenceElementId}-remark-button`}
-      >
-        <EditableNode
-          // prettier-ignore
-          key={`sequenceElement-${sequenceElementId}-remark`}
-          nodeId={`sequenceElement-${sequenceElementId}-remark`}
-          activeButtonId={`sequenceElement-${sequenceElementId}-remark-button`}
-          className={classNames(styles.item)}
-          editableType="textarea"
-          title="Remark Text"
-          value={remark || ''}
-          valueId="remark"
-          onChange={handleChange}
-          flex={1}
-          wrap
-        />
-      </SequenceNodeItemRow>
-      <SequenceNodeItemRow
-        title="Type:"
-        activeButtonId={`sequenceElement-${sequenceElementId}-type-button`}
-      >
-        <EditableNode
-          // prettier-ignore
-          key={`sequenceElement-${sequenceElementId}-type`}
-          nodeId={`sequenceElement-${sequenceElementId}-type`}
-          activeButtonId={`sequenceElement-${sequenceElementId}-type-button`}
-          className={classNames(styles.item)}
-          editableType="select"
-          selectOptions={sequenceEditableTypeOptions}
-          title="Sequence Element Type"
-          value={typeId}
-          valueId="typeId"
-          onChange={handleChange}
-        />
-      </SequenceNodeItemRow>
-    </>
-  );
+  return <>{text}</>;
 };
 
 export const EditSequenceElement: React.FC<TEditSequenceElementProps> = (props) => {
@@ -209,42 +133,25 @@ export const EditSequenceElement: React.FC<TEditSequenceElementProps> = (props) 
       nodeType="sequenceElement"
       nodeId={sequenceElementId}
       className={classNames(className, styles.root)}
-      indent
+      // indent
     >
-      <SequenceNodeHeader
+      {/* <SequenceNodeHeader
         // prettier-ignore
         prefix={creditsCountNode}
         title={textNode}
         icon="[O]"
         toolbar="[TOOLBAR]"
-      />
+      /> */}
       <SequenceNodeOwnContent
         nodeBaseType="sequenceElement-own-content"
         className={styles.nodeOwnContent}
+        indent
       >
         <EditSequenceElementContent
           SequenceElementData={SequenceElementData}
           handleChange={handleChange}
         />
       </SequenceNodeOwnContent>
-      <SequenceNodeFoldedContent
-        nodeBaseType="sequenceElement-content"
-        className={styles.nodeFoldedContent}
-      >
-        {/* // XXX: To show remark here or below the header?
-        <EditableNode
-          // prettier-ignore
-          key={`sequenceElement-${sequenceElementId}-remark`}
-          nodeId={`sequenceElement-${sequenceElementId}-remark`}
-          editableType="textarea"
-          title="Remark Text"
-          value={remark || ''}
-          flex={1}
-          wrap
-          textClassName={styles.remark}
-        />
-        */}
-      </SequenceNodeFoldedContent>
     </SequenceNode>
   );
 };

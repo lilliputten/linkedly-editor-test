@@ -16,7 +16,7 @@ export interface TMainEditSequencePageProps extends TPropsWithClassName {
 export const MainEditSequencePage: React.FC<TMainEditSequencePageProps> = observer((props) => {
   const { className, handleChange, sequenceData } = props;
   return (
-    <Scrollable className={classNames(className, 'MainEditSequencePage')}>
+    <Scrollable className={classNames(className, 'MainEditSequencePage')} fullCenter={false}>
       <Container maxWidth="md" sx={{ my: 2 }}>
         <EditSequenceRoot
           // prettier-ignore
