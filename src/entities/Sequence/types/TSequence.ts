@@ -16,9 +16,6 @@ export interface TSequenceOrderedItem {
   orderNumber: number;
 }
 
-// export type TSequenceItem = TSequenceItem | TSequenceSection;
-// export type TSequenceGenericItem = TSequence | TSequenceItem;
-
 export interface TSequenceSection extends TSequenceOrderedItem {
   sectionId: TSequenceItemId;
   name: string;

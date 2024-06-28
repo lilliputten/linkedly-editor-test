@@ -1,43 +1,37 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Container } from '@mui/material';
+import { ButtonBase } from '@mui/material';
 
 import { TPropsWithClassName } from 'src/core/types';
-import { Scrollable } from 'src/ui/Basic';
 import { TSequenceItem } from 'src/entities/Sequence/types';
-// import { ShowSequenceItemRoot } from 'src/components/Sequence/ShowSequenceItem';
 
-export interface TShowSequenceItemProps extends TPropsWithClassName {
-  // handleChange?: (params: TSequenceNodeChangeParams) => void;
+import styles from './ShowSequenceItem.module.scss';
+
+interface TShowSequenceItemProps extends TPropsWithClassName {
   itemData: TSequenceItem;
 }
 
 export const ShowSequenceItem: React.FC<TShowSequenceItemProps> = (props) => {
   const {
+    // prettier-ignore
     className,
-    // handleChange,
     itemData,
   } = props;
   const {
     // prettier-ignore
     itemId,
+    typeId,
+    // creditsCount,
+    text,
   } = itemData;
   return (
-    <Scrollable
+    <ButtonBase
       data-item-id={itemId}
-      className={classNames(className, 'ShowSection')}
-      fullCenter={false}
+      data-item-type={typeId}
+      className={classNames(className, styles.root)}
     >
-      <Container maxWidth="md" sx={{ my: 1 }}>
-        <pre>{JSON.stringify(itemData, null, 2)}</pre>
-        {/*
-        <ShowSequenceRoot
-          // prettier-ignore
-          sequenceData={sequenceData}
-          onChange={handleChange}
-        />
-        */}
-      </Container>
-    </Scrollable>
+      {text}
+      {/* TODO: Credits block */}
+    </ButtonBase>
   );
 };
