@@ -3,11 +3,9 @@
 @changed 2024.02.10, 21:29
 -->
 
-# Axiomica
+# Linkedly editor demo
 
-The Axiomica application.
+- Version: 0.0.0
+- Last changes timestamp: 2024.06.28 15:03 +0300
 
-- Version: 0.0.3
-- Last changes timestamp: 2024.06.05 00:48 +0300
-
-TODO: Create description for the build users.
+TODO: Create description for the build.

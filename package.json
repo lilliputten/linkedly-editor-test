@@ -1,8 +1,8 @@
 {
-  "name": "axiomica-mvp-2024",
-  "version": "0.0.3",
-  "timetag": "240605-0048",
-  "timestamp": "2024.06.05 00:48 +0300",
+  "name": "linkedly-editor-test",
+  "version": "0.0.0",
+  "timetag": "240628-1503",
+  "timestamp": "2024.06.28 15:03 +0300",
   "changed": "2024.05.27, 22:46",
   "eslint-unused-rules": {
     "eqeqeq": [
