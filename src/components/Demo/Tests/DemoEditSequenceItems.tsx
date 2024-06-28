@@ -10,7 +10,7 @@ import { TSequencePage, TSequenceElement, TSequenceSection } from 'src/entities/
 const show = {
   page: true,
   section: false,
-  question: false,
+  sequenceElement: false,
 };
 
 export const DemoEditSequenceItems: TDemoComponent = () => {
@@ -44,7 +44,7 @@ export const DemoEditSequenceItems: TDemoComponent = () => {
     <div className="DemoEditSequenceItems">
       {/*
        */}
-      {show.question && (
+      {show.sequenceElement && (
         <EditSequenceElement
           // prettier-ignore
           SequenceElementData={SequenceElementData}

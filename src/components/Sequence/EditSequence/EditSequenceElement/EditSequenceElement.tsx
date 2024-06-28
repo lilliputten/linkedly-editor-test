@@ -58,12 +58,15 @@ const EditSequenceElementContent: React.FC<{
   }
   return (
     <>
-      <SequenceNodeItemRow title="ID:" activeButtonId={`question-${sequenceElementId}-id-button`}>
+      <SequenceNodeItemRow
+        title="ID:"
+        activeButtonId={`sequenceElement-${sequenceElementId}-id-button`}
+      >
         <EditableNode
           // prettier-ignore
-          key={`question-${sequenceElementId}-id`}
-          nodeId={`question-${sequenceElementId}-id`}
-          activeButtonId={`question-${sequenceElementId}-id-button`}
+          key={`sequenceElement-${sequenceElementId}-id`}
+          nodeId={`sequenceElement-${sequenceElementId}-id`}
+          activeButtonId={`sequenceElement-${sequenceElementId}-id-button`}
           className={classNames(styles.item)}
           editableType="text"
           title="Question ID"
@@ -75,13 +78,13 @@ const EditSequenceElementContent: React.FC<{
       </SequenceNodeItemRow>
       <SequenceNodeItemRow
         title="Order Number:"
-        activeButtonId={`question-${sequenceElementId}-orderNumber-button`}
+        activeButtonId={`sequenceElement-${sequenceElementId}-orderNumber-button`}
       >
         <EditableNode
           // prettier-ignore
-          key={`question-${sequenceElementId}-orderNumber`}
-          nodeId={`question-${sequenceElementId}-orderNumber`}
-          activeButtonId={`question-${sequenceElementId}-orderNumber-button`}
+          key={`sequenceElement-${sequenceElementId}-orderNumber`}
+          nodeId={`sequenceElement-${sequenceElementId}-orderNumber`}
+          activeButtonId={`sequenceElement-${sequenceElementId}-orderNumber-button`}
           className={classNames(styles.item)}
           editableType="text"
           title="Order Number"
@@ -93,13 +96,13 @@ const EditSequenceElementContent: React.FC<{
       </SequenceNodeItemRow>
       <SequenceNodeItemRow
         title="Remark:"
-        activeButtonId={`question-${sequenceElementId}-remark-button`}
+        activeButtonId={`sequenceElement-${sequenceElementId}-remark-button`}
       >
         <EditableNode
           // prettier-ignore
-          key={`question-${sequenceElementId}-remark`}
-          nodeId={`question-${sequenceElementId}-remark`}
-          activeButtonId={`question-${sequenceElementId}-remark-button`}
+          key={`sequenceElement-${sequenceElementId}-remark`}
+          nodeId={`sequenceElement-${sequenceElementId}-remark`}
+          activeButtonId={`sequenceElement-${sequenceElementId}-remark-button`}
           className={classNames(styles.item)}
           editableType="textarea"
           title="Remark Text"
@@ -112,13 +115,13 @@ const EditSequenceElementContent: React.FC<{
       </SequenceNodeItemRow>
       <SequenceNodeItemRow
         title="Type:"
-        activeButtonId={`question-${sequenceElementId}-type-button`}
+        activeButtonId={`sequenceElement-${sequenceElementId}-type-button`}
       >
         <EditableNode
           // prettier-ignore
-          key={`question-${sequenceElementId}-type`}
-          nodeId={`question-${sequenceElementId}-type`}
-          activeButtonId={`question-${sequenceElementId}-type-button`}
+          key={`sequenceElement-${sequenceElementId}-type`}
+          nodeId={`sequenceElement-${sequenceElementId}-type`}
+          activeButtonId={`sequenceElement-${sequenceElementId}-type-button`}
           className={classNames(styles.item)}
           editableType="select"
           selectOptions={questionEditableTypeOptions}
@@ -177,7 +180,7 @@ export const EditSequenceElement: React.FC<TEditSequenceElementProps> = (props) 
     return (
       <EditableNode
         // prettier-ignore
-        nodeId={`question-${sequenceElementId}-prefix`}
+        nodeId={`sequenceElement-${sequenceElementId}-prefix`}
         editableType="text"
         title="Display Number"
         value={displayNumber}
@@ -191,7 +194,7 @@ export const EditSequenceElement: React.FC<TEditSequenceElementProps> = (props) 
     return (
       <EditableNode
         // prettier-ignore
-        nodeId={`question-${sequenceElementId}-text`}
+        nodeId={`sequenceElement-${sequenceElementId}-text`}
         editableType="text"
         title="Question Text"
         value={text}
@@ -203,7 +206,7 @@ export const EditSequenceElement: React.FC<TEditSequenceElementProps> = (props) 
   }, [sequenceElementId, text, handleChange]);
   return (
     <SequenceNode
-      nodeType="question"
+      nodeType="sequenceElement"
       nodeId={sequenceElementId}
       className={classNames(className, styles.root)}
       indent
@@ -215,21 +218,24 @@ export const EditSequenceElement: React.FC<TEditSequenceElementProps> = (props) 
         icon="[O]"
         toolbar="[TOOLBAR]"
       />
-      <SequenceNodeOwnContent nodeBaseType="question-own-content" className={styles.nodeOwnContent}>
+      <SequenceNodeOwnContent
+        nodeBaseType="sequenceElement-own-content"
+        className={styles.nodeOwnContent}
+      >
         <EditSequenceElementContent
           SequenceElementData={SequenceElementData}
           handleChange={handleChange}
         />
       </SequenceNodeOwnContent>
       <SequenceNodeFoldedContent
-        nodeBaseType="question-content"
+        nodeBaseType="sequenceElement-content"
         className={styles.nodeFoldedContent}
       >
         {/* // XXX: To show remark here or below the header?
         <EditableNode
           // prettier-ignore
-          key={`question-${sequenceElementId}-remark`}
-          nodeId={`question-${sequenceElementId}-remark`}
+          key={`sequenceElement-${sequenceElementId}-remark`}
+          nodeId={`sequenceElement-${sequenceElementId}-remark`}
           editableType="textarea"
           title="Remark Text"
           value={remark || ''}
