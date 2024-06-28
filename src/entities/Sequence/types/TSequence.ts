@@ -24,7 +24,7 @@ export interface TSequencePage extends TSequenceOrderedItem {
 }
 
 /** Section or sequence node
- * Sections can contain both questions and sections, recoursivcely
+ * Sections can contain both sequences and sections, recoursivcely
  */
 export type TSequenceItem = TSequenceElement | TSequenceSection;
 export type TSequenceGenericItem = TSequence | TSequencePage | TSequenceItem;

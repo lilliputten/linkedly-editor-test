@@ -4,12 +4,12 @@ import { TEditableNodeType } from './TEditableNodeType';
 import { TEditableNodeSelectItem } from './TEditableNodeBaseProps';
 import { sequenceElementTypeNames } from 'src/entities/Sequence/constants';
 
-export const questionEditableTypes: Record<TSequenceElementType, TEditableNodeType> = {
+export const sequenceEditableTypes: Record<TSequenceElementType, TEditableNodeType> = {
   [TSequenceElementType.TextField]: 'text',
   [TSequenceElementType.YesNo]: 'select',
 };
 
-export const questionEditableTypeOptions: TEditableNodeSelectItem<TSequenceElementType>[] = [
+export const sequenceEditableTypeOptions: TEditableNodeSelectItem<TSequenceElementType>[] = [
   {
     value: TSequenceElementType.TextField,
     name: sequenceElementTypeNames[TSequenceElementType.TextField],

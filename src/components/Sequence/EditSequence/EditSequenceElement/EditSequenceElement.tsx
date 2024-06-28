@@ -15,7 +15,7 @@ import {
   EditableNode,
   TEditableNodeChangeParams,
 } from 'src/components/Sequence/EditableNode/EditableNode';
-import { questionEditableTypeOptions } from 'src/components/Sequence/EditableNode/types/TSequenceElementEditableType';
+import { sequenceEditableTypeOptions } from 'src/components/Sequence/EditableNode/types/TSequenceElementEditableType';
 
 import styles from './EditSequenceElement.module.scss';
 
@@ -47,7 +47,7 @@ const EditSequenceElementContent: React.FC<{
     // prettier-ignore
     return (
       <>
-        <SequenceNodeTitle>Question {sequenceElementId}</SequenceNodeTitle>
+        <SequenceNodeTitle>Sequence Element {sequenceElementId}</SequenceNodeTitle>
         <div><strong>typeId:</strong> {typeId}</div>
         <div><strong>orderNumber:</strong> {orderNumber}</div>
         <div><strong>displayNumber:</strong> {displayNumber}</div>
@@ -69,7 +69,7 @@ const EditSequenceElementContent: React.FC<{
           activeButtonId={`sequenceElement-${sequenceElementId}-id-button`}
           className={classNames(styles.item)}
           editableType="text"
-          title="Question ID"
+          title="Sequence Element ID"
           value={sequenceElementId || ''}
           valueId="sequenceElementId"
           onChange={handleChange}
@@ -124,8 +124,8 @@ const EditSequenceElementContent: React.FC<{
           activeButtonId={`sequenceElement-${sequenceElementId}-type-button`}
           className={classNames(styles.item)}
           editableType="select"
-          selectOptions={questionEditableTypeOptions}
-          title="Question Type"
+          selectOptions={sequenceEditableTypeOptions}
+          title="Sequence Element Type"
           value={typeId}
           valueId="typeId"
           onChange={handleChange}
@@ -196,7 +196,7 @@ export const EditSequenceElement: React.FC<TEditSequenceElementProps> = (props) 
         // prettier-ignore
         nodeId={`sequenceElement-${sequenceElementId}-text`}
         editableType="text"
-        title="Question Text"
+        title="Sequence Element Text"
         value={text}
         valueId="text"
         onChange={handleChange}
