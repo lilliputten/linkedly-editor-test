@@ -15,7 +15,7 @@ import {
   EditableNode,
   TEditableNodeChangeParams,
 } from 'src/components/Sequence/EditableNode/EditableNode';
-import { questionEditableTypeOptions } from 'src/components/Sequence/EditableNode/types/TQuestionEditableType';
+import { questionEditableTypeOptions } from 'src/components/Sequence/EditableNode/types/TSequenceElementEditableType';
 
 import styles from './EditSequenceElement.module.scss';
 

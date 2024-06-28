@@ -2,7 +2,7 @@ import { TSequenceElementType } from 'src/entities/Sequence/types/TSequenceEleme
 
 import { TEditableNodeType } from './TEditableNodeType';
 import { TEditableNodeSelectItem } from './TEditableNodeBaseProps';
-import { questionTypeNames } from 'src/entities/Sequence/constants';
+import { sequenceElementTypeNames } from 'src/entities/Sequence/constants';
 
 export const questionEditableTypes: Record<TSequenceElementType, TEditableNodeType> = {
   [TSequenceElementType.TextField]: 'text',
@@ -12,7 +12,7 @@ export const questionEditableTypes: Record<TSequenceElementType, TEditableNodeTy
 export const questionEditableTypeOptions: TEditableNodeSelectItem<TSequenceElementType>[] = [
   {
     value: TSequenceElementType.TextField,
-    name: questionTypeNames[TSequenceElementType.TextField],
+    name: sequenceElementTypeNames[TSequenceElementType.TextField],
   },
-  { value: TSequenceElementType.YesNo, name: questionTypeNames[TSequenceElementType.YesNo] },
+  { value: TSequenceElementType.YesNo, name: sequenceElementTypeNames[TSequenceElementType.YesNo] },
 ];
