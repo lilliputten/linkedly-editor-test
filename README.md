@@ -1,6 +1,6 @@
 <!--
 @since 2024.05.07, 19:34
-@changed 2024.05.07, 19:34
+@changed 2024.06.28, 17:08
 -->
 
 # linkedly-editor-test
@@ -21,7 +21,7 @@ TODO: Add the project description.
 
 Repository: https://github.com/lilliputten/linkedly-editor-test
 
-Demo deploy server (with a recent build): http://linkedly-editor-test.lilliputten.ru/
+Demo deploy server (with a recent build): http://linkedly-editor-test.lilliputten.com/ (TODO!)
 
 ## Project workflow
 

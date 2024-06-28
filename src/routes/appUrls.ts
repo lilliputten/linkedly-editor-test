@@ -7,7 +7,7 @@ export const startRoute = 'start';
 export const testRoute = 'test';
 
 export const mainRoute = 'main';
-export const mainSurveyRoute = 'survey';
+export const mainCampaignRoute = 'campaign';
 
 // TODO: Add pages:
-// - Select survey page ('account')
+// - Select campaign page ('account')

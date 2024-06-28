@@ -14,7 +14,7 @@ export function MainMenu(props: TPropsWithClassName) {
     <Paper square elevation={3} className={classNames(className, styles.root)}>
       <Box px={adaptivePageXPadding} py={1.2}>
         {/* <Box>MainMenu</Box> */}
-        <RouterLink to="/main">Surveys list</RouterLink>
+        <RouterLink to="/main">Campaigns list</RouterLink>
       </Box>
     </Paper>
   );

@@ -3,7 +3,13 @@ import { createServer, Server } from 'miragejs';
 import { IntegerSerializer } from './IntegerSerializer';
 
 import { UserModel, getAllUsers, userFactory, userSeeds } from './user';
-import { SurveyModel, getAllSurveys, getSurveyData, getSurveysList, surveySeeds } from './survey';
+import {
+  CampaignModel,
+  getAllCampaigns,
+  getCampaignData,
+  getCampaignsList,
+  campaignSeeds,
+} from './campaign';
 
 export function makeServer({ environment = 'test' } = {}) {
   const server = createServer({
@@ -17,26 +23,26 @@ export function makeServer({ environment = 'test' } = {}) {
 
     factories: {
       user: userFactory,
-      // survey: surveyFactory, // UNUSED: Data is creating from static json files (see `src/mirage-server/survey/seeds.ts`)
+      // campaign: campaignFactory, // UNUSED: Data is creating from static json files (see `src/mirage-server/campaign/seeds.ts`)
     },
 
     models: {
       // Model.extend<Partial<TUser>>({}),
       user: UserModel,
-      survey: SurveyModel,
+      campaign: CampaignModel,
     },
 
     seeds(server: Server) {
       userSeeds(server);
-      surveySeeds(server);
+      campaignSeeds(server);
     },
 
     routes() {
       this.namespace = 'api';
       this.get('users', getAllUsers);
-      this.get('surveys/all', getAllSurveys);
-      this.get('surveys/list', getSurveysList);
-      this.get('survey/:surveyId', getSurveyData);
+      this.get('campaigns/all', getAllCampaigns);
+      this.get('campaigns/list', getCampaignsList);
+      this.get('campaign/:campaignId', getCampaignData);
     },
   });
 
