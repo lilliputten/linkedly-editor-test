@@ -5,7 +5,7 @@
 
 # Linkedly editor demo
 
-- Version: 0.0.0
-- Last changes timestamp: 2024.06.28 15:03 +0300
+- Version: 0.0.1
+- Last changes timestamp: 2024.06.28 13:48 +0000
 
 TODO: Create description for the build.
