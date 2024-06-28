@@ -111,7 +111,7 @@ export const EditSequenceSection: React.FC<TEditSequenceSectionProps> = (props) 
   const {
     sectionId,
     // orderNumber,
-    // displayNumber,
+    // creditsCount,
     name,
     // remark,
     items,
@@ -195,7 +195,7 @@ export const EditSequenceSection: React.FC<TEditSequenceSectionProps> = (props) 
     <SequenceNode nodeType="section" nodeId={sectionId} className={classNames(className)} indent>
       <SequenceNodeHeader
         // prettier-ignore
-        // prefix={displayNumber}
+        // prefix={creditsCount}
         title={nameNode}
         icon="[SECTION]"
         toolbar="[TOOLBAR]"

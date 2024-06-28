@@ -32,7 +32,6 @@ export type TSequenceGenericItem = TSequence | TSequencePage | TSequenceItem;
 export interface TSequenceSection extends TSequenceOrderedItem {
   // orderNumber: number; // in `TSequenceOrderedItem`
   sectionId: TSequenceItemId;
-  displayNumber: string;
   name: string;
   remark?: string;
   // TODO: Sections should be foldable.
@@ -42,7 +41,7 @@ export interface TSequenceElement extends TSequenceOrderedItem {
   // orderNumber: number; // in `TSequenceOrderedItem`
   sequenceElementId: TSequenceItemId;
   typeId: TSequenceElementType;
-  displayNumber: string;
+  creditsCount: number;
   text: string;
   remark?: string;
   // TODO: Add other sequence fields?

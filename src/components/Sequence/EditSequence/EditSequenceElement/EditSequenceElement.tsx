@@ -38,7 +38,7 @@ const EditSequenceElementContent: React.FC<{
     sequenceElementId,
     typeId,
     orderNumber,
-    displayNumber,
+    creditsCount,
     text,
     remark,
   } = SequenceElementData;
@@ -50,7 +50,7 @@ const EditSequenceElementContent: React.FC<{
         <SequenceNodeTitle>Sequence Element {sequenceElementId}</SequenceNodeTitle>
         <div><strong>typeId:</strong> {typeId}</div>
         <div><strong>orderNumber:</strong> {orderNumber}</div>
-        <div><strong>displayNumber:</strong> {displayNumber}</div>
+        <div><strong>creditsCount:</strong> {creditsCount}</div>
         <div><strong>text:</strong> {text}</div>
         <div><strong>remark:</strong> {remark}</div>
       </>
@@ -140,7 +140,7 @@ export const EditSequenceElement: React.FC<TEditSequenceElementProps> = (props) 
   const {
     // prettier-ignore
     sequenceElementId,
-    displayNumber,
+    creditsCount,
     text,
     // remark,
     // typeId,
@@ -176,20 +176,20 @@ export const EditSequenceElement: React.FC<TEditSequenceElementProps> = (props) 
     },
     [sequenceElementId, SequenceElementData, onChange],
   );
-  const displayNumberNode = React.useMemo(() => {
+  const creditsCountNode = React.useMemo(() => {
     return (
       <EditableNode
         // prettier-ignore
         nodeId={`sequenceElement-${sequenceElementId}-prefix`}
         editableType="text"
         title="Display Number"
-        value={displayNumber}
-        valueId="displayNumber"
+        value={creditsCount}
+        valueId="creditsCount"
         onChange={handleChange}
         // noShrink
       />
     );
-  }, [sequenceElementId, displayNumber, handleChange]);
+  }, [sequenceElementId, creditsCount, handleChange]);
   const textNode = React.useMemo(() => {
     return (
       <EditableNode
@@ -213,7 +213,7 @@ export const EditSequenceElement: React.FC<TEditSequenceElementProps> = (props) 
     >
       <SequenceNodeHeader
         // prettier-ignore
-        prefix={displayNumberNode}
+        prefix={creditsCountNode}
         title={textNode}
         icon="[O]"
         toolbar="[TOOLBAR]"

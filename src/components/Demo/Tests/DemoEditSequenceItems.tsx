@@ -18,7 +18,7 @@ export const DemoEditSequenceItems: TDemoComponent = () => {
     sequenceElementId: 2,
     typeId: 1,
     orderNumber: 2,
-    displayNumber: '1.3.',
+    creditsCount: 3,
     // text: 'Fake sequence',
     text: 'Fake sequence with an extra long text data to check flex adaptive layout',
     remark:
@@ -28,7 +28,6 @@ export const DemoEditSequenceItems: TDemoComponent = () => {
   const sectionData: TSequenceSection = {
     sectionId: 18709239,
     orderNumber: 1,
-    displayNumber: '1.',
     name: 'Contact Information',
     remark:
       'Note: all information provided throughout this sequence should describe the situation as of the date of completion. Future policy initiatives should be listed under Section 9 - Future plans.',
