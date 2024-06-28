@@ -1,6 +1,6 @@
 export const sequenceNodeTypes = [
   // prettier-ignore
-  'sequenceElement',
+  'sequenceItem',
   'section',
   'page',
   'root',

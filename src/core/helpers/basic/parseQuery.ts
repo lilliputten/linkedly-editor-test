@@ -73,7 +73,7 @@ export function parseQuery(search?: string): Record<string, string> {
 
 export function makeQuery(
   params: Record<string, string | number | boolean>,
-  opts: { addSequenceElementSymbol?: boolean; useEmptyValues?: boolean } = {},
+  opts: { addSequenceItemSymbol?: boolean; useEmptyValues?: boolean } = {},
 ): string {
   let url = Object.entries(params)
     .map(([id, val]) => {
@@ -85,7 +85,7 @@ export function makeQuery(
     })
     .filter(Boolean)
     .join('&');
-  if (opts.addSequenceElementSymbol && url) {
+  if (opts.addSequenceItemSymbol && url) {
     url = '?' + url;
   }
   return url;

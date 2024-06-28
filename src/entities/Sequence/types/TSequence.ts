@@ -1,4 +1,4 @@
-import { TSequenceElementType } from './TSequenceElementType';
+import { TSequenceItemType } from './TSequenceItemType';
 
 export type TSequenceItemId = number;
 export type TSequenceId = TSequenceItemId;
@@ -16,7 +16,7 @@ export interface TSequenceOrderedItem {
   orderNumber: number;
 }
 
-// export type TSequenceItem = TSequenceElement | TSequenceSection;
+// export type TSequenceItem = TSequenceItem | TSequenceSection;
 // export type TSequenceGenericItem = TSequence | TSequenceItem;
 
 export interface TSequenceSection extends TSequenceOrderedItem {
@@ -26,7 +26,7 @@ export interface TSequenceSection extends TSequenceOrderedItem {
 }
 export interface TSequenceItem extends TSequenceOrderedItem {
   itemId: TSequenceItemId;
-  typeId?: TSequenceElementType;
+  typeId?: TSequenceItemType;
   creditsCount: number;
   text: string;
   // TODO: Other sequence fields?

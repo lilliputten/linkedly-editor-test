@@ -2,15 +2,15 @@
 //
 export const sequenceNodeSkeletonTypes = [
   // prettier-ignore
-  'sequenceElement',
+  'sequenceItem',
   'section',
   'page',
   'root',
-  'sequenceElement-content',
+  'sequenceItem-content',
   'section-content',
   'page-content',
   'root-content',
-  'sequenceElement-own-content',
+  'sequenceItem-own-content',
   'section-own-content',
   'page-own-content',
   'root-own-content',

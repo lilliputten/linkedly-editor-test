@@ -1,1 +1,1 @@
-export * from './getSequenceElementTypeName';
+export * from './getSequenceItemTypeName';
