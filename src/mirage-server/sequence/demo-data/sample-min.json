@@ -3,29 +3,19 @@
   "name": "Minimal sequence sample",
   "items": [
     {
-      "pageId": 7463886,
+      "sectionId": 18709239,
       "orderNumber": 1,
+      "name": "Interactions",
       "items": [
         {
-          "sectionId": 18709239,
-          "orderNumber": 1,
-          "name": "Interactions",
-          "items": [
-            {
-              "sequenceElementId": 2,
-              "typeId": 1,
-              "orderNumber": 2,
-              "creditsCount": 5,
-              "text": "React to post"
-            },
-            {
-              "sequenceElementId": 1022417819,
-              "typeId": 3,
-              "orderNumber": 1,
-              "creditsCount": 6,
-              "text": "Follow"
-            }
-          ]
+          "itemId": 2,
+          "creditsCount": 5,
+          "text": "React to post"
+        },
+        {
+          "itemId": 1022417819,
+          "creditsCount": 6,
+          "text": "Follow"
         }
       ]
     }

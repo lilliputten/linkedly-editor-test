@@ -5,6 +5,7 @@ import { Container } from '@mui/material';
 import { TPropsWithClassName } from 'src/core/types';
 import { Scrollable } from 'src/ui/Basic';
 import { TSequence } from 'src/entities/Sequence/types';
+import { ShowSequenceSection } from '../ShowSequenceSection';
 // import { ShowSequenceRoot } from 'src/components/Sequence/ShowSequence';
 
 export interface TShowSequenceProps extends TPropsWithClassName {
@@ -18,17 +19,25 @@ export const ShowSequence: React.FC<TShowSequenceProps> = (props) => {
     // handleChange,
     sequenceData,
   } = props;
-  // const {
-  //   // prettier-ignore
-  //   id: sequenceId,
-  //   // orderNumber,
-  // } = sequenceData;
+  const {
+    // prettier-ignore
+    id: sequenceId,
+    items: sections,
+    // orderNumber,
+  } = sequenceData;
   return (
-    <Scrollable className={classNames(className, 'ShowSequence')} fullCenter={false}>
-      <Container maxWidth="md" sx={{ my: 2 }}>
+    <Scrollable
+      data-sequence-id={sequenceId}
+      className={classNames(className, 'ShowSequenceSection')}
+      fullCenter={false}
+    >
+      <Container maxWidth="md" sx={{ my: 1 }}>
+        {sections.map((sectionData) => {
+          return <ShowSequenceSection sectionData={sectionData} />;
+        })}
         <pre>{JSON.stringify(sequenceData, null, 2)}</pre>
         {/*
-        <ShowSequenceRoot
+        <ShowSequenceSectionRoot
           // prettier-ignore
           sequenceData={sequenceData}
           onChange={handleChange}

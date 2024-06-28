@@ -1,9 +1,8 @@
-import { TSequenceElementType } from '../types/TSequenceElementType';
+import { TSequenceElementType, defaultSequenceElementType } from '../types/TSequenceElementType';
 import { sequenceElementTypeNames } from '../constants';
 
-export function getSequenceElementTypeName(typeId: TSequenceElementType) {
-  if (typeId == null) {
-    return 'Empty';
-  }
+export function getSequenceElementTypeName(
+  typeId: TSequenceElementType = defaultSequenceElementType,
+) {
   return sequenceElementTypeNames[typeId] || `Unknown (${typeId})`;
 }

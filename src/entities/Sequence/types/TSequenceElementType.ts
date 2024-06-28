@@ -1,4 +1,4 @@
 export enum TSequenceElementType {
-  TextField = 1,
-  YesNo = 3,
+  Default = 1,
 }
+export const defaultSequenceElementType = TSequenceElementType.Default;

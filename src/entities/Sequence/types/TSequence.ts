@@ -7,7 +7,7 @@ export type TSequencePageId = TSequenceItemId;
 export interface TSequence {
   id: TSequenceId;
   name?: string; // Optional? The sequence name.
-  items: TSequencePage[];
+  items: TSequenceSection[];
 }
 
 export type TSequenceRoot = TSequence;
@@ -16,33 +16,18 @@ export interface TSequenceOrderedItem {
   orderNumber: number;
 }
 
-export interface TSequencePage extends TSequenceOrderedItem {
-  // orderNumber: number; // in `TSequenceOrderedItem`
-  pageId: TSequencePageId;
-  name?: string; // Optional? The page name.
-  items: TSequenceSection[];
-}
-
-/** Section or sequence node
- * Sections can contain both sequences and sections, recoursivcely
- */
-export type TSequenceItem = TSequenceElement | TSequenceSection;
-export type TSequenceGenericItem = TSequence | TSequencePage | TSequenceItem;
+// export type TSequenceItem = TSequenceElement | TSequenceSection;
+// export type TSequenceGenericItem = TSequence | TSequenceItem;
 
 export interface TSequenceSection extends TSequenceOrderedItem {
-  // orderNumber: number; // in `TSequenceOrderedItem`
   sectionId: TSequenceItemId;
   name: string;
-  remark?: string;
-  // TODO: Sections should be foldable.
   items: TSequenceItem[];
 }
-export interface TSequenceElement extends TSequenceOrderedItem {
-  // orderNumber: number; // in `TSequenceOrderedItem`
-  sequenceElementId: TSequenceItemId;
-  typeId: TSequenceElementType;
+export interface TSequenceItem extends TSequenceOrderedItem {
+  itemId: TSequenceItemId;
+  typeId?: TSequenceElementType;
   creditsCount: number;
   text: string;
-  remark?: string;
-  // TODO: Add other sequence fields?
+  // TODO: Other sequence fields?
 }
