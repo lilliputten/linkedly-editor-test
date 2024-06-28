@@ -1,0 +1,22 @@
+.leftPanel,
+.rightPanelContent,
+.mainScrollable,
+.mainPanel {
+  /*!KEEP*/
+}
+.root {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.mainPanel {
+  position: relative;
+  background-color: color.change(gray, $alpha: 0.1);
+  flex: 1;
+}
+
+.rightPanel {
+  position: relative;
+  width: 320px;
+}

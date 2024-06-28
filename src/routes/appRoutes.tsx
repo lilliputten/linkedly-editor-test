@@ -21,6 +21,7 @@ import { MainCampaignsList } from 'src/pages/main/MainCampaignsList';
 import { StartPage } from 'src/pages/app/StartPage';
 import { TestPage } from 'src/pages/app/TestPage';
 import { WaitingPage } from 'src/pages/app/WaitingPage';
+import { MainEditCampaignPageLayout } from 'src/pages/main/MainEditCampaignPageLayout';
 
 /** Routes
  * @see src/routes/appUrls.ts
@@ -40,7 +41,10 @@ export const routes: RouteObject[] = [
         children: [
           // prettier-ignore
           { index: true, element: <MainCampaignsList /> },
-          { path: makeUrl([mainCampaignRoute, ':campaignId']), element: <MainEditCampaignPage /> },
+          {
+            path: makeUrl([mainCampaignRoute, ':campaignId']),
+            element: <MainEditCampaignPageLayout />,
+          },
           { path: startRoute, element: <TestPage /> },
         ],
       },

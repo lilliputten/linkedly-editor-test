@@ -86,7 +86,7 @@ export class AppSessionStore {
   @observable finished: boolean = false;
   @observable showHelp: boolean = false;
   @observable showDemo: boolean = false;
-  @observable logged: boolean = false;
+  @observable logged: boolean = true; // DEBUG!
   @observable ready: boolean = false;
   @observable loading: boolean = false;
   @observable status: TAppSessionStoreStatus;
