@@ -1,14 +1,14 @@
 <!--
 @since 2024.05.07, 19:34
-@changed 2024.05.07, 19:34
+@changed 2024.06.28, 17:08
 -->
 
-# axiomica-mvp-2024
+# linkedly-editor-test
 
-The axiomica application.
+Linkedly editor demo.
 
-- Version: 0.0.3
-- Last changes timestamp: 2024.06.05 00:48 +0300
+- Version: 0.0.1
+- Last changes timestamp: 2024.06.28 13:48 +0000
 
 TODO: Add the project description.
 
@@ -19,9 +19,9 @@ TODO: Add the project description.
 
 ## Resources
 
-Repository: https://github.com/lilliputten/axiomica-mvp-2024
+Repository: https://github.com/lilliputten/linkedly-editor-test
 
-Demo deploy server (with a recent build): http://axiomica-mvp-2024.lilliputten.ru/
+Demo deploy server (with a recent build): http://linkedly-editor-test.lilliputten.com/ (TODO!)
 
 ## Project workflow
 

@@ -1,5 +1,5 @@
 import { TDemoComponent } from 'src/core/types';
-import { EditableNode } from 'src/components/Survey/EditableNode/EditableNode';
+import { EditableNode } from 'src/components/Campaign/EditableNode/EditableNode';
 
 export const DemoEditableNode: TDemoComponent = () => {
   return (

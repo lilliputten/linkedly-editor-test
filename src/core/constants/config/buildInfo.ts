@@ -9,7 +9,7 @@ const {
   currentTimeTag, // "240210-2104"
   gitBranch, // "1-project-environment"
   gitCommitHash, // "ef31eab"
-  projectName, // "axiomica-mvp-2024"
+  projectName, // "linkedly-editor-test"
   timestamp, // "2024.02.10 19:18 +0700"
   timetag, // "240210-1918"
   version, // "0.0.0"
