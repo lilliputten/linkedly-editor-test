@@ -9,16 +9,16 @@ import { useCommonAppNavigation } from 'src/core/hooks/routes/useCommonAppNaviga
 import { TPropsWithClassName } from 'src/core/types';
 import { ThemedLoaderSplash, Scrollable } from 'src/ui/Basic';
 import { useLogged } from 'src/store/AppSessionStore';
-import { TSequenceId, TSequence, TSequenceNodeChangeParams } from 'src/entities/Sequence/types';
+import { TSequenceId, TSequence } from 'src/entities/Sequence/types';
 
 import { LeftMenu } from 'src/components/App/LeftMenu';
-import { MainEditSequencePage } from 'src/pages/main/MainEditSequencePage';
+import { MainShowSequencePage } from 'src/pages/main/MainShowSequencePage';
 
-import styles from './MainEditSequencePageLayout.module.scss';
+import styles from './MainShowSequencePageLayout.module.scss';
 
-export interface TMainEditSequencePageLayoutProps extends TPropsWithClassName {}
+export interface TMainShowSequencePageLayoutProps extends TPropsWithClassName {}
 
-export const MainEditSequencePageLayout: React.FC<TPropsWithClassName> = observer((props) => {
+export const MainShowSequencePageLayout: React.FC<TPropsWithClassName> = observer((props) => {
   const { className } = props;
   const routerParams = useParams();
   const sequenceId: TSequenceId = Number(routerParams.sequenceId);
@@ -43,17 +43,6 @@ export const MainEditSequencePageLayout: React.FC<TPropsWithClassName> = observe
         setReady(true);
       });
   }, [isLogged, sequenceId]);
-  // TODO: Use data store
-  const handleChange = React.useCallback((params: TSequenceNodeChangeParams) => {
-    const {
-      nodeData, // {id: 111, name: 'Minimal sequence sample', items: Array(1)}
-      // nodeId, // 111
-      // value, // [{…}]
-      // valueId, // "items"
-    } = params;
-    setSequenceData(nodeData as TSequence);
-    setHasChanged(true);
-  }, []);
   const hasData = ready && !!sequenceData;
   return (
     <>
@@ -80,9 +69,9 @@ export const MainEditSequencePageLayout: React.FC<TPropsWithClassName> = observe
         </Stack>
         <Stack className={styles.rightPanel}>
           {!!sequenceData && (
-            <MainEditSequencePage
+            <MainShowSequencePage
               className={styles.rightPanelContent}
-              handleChange={handleChange}
+              // handleChange={handleChange}
               sequenceData={sequenceData}
             />
           )}
