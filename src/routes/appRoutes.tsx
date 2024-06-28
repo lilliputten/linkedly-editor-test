@@ -4,7 +4,7 @@ import { makeUrl } from 'src/core/helpers/urls';
 
 import {
   demoRoute,
-  loginRoute,
+  // loginRoute,
   mainRoute,
   mainCampaignRoute,
   rootUrl,
@@ -14,7 +14,7 @@ import {
 
 import { AppRootLayout } from 'src/pages/app/AppRootLayout';
 import { DemoPage } from 'src/pages/app/DemoPage';
-import { LoginPage } from 'src/pages/app/LoginPage';
+// import { LoginPage } from 'src/pages/app/LoginPage';
 import { MainEditCampaignPage } from 'src/pages/main/MainEditCampaignPage';
 import { MainLayout } from 'src/pages/main/MainLayout';
 import { MainCampaignsList } from 'src/pages/main/MainCampaignsList';
@@ -33,7 +33,7 @@ export const routes: RouteObject[] = [
     // loader
     children: [
       { index: true, element: <WaitingPage /> },
-      { path: loginRoute, element: <LoginPage /> },
+      // { path: loginRoute, element: <LoginPage /> },
       {
         path: mainRoute,
         element: <MainLayout />,
