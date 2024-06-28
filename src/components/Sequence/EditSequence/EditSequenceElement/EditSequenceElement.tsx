@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import { TSequenceNodeChangeParams, TSequenceQuestion } from 'src/entities/Sequence/types';
+import { TSequenceNodeChangeParams, TSequenceElement } from 'src/entities/Sequence/types';
 import {
   SequenceNode,
   SequenceNodeFoldedContent,
@@ -17,10 +17,10 @@ import {
 } from 'src/components/Sequence/EditableNode/EditableNode';
 import { questionEditableTypeOptions } from 'src/components/Sequence/EditableNode/types/TQuestionEditableType';
 
-import styles from './EditSequenceQuestion.module.scss';
+import styles from './EditSequenceElement.module.scss';
 
-interface TEditSequenceQuestionProps {
-  questionData: TSequenceQuestion;
+interface TEditSequenceElementProps {
+  questionData: TSequenceElement;
   className?: string;
   onChange?: (params: TSequenceNodeChangeParams) => void;
 }
@@ -28,8 +28,8 @@ interface TEditSequenceQuestionProps {
 /** DEBUG: Show plain question data */
 const debugShowRawQuestion = false;
 
-const EditSequenceQuestionContent: React.FC<{
-  questionData: TSequenceQuestion;
+const EditSequenceElementContent: React.FC<{
+  questionData: TSequenceElement;
   handleChange: (params: TEditableNodeChangeParams) => void;
 }> = (props) => {
   const { questionData, handleChange } = props;
@@ -42,7 +42,7 @@ const EditSequenceQuestionContent: React.FC<{
     text,
     remark,
   } = questionData;
-  // const typeText = getQuestionTypeName(typeId);
+  // const typeText = getSequenceElementTypeName(typeId);
   if (debugShowRawQuestion) {
     // prettier-ignore
     return (
@@ -126,7 +126,7 @@ const EditSequenceQuestionContent: React.FC<{
   );
 };
 
-export const EditSequenceQuestion: React.FC<TEditSequenceQuestionProps> = (props) => {
+export const EditSequenceElement: React.FC<TEditSequenceElementProps> = (props) => {
   const { questionData, className, onChange } = props;
   const {
     // prettier-ignore
@@ -148,9 +148,9 @@ export const EditSequenceQuestion: React.FC<TEditSequenceQuestionProps> = (props
         // eslint-disable-next-line no-debugger
         debugger;
       }
-      const id = valueId as keyof TSequenceQuestion;
+      const id = valueId as keyof TSequenceElement;
       // Create updated question data object...
-      const changedQuestionData: TSequenceQuestion = { ...questionData, [id]: value };
+      const changedQuestionData: TSequenceElement = { ...questionData, [id]: value };
       // Is reorder required for uplevel container? (TODO: Track the current node in viewpoint on re-order?)
       const reorderRequired = valueId === 'orderNumber';
       // Construct parameters data for up-level change handler
@@ -210,7 +210,7 @@ export const EditSequenceQuestion: React.FC<TEditSequenceQuestionProps> = (props
         toolbar="[TOOLBAR]"
       />
       <SequenceNodeOwnContent nodeBaseType="question-own-content" className={styles.nodeOwnContent}>
-        <EditSequenceQuestionContent questionData={questionData} handleChange={handleChange} />
+        <EditSequenceElementContent questionData={questionData} handleChange={handleChange} />
       </SequenceNodeOwnContent>
       <SequenceNodeFoldedContent
         nodeBaseType="question-content"

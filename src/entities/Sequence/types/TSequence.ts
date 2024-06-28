@@ -1,4 +1,4 @@
-import { TQuestionType } from './TQuestionType';
+import { TSequenceElementType } from './TSequenceElementType';
 
 export type TSequenceItemId = number;
 export type TSequenceId = TSequenceItemId;
@@ -26,7 +26,7 @@ export interface TSequencePage extends TSequenceOrderedItem {
 /** Section or question node
  * Sections can contain both questions and sections, recoursivcely
  */
-export type TSequenceItem = TSequenceQuestion | TSequenceSection;
+export type TSequenceItem = TSequenceElement | TSequenceSection;
 export type TSequenceGenericItem = TSequence | TSequencePage | TSequenceItem;
 
 export interface TSequenceSection extends TSequenceOrderedItem {
@@ -38,10 +38,10 @@ export interface TSequenceSection extends TSequenceOrderedItem {
   // TODO: Sections should be foldable.
   items: TSequenceItem[];
 }
-export interface TSequenceQuestion extends TSequenceOrderedItem {
+export interface TSequenceElement extends TSequenceOrderedItem {
   // orderNumber: number; // in `TSequenceOrderedItem`
   questionId: TSequenceItemId;
-  typeId: TQuestionType;
+  typeId: TSequenceElementType;
   displayNumber: string;
   text: string;
   remark?: string;

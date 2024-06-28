@@ -1,1 +1,1 @@
-export * from './getQuestionTypeName';
+export * from './getSequenceElementTypeName';

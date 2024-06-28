@@ -6,11 +6,11 @@ import {
   TSequence,
   TSequenceNodeChangeParams,
   TSequencePage,
-  TSequenceQuestion,
+  TSequenceElement,
   TSequenceSection,
 } from 'src/entities/Sequence/types';
 
-const defaultQuestionData: TSequenceQuestion = {
+const defaultQuestionData: TSequenceElement = {
   questionId: 2,
   typeId: 1,
   orderNumber: 2,

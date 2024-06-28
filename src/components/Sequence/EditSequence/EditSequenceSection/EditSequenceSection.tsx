@@ -4,10 +4,10 @@ import classNames from 'classnames';
 import {
   TSequenceItem,
   TSequenceNodeChangeParams,
-  TSequenceQuestion,
+  TSequenceElement,
   TSequenceSection,
 } from 'src/entities/Sequence/types';
-import { EditSequenceQuestion } from 'src/components/Sequence/EditSequence/EditSequenceQuestion';
+import { EditSequenceElement } from 'src/components/Sequence/EditSequence/EditSequenceElement';
 import {
   SequenceNode,
   SequenceNodeFoldedContent,
@@ -35,11 +35,9 @@ interface TSequenceItemProps {
 
 /** Render folderd section or question */
 const EditSequenceItem: React.FC<TSequenceItemProps> = ({ itemData, onChange }) => {
-  const isQuestion = !!(itemData as TSequenceQuestion).questionId;
+  const isQuestion = !!(itemData as TSequenceElement).questionId;
   if (isQuestion) {
-    return (
-      <EditSequenceQuestion questionData={itemData as TSequenceQuestion} onChange={onChange} />
-    );
+    return <EditSequenceElement questionData={itemData as TSequenceElement} onChange={onChange} />;
   } else {
     return <EditSequenceSection sectionData={itemData as TSequenceSection} onChange={onChange} />;
   }
@@ -121,10 +119,10 @@ export const EditSequenceSection: React.FC<TEditSequenceSectionProps> = (props) 
   const handleItemChange = React.useCallback(
     (params: TSequenceNodeChangeParams) => {
       const { nodeId, nodeData } = params;
-      // const isQuestion = !!(nodeData as TSequenceQuestion).questionId;
+      // const isQuestion = !!(nodeData as TSequenceElement).questionId;
       const changedItems = sectionData.items.map((item) => {
         if (
-          nodeId === (item as TSequenceQuestion).questionId ||
+          nodeId === (item as TSequenceElement).questionId ||
           nodeId === (item as TSequenceSection).sectionId
         ) {
           return nodeData as TSequenceItem;
@@ -206,7 +204,7 @@ export const EditSequenceSection: React.FC<TEditSequenceSectionProps> = (props) 
       <SequenceNodeFoldedContent nodeBaseType="section-content">
         {sortedItems.map((itemData) => {
           const key =
-            (itemData as TSequenceQuestion).questionId || (itemData as TSequenceSection).sectionId;
+            (itemData as TSequenceElement).questionId || (itemData as TSequenceSection).sectionId;
           return <EditSequenceItem key={key} itemData={itemData} onChange={handleItemChange} />;
         })}
       </SequenceNodeFoldedContent>

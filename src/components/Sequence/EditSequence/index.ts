@@ -1,4 +1,4 @@
 export * from './EditSequencePage';
-export * from './EditSequenceQuestion';
+export * from './EditSequenceElement';
 export * from './EditSequenceRoot';
 export * from './EditSequenceSection';

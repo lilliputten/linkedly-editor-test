@@ -1,6 +1,6 @@
-import { TQuestionType } from '../types/TQuestionType';
+import { TSequenceElementType } from '../types/TSequenceElementType';
 
-export const questionTypeNames: Record<TQuestionType, string> = {
-  [TQuestionType.TextField]: 'Text Field',
-  [TQuestionType.YesNo]: 'Yes / No',
+export const questionTypeNames: Record<TSequenceElementType, string> = {
+  [TSequenceElementType.TextField]: 'Text Field',
+  [TSequenceElementType.YesNo]: 'Yes / No',
 };

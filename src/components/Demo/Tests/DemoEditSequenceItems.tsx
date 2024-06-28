@@ -1,10 +1,10 @@
 import { TDemoComponent } from 'src/core/types';
 import {
   EditSequencePage,
-  EditSequenceQuestion,
+  EditSequenceElement,
   EditSequenceSection,
 } from 'src/components/Sequence/EditSequence';
-import { TSequencePage, TSequenceQuestion, TSequenceSection } from 'src/entities/Sequence/types';
+import { TSequencePage, TSequenceElement, TSequenceSection } from 'src/entities/Sequence/types';
 
 /** Which demos to show? */
 const show = {
@@ -14,7 +14,7 @@ const show = {
 };
 
 export const DemoEditSequenceItems: TDemoComponent = () => {
-  const questionData: TSequenceQuestion = {
+  const questionData: TSequenceElement = {
     questionId: 2,
     typeId: 1,
     orderNumber: 2,
@@ -45,7 +45,7 @@ export const DemoEditSequenceItems: TDemoComponent = () => {
       {/*
        */}
       {show.question && (
-        <EditSequenceQuestion
+        <EditSequenceElement
           // prettier-ignore
           questionData={questionData}
         />

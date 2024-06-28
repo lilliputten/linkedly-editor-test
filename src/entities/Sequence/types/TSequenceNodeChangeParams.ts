@@ -2,7 +2,7 @@ import { TSequenceGenericItem, TSequenceItemId } from 'src/entities/Sequence/typ
 import { TEditableNodeChangeParams } from 'src/components/Sequence/EditableNode/EditableNode';
 
 export interface TSequenceNodeChangeParams {
-  nodeData: TSequenceGenericItem; // TSequence | TSequencePage | TSequenceSection | TSequenceQuestion;
+  nodeData: TSequenceGenericItem; // TSequence | TSequencePage | TSequenceSection | TSequenceElement;
   nodeId: TSequenceItemId;
   reorderRequired?: boolean;
   valueId: TEditableNodeChangeParams['valueId'];

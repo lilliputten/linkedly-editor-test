@@ -1,7 +1,7 @@
-import { TQuestionType } from '../types/TQuestionType';
+import { TSequenceElementType } from '../types/TSequenceElementType';
 import { questionTypeNames } from '../constants';
 
-export function getQuestionTypeName(typeId: TQuestionType) {
+export function getSequenceElementTypeName(typeId: TSequenceElementType) {
   if (typeId == null) {
     return 'Empty';
   }
