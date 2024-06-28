@@ -4,12 +4,12 @@ import { IntegerSerializer } from './IntegerSerializer';
 
 import { UserModel, getAllUsers, userFactory, userSeeds } from './user';
 import {
-  CampaignModel,
-  getAllCampaigns,
-  getCampaignData,
-  getCampaignsList,
-  campaignSeeds,
-} from './campaign';
+  SequenceModel,
+  getAllSequences,
+  getSequenceData,
+  getSequencesList,
+  sequenceSeeds,
+} from './sequence';
 
 export function makeServer({ environment = 'test' } = {}) {
   const server = createServer({
@@ -23,26 +23,26 @@ export function makeServer({ environment = 'test' } = {}) {
 
     factories: {
       user: userFactory,
-      // campaign: campaignFactory, // UNUSED: Data is creating from static json files (see `src/mirage-server/campaign/seeds.ts`)
+      // sequence: sequenceFactory, // UNUSED: Data is creating from static json files (see `src/mirage-server/sequence/seeds.ts`)
     },
 
     models: {
       // Model.extend<Partial<TUser>>({}),
       user: UserModel,
-      campaign: CampaignModel,
+      sequence: SequenceModel,
     },
 
     seeds(server: Server) {
       userSeeds(server);
-      campaignSeeds(server);
+      sequenceSeeds(server);
     },
 
     routes() {
       this.namespace = 'api';
       this.get('users', getAllUsers);
-      this.get('campaigns/all', getAllCampaigns);
-      this.get('campaigns/list', getCampaignsList);
-      this.get('campaign/:campaignId', getCampaignData);
+      this.get('sequences/all', getAllSequences);
+      this.get('sequences/list', getSequencesList);
+      this.get('sequence/:sequenceId', getSequenceData);
     },
   });
 

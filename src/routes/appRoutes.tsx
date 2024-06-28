@@ -6,7 +6,7 @@ import {
   demoRoute,
   loginRoute,
   mainRoute,
-  mainCampaignRoute,
+  mainSequenceRoute,
   rootUrl,
   startRoute,
   testRoute,
@@ -15,13 +15,13 @@ import {
 import { AppRootLayout } from 'src/pages/app/AppRootLayout';
 import { DemoPage } from 'src/pages/app/DemoPage';
 import { LoginPage } from 'src/pages/app/LoginPage';
-// import { MainEditCampaignPage } from 'src/pages/main/MainEditCampaignPage';
+// import { MainEditSequencePage } from 'src/pages/main/MainEditSequencePage';
 import { MainLayout } from 'src/pages/main/MainLayout';
-import { MainCampaignsList } from 'src/pages/main/MainCampaignsList';
+import { MainSequencesList } from 'src/pages/main/MainSequencesList';
 import { StartPage } from 'src/pages/app/StartPage';
 import { TestPage } from 'src/pages/app/TestPage';
 import { WaitingPage } from 'src/pages/app/WaitingPage';
-import { MainEditCampaignPageLayout } from 'src/pages/main/MainEditCampaignPageLayout';
+import { MainEditSequencePageLayout } from 'src/pages/main/MainEditSequencePageLayout';
 
 /** Routes
  * @see src/routes/appUrls.ts
@@ -40,10 +40,10 @@ export const routes: RouteObject[] = [
         element: <MainLayout />,
         children: [
           // prettier-ignore
-          { index: true, element: <MainCampaignsList /> },
+          { index: true, element: <MainSequencesList /> },
           {
-            path: makeUrl([mainCampaignRoute, ':campaignId']),
-            element: <MainEditCampaignPageLayout />,
+            path: makeUrl([mainSequenceRoute, ':sequenceId']),
+            element: <MainEditSequencePageLayout />,
           },
           { path: startRoute, element: <TestPage /> },
         ],

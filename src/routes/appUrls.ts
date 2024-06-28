@@ -7,7 +7,7 @@ export const startRoute = 'start';
 export const testRoute = 'test';
 
 export const mainRoute = 'main';
-export const mainCampaignRoute = 'campaign';
+export const mainSequenceRoute = 'sequence';
 
 // TODO: Add pages:
-// - Select campaign page ('account')
+// - Select sequence page ('account')

@@ -5,8 +5,8 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import { TDemoComponent } from 'src/core/types';
 import { DemoCheckDataStore } from './Tests/DemoCheckDataStore';
 import { DemoEditableNode } from './Tests/DemoEditableNode';
-import { DemoEditCampaignItems } from './Tests/DemoEditCampaignItems';
-import { DemoEditCampaign } from './Tests/DemoEditCampaign';
+import { DemoEditSequenceItems } from './Tests/DemoEditSequenceItems';
+import { DemoEditSequence } from './Tests/DemoEditSequence';
 
 import styles from './Demo.module.scss';
 
@@ -18,8 +18,8 @@ interface TOption {
 const demoComponents: Record<string, TDemoComponent> = {
   DemoCheckDataStore: DemoCheckDataStore,
   DemoEditableNode: DemoEditableNode,
-  DemoEditCampaignItems: DemoEditCampaignItems,
-  DemoEditCampaign: DemoEditCampaign,
+  DemoEditSequenceItems: DemoEditSequenceItems,
+  DemoEditSequence: DemoEditSequence,
 };
 const demoTexts: Record<string, string> = {
   // DemoCheckDataStore: 'Check data store',
