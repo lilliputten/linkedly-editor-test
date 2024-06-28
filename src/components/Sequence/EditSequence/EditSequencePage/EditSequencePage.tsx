@@ -115,7 +115,7 @@ export const EditSequencePage: React.FC<TEditSequencePageProps> = (props) => {
         debugger;
       }
       const id = valueId as keyof TSequencePage;
-      // Create updated question data object...
+      // Create updated sequence data object...
       const changedPageData: TSequencePage = { ...pageData, [id]: value };
       // Is reorder required for uplevel container? (TODO: Track the current node in viewpoint on re-order?)
       const reorderRequired = valueId === 'orderNumber';

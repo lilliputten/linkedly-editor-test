@@ -18,7 +18,7 @@
               "typeId": 1,
               "orderNumber": 2,
               "displayNumber": "1.3.",
-              "text": "Fake question",
+              "text": "Fake sequence",
               "remark": "By \"adding\" new fields, you will automatically import references entered in previous years. If field is empty, please complete it with relevant reference."
             },
             {
@@ -37,7 +37,7 @@
                   "sequenceElementId": 131,
                   "typeId": 1,
                   "displayNumber": "1.3.1",
-                  "text": "Folded question"
+                  "text": "Folded sequence"
                 }
               ]
             }

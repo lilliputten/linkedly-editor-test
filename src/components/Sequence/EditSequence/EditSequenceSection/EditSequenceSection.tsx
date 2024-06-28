@@ -33,7 +33,7 @@ interface TSequenceItemProps {
   onChange?: (params: TSequenceNodeChangeParams) => void;
 }
 
-/** Render folderd section or question */
+/** Render folderd section or sequence */
 const EditSequenceItem: React.FC<TSequenceItemProps> = ({ itemData, onChange }) => {
   const isQuestion = !!(itemData as TSequenceElement).sequenceElementId;
   if (isQuestion) {
@@ -158,7 +158,7 @@ export const EditSequenceSection: React.FC<TEditSequenceSectionProps> = (props) 
         debugger;
       }
       const id = valueId as keyof TSequenceSection;
-      // Create updated question data object...
+      // Create updated sequence data object...
       const changedSectionData: TSequenceSection = { ...sectionData, [id]: value };
       // Is reorder required for uplevel container? (TODO: Track the current node in viewpoint on re-order?)
       const reorderRequired = valueId === 'orderNumber';

@@ -25,7 +25,7 @@ interface TEditSequenceElementProps {
   onChange?: (params: TSequenceNodeChangeParams) => void;
 }
 
-/** DEBUG: Show plain question data */
+/** DEBUG: Show plain sequence data */
 const debugShowRawQuestion = false;
 
 const EditSequenceElementContent: React.FC<{
@@ -158,7 +158,7 @@ export const EditSequenceElement: React.FC<TEditSequenceElementProps> = (props) 
         debugger;
       }
       const id = valueId as keyof TSequenceElement;
-      // Create updated question data object...
+      // Create updated sequence data object...
       const changedSequenceElementData: TSequenceElement = { ...SequenceElementData, [id]: value };
       // Is reorder required for uplevel container? (TODO: Track the current node in viewpoint on re-order?)
       const reorderRequired = valueId === 'orderNumber';

@@ -10,7 +10,7 @@ export const DemoEditableNode: TDemoComponent = () => {
         editableType="text"
         title="Text Field"
         // value="Editable text"
-        value="Fake question with an extra long text data to check flex adaptive layout"
+        value="Fake sequence with an extra long text data to check flex adaptive layout"
       />
       {/*
       <EditableNode

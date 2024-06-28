@@ -15,8 +15,8 @@ const defaultSequenceElementData: TSequenceElement = {
   typeId: 1,
   orderNumber: 2,
   displayNumber: '1.3.',
-  // text: 'Fake question',
-  text: 'Fake question with an extra long text data to check flex adaptive layout',
+  // text: 'Fake sequence',
+  text: 'Fake sequence with an extra long text data to check flex adaptive layout',
   remark:
     'By "adding" new fields, you will automatically import references entered in previous years. If field is empty, please complete it with relevant reference.',
 };

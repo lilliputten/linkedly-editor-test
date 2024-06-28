@@ -23,7 +23,7 @@ export interface TSequencePage extends TSequenceOrderedItem {
   items: TSequenceSection[];
 }
 
-/** Section or question node
+/** Section or sequence node
  * Sections can contain both questions and sections, recoursivcely
  */
 export type TSequenceItem = TSequenceElement | TSequenceSection;
@@ -45,5 +45,5 @@ export interface TSequenceElement extends TSequenceOrderedItem {
   displayNumber: string;
   text: string;
   remark?: string;
-  // TODO: Add other question fields?
+  // TODO: Add other sequence fields?
 }
