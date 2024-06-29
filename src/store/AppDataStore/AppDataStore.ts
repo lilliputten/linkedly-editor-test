@@ -1,7 +1,7 @@
 import { makeObservable, observable, action, when, IReactionDisposer, computed } from 'mobx';
 import bound from 'bind-decorator';
 
-import { TTestData } from 'src/core/types';
+import { TSequence } from 'src/entities/Sequence/types';
 
 export class AppDataStore {
   // NOTE: remember to clean/reset properties in `clearData`
@@ -21,7 +21,8 @@ export class AppDataStore {
   @observable error?: Error;
 
   // Data...
-  @observable testData?: TTestData;
+  @observable sequenceData?: TSequence;
+  @observable hasSequenceDataChanged: boolean = false;
 
   // Lifecycle...
 
@@ -41,14 +42,10 @@ export class AppDataStore {
   // Core getters...
 
   @computed get hasAllData() {
-    return !!(
-      this.testData /* && this.edgesData && this.flowsData && this.graphsData && this.nodesData */
-    );
+    return !!(this.sequenceData /* && this.edgesData */);
   }
   @computed get hasSomeData() {
-    return !!(
-      this.testData /* || this.edgesData || this.flowsData || this.graphsData || this.nodesData */
-    );
+    return !!(this.sequenceData /* || this.edgesData */);
   }
 
   @computed get hasData() {
@@ -85,8 +82,14 @@ export class AppDataStore {
 
   // Data setters...
 
-  @action setTestData(testData: typeof AppDataStore.prototype.testData) {
-    this.testData = testData;
+  @action setHasSequenceDataChanged(
+    hasSequenceDataChanged: typeof AppDataStore.prototype.hasSequenceDataChanged,
+  ) {
+    this.hasSequenceDataChanged = hasSequenceDataChanged;
+  }
+
+  @action setSequenceData(sequenceData: typeof AppDataStore.prototype.sequenceData) {
+    this.sequenceData = sequenceData;
   }
 
   // File infos...
@@ -114,7 +117,7 @@ export class AppDataStore {
     this.loading = false;
     this.error = undefined;
     // Data...
-    this.testData = undefined;
+    this.sequenceData = undefined;
   }
 
   // Reactions...

@@ -6,11 +6,11 @@ import { TPropsWithClassName } from 'src/core/types';
 import { TSequence } from 'src/entities/Sequence/types';
 import { ShowSequenceSection } from '../ShowSequenceSection';
 
-export interface TShowSequenceProps extends TPropsWithClassName {
+export interface TShowSequenceRootProps extends TPropsWithClassName {
   sequenceData: TSequence;
 }
 
-export const ShowSequence: React.FC<TShowSequenceProps> = (props) => {
+export const ShowSequenceRoot: React.FC<TShowSequenceRootProps> = (props) => {
   const {
     // prettier-ignore
     className,
@@ -25,7 +25,7 @@ export const ShowSequence: React.FC<TShowSequenceProps> = (props) => {
     <Stack
       // prettier-ignore
       data-sequence-id={sequenceId}
-      className={classNames(className, 'ShowSequence')}
+      className={classNames(className, 'ShowSequenceRoot')}
       direction="column"
     >
       {sections.map((sectionData) => {

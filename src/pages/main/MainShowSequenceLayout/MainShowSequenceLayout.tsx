@@ -2,18 +2,20 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
-import { Box, Container, Stack, Typography } from '@mui/material';
+import { Stack } from '@mui/material';
 
 import { isDev } from 'src/core/constants/config';
 import { useCommonAppNavigation } from 'src/core/hooks/routes/useCommonAppNavigation';
 import { TPropsWithClassName } from 'src/core/types';
-import { ThemedLoaderSplash, Scrollable } from 'src/ui/Basic';
+import { ThemedLoaderSplash } from 'src/ui/Basic';
 import { useLogged } from 'src/store/AppSessionStore';
-import { TSequenceId, TSequence } from 'src/entities/Sequence/types';
+import { TSequenceId } from 'src/entities/Sequence/types';
 import { ShowSequenceWrapper } from 'src/components/Sequence/ShowSequenceWrapper';
 import { LeftMenu } from 'src/components/App/LeftMenu';
+import { useAppDataStore } from 'src/store/AppDataStore';
 
 import styles from './MainShowSequenceLayout.module.scss';
+import { MainChartWrapper } from 'src/components/MainChart/MainChartWrapper';
 
 export interface TMainShowSequenceLayoutProps extends TPropsWithClassName {}
 
@@ -22,10 +24,9 @@ export const MainShowSequenceLayout: React.FC<TPropsWithClassName> = observer((p
   const routerParams = useParams();
   const sequenceId: TSequenceId = Number(routerParams.sequenceId);
   useCommonAppNavigation();
+  const appDataStore = useAppDataStore();
   const isLogged = useLogged();
   const [ready, setReady] = React.useState(false);
-  const [sequenceData, setSequenceData] = React.useState<TSequence | undefined>();
-  const [hasChanged, setHasChanged] = React.useState(false);
   React.useEffect(() => {
     if ((!sequenceId || !isLogged) && !isDev) {
       return;
@@ -34,46 +35,22 @@ export const MainShowSequenceLayout: React.FC<TPropsWithClassName> = observer((p
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setSequenceData(data);
-        setHasChanged(false);
+        // setSequenceData(data);
+        appDataStore.setSequenceData(data);
+        appDataStore.setHasSequenceDataChanged(false);
       })
       // TODO: Process errors
       .finally(() => {
         setReady(true);
       });
-  }, [isLogged, sequenceId]);
-  const hasData = ready && !!sequenceData;
+  }, [isLogged, sequenceId, appDataStore]);
   return (
     <>
       <Stack className={classNames(className, styles.root)} direction="row" flex={1}>
         <LeftMenu className={styles.leftPanel} />
-        <Stack className={styles.mainPanel}>
-          <Scrollable className={styles.mainScrollable}>
-            <Container maxWidth="md" sx={{ my: 2 }}>
-              {hasData && (
-                <>
-                  {hasChanged && (
-                    <Box>
-                      <Typography color="red">
-                        {/* Notification about data change */}
-                        The sequence data has changed. Saving will be required.
-                      </Typography>
-                    </Box>
-                  )}
-                  <>Main content</>
-                </>
-              )}
-            </Container>
-          </Scrollable>
-        </Stack>
+        <MainChartWrapper className={styles.mainPanel} />
         <Stack className={styles.rightPanel}>
-          {!!sequenceData && (
-            <ShowSequenceWrapper
-              className={styles.rightPanelContent}
-              // handleChange={handleChange}
-              sequenceData={sequenceData}
-            />
-          )}
+          <ShowSequenceWrapper className={styles.rightPanelContent} />
         </Stack>
       </Stack>
       <ThemedLoaderSplash
