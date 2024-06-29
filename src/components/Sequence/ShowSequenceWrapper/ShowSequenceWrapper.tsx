@@ -8,15 +8,15 @@ import { Scrollable } from 'src/ui/Basic';
 import { TSequence } from 'src/entities/Sequence/types';
 import { ShowSequence } from 'src/components/Sequence/ShowSequence';
 
-export interface TMainShowSequencePageProps extends TPropsWithClassName {
+export interface TShowSequenceWrapperProps extends TPropsWithClassName {
   // handleChange?: (params: TSequenceNodeChangeParams) => void;
   sequenceData: TSequence;
 }
 
-export const MainShowSequencePage: React.FC<TMainShowSequencePageProps> = observer((props) => {
+export const ShowSequenceWrapper: React.FC<TShowSequenceWrapperProps> = observer((props) => {
   const { className, sequenceData } = props;
   return (
-    <Scrollable className={classNames(className, 'MainShowSequencePage')} fullCenter={false}>
+    <Scrollable className={classNames(className, 'ShowSequenceWrapper')} fullCenter={false}>
       <Container maxWidth="md" sx={{ my: 2 }}>
         <ShowSequence
           // prettier-ignore

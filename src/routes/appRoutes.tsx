@@ -15,13 +15,12 @@ import {
 import { AppRootLayout } from 'src/pages/app/AppRootLayout';
 import { DemoPage } from 'src/pages/app/DemoPage';
 import { LoginPage } from 'src/pages/app/LoginPage';
-// import { MainShowSequencePage } from 'src/pages/main/MainShowSequencePage';
 import { MainLayout } from 'src/pages/main/MainLayout';
 import { MainSequencesList } from 'src/pages/main/MainSequencesList';
 import { StartPage } from 'src/pages/app/StartPage';
 import { TestPage } from 'src/pages/app/TestPage';
 import { WaitingPage } from 'src/pages/app/WaitingPage';
-import { MainShowSequencePageLayout } from 'src/pages/main/MainShowSequencePageLayout';
+import { MainShowSequenceLayout } from 'src/pages/main/MainShowSequenceLayout';
 
 /** Routes
  * @see src/routes/appUrls.ts
@@ -43,7 +42,7 @@ export const routes: RouteObject[] = [
           { index: true, element: <MainSequencesList /> },
           {
             path: makeUrl([mainSequenceRoute, ':sequenceId']),
-            element: <MainShowSequencePageLayout />,
+            element: <MainShowSequenceLayout />,
           },
           { path: startRoute, element: <TestPage /> },
         ],

@@ -10,15 +10,14 @@ import { TPropsWithClassName } from 'src/core/types';
 import { ThemedLoaderSplash, Scrollable } from 'src/ui/Basic';
 import { useLogged } from 'src/store/AppSessionStore';
 import { TSequenceId, TSequence } from 'src/entities/Sequence/types';
-
+import { ShowSequenceWrapper } from 'src/components/Sequence/ShowSequenceWrapper';
 import { LeftMenu } from 'src/components/App/LeftMenu';
-import { MainShowSequencePage } from 'src/pages/main/MainShowSequencePage';
 
-import styles from './MainShowSequencePageLayout.module.scss';
+import styles from './MainShowSequenceLayout.module.scss';
 
-export interface TMainShowSequencePageLayoutProps extends TPropsWithClassName {}
+export interface TMainShowSequenceLayoutProps extends TPropsWithClassName {}
 
-export const MainShowSequencePageLayout: React.FC<TPropsWithClassName> = observer((props) => {
+export const MainShowSequenceLayout: React.FC<TPropsWithClassName> = observer((props) => {
   const { className } = props;
   const routerParams = useParams();
   const sequenceId: TSequenceId = Number(routerParams.sequenceId);
@@ -69,7 +68,7 @@ export const MainShowSequencePageLayout: React.FC<TPropsWithClassName> = observe
         </Stack>
         <Stack className={styles.rightPanel}>
           {!!sequenceData && (
-            <MainShowSequencePage
+            <ShowSequenceWrapper
               className={styles.rightPanelContent}
               // handleChange={handleChange}
               sequenceData={sequenceData}

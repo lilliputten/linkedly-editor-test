@@ -29,6 +29,7 @@ export const ShowSequenceItem: React.FC<TShowSequenceItemProps> = (props) => {
       data-item-id={itemId}
       data-item-type={typeId}
       className={classNames(className, styles.root)}
+      // onDragStart={onDragStart}
     >
       {text}
       {/* TODO: Credits block */}
