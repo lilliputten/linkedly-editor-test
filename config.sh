@@ -17,4 +17,4 @@ PUBLISH_TAG_ID="$DIST_BRANCH"
 
 # Timezone for timestamps (GMT, Europe/Moscow, Asia/Bangkok, Asia/Tashkent, etc)
 # NOTE: See duplications in 'config.js'
-TIMEZONE="Europe/Moscow"
+TIMEZONE="GMT"
