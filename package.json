@@ -1,8 +1,8 @@
 {
   "name": "linkedly-editor-test",
-  "version": "0.0.2",
-  "timetag": "240628-1832",
-  "timestamp": "2024.06.28 18:32 +0000",
+  "version": "0.0.3",
+  "timetag": "240629-0904",
+  "timestamp": "2024.06.29 09:04 +0000",
   "changed": "2024.05.27, 22:46",
   "eslint-unused-rules": {
     "eqeqeq": [
@@ -99,6 +99,7 @@
     "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.3",
+    "reactflow": "^11.11.4",
     "rimraf": "^5.0.5",
     "sass": "^1.69.5",
     "serve": "^14.2.1",
