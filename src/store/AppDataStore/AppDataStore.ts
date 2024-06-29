@@ -24,6 +24,9 @@ export class AppDataStore {
   @observable sequenceData?: TSequence;
   @observable hasSequenceDataChanged: boolean = false;
 
+  // ToDO: Use specific store for flow data...
+  @observable connectSource?: string;
+
   // Lifecycle...
 
   constructor() {
@@ -90,6 +93,10 @@ export class AppDataStore {
 
   @action setSequenceData(sequenceData: typeof AppDataStore.prototype.sequenceData) {
     this.sequenceData = sequenceData;
+  }
+
+  @action setConnectSource(connectSource: typeof AppDataStore.prototype.connectSource) {
+    this.connectSource = connectSource;
   }
 
   // File infos...

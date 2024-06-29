@@ -134,21 +134,22 @@ export class AppSessionStore {
       // prettier-ignore
       inited,
       loading,
-      ready,
+      // ready,
       logged,
       finished,
       showDemo,
     } = this;
     // eslint-disable-next-line no-console
-    console.log('[AppSessionStore:rootState] start', {
-      inited,
-      loading,
-      ready,
-      logged,
-      finished,
-      showDemo,
-      DEBUG_SKIP_LOGIN,
-    });
+    /* console.log('[AppSessionStore:rootState] start', {
+     *   inited,
+     *   loading,
+     *   // ready,
+     *   logged,
+     *   finished,
+     *   showDemo,
+     *   DEBUG_SKIP_LOGIN,
+     * });
+     */
     let rootState = 'waiting';
     if (!inited || loading) {
       rootState = 'waiting';
@@ -163,7 +164,7 @@ export class AppSessionStore {
       // rootState = 'waiting';
     }
     // eslint-disable-next-line no-console
-    console.log('[AppSessionStore:rootState] result', rootState);
+    // console.log('[AppSessionStore:rootState] result', rootState);
     return rootState;
   }
 

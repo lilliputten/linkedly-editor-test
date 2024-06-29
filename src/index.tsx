@@ -8,7 +8,9 @@ import { AppRoot } from 'src/pages/app/AppRoot';
 
 import 'src/core/global/global-includes';
 import 'src/core/global/global-styles.scss';
-import { toBoolean } from './core/helpers/basic';
+import { toBoolean } from 'src/core/helpers/basic';
+
+import './global.scss';
 
 const rootNode = document.getElementById('root') as HTMLElement;
 const root = ReactDOM.createRoot(rootNode);

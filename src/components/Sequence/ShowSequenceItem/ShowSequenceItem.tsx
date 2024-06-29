@@ -30,6 +30,10 @@ export const ShowSequenceItem: React.FC<TShowSequenceItemProps> = (props) => {
     (event) => {
       event.dataTransfer.setData(dragSequenceItemFormatId, JSON.stringify(itemData));
       event.dataTransfer.effectAllowed = 'move';
+      /* console.log('[ShowSequenceItem:onDragStart]', {
+       *   itemData,
+       * });
+       */
     },
     [itemData],
   );

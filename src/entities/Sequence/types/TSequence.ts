@@ -26,5 +26,5 @@ export interface TSequenceItem extends TSequenceOrderedItem {
   typeId?: TSequenceItemType;
   creditsCount: number;
   text: string;
-  // TODO: Other sequence fields?
+  // TODO: Other sequence item fields?
 }
